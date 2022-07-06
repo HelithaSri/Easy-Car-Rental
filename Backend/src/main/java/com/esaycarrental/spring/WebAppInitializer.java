@@ -7,7 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /**
  * @author Helitha Sri
  * @created 7/6/2022 - 3:09 PM
- * @project Esay Car Rental
+ * @project Easy Car Rental
  */
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  * @author Helitha Sri
  * @created 7/6/2022 - 3:12 PM
- * @project Esay Car Rental
+ * @project Easy Car Rental
  */
 
 @EnableWebMvc
