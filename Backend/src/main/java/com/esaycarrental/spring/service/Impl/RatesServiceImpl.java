@@ -28,6 +28,33 @@ public class RatesServiceImpl implements RatesService {
 
 
     @Override
+    public void saveRates(RatesDTO ratesDTO) {
+        if (!repo.existsById(ratesDTO.getRateId())){
+            repo.save(mapper.map(ratesDTO,Rates.class));
+        }else {
+            throw new RuntimeException("Rate Already Exist");
+        }
+    }
+
+    @Override
+    public void deleteRates(String rateID) {
+        if (repo.existsById(rateID)){
+            repo.deleteById(rateID);
+        }else {
+            throw new RuntimeException("Please check the Rate ID... No Such Rate to Delete!");
+        }
+    }
+
+    @Override
+    public void updateRates(RatesDTO ratesDTO) {
+        if (repo.existsById(ratesDTO.getRateId())){
+            repo.save(mapper.map(ratesDTO,new TypeToken<List<RatesDTO>>(){}.getType()));
+        }else {
+            throw new RuntimeException("Please check the Rate ID... No Such Rate to Update!");
+        }
+    }
+
+    @Override
     public List<RatesDTO> getAllRates() {
         return mapper.map(repo.findAll(), new TypeToken<List<RatesDTO>>(){}.getType());
 
