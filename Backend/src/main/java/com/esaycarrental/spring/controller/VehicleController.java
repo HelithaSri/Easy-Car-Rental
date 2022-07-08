@@ -38,6 +38,7 @@ public class VehicleController {
         return new ResponseUtil(200,"Vehicle Delete Successfully",null);
     }
 
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateVehicle(@RequestBody VehicleDTO dto){
         service.updateVehicle(dto);
         return new ResponseUtil(200,"User Update Successfully",null);
