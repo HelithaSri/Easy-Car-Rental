@@ -18,5 +18,5 @@ import lombok.ToString;
 public class VehicleTypeDTO {
     private String vehicleTypeId;
     private String Type;
-    private String ldw;
+    private double ldw;
 }

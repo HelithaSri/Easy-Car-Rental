@@ -22,10 +22,10 @@ public class VehicleDTO {
     private String brand;
     private String color;
     private String status;
-    private String noOfPassengers;
-    private String runningKm;
+    private int noOfPassengers;
+    private double runningKm;
     private String fuelType;
     private String transmissionType;
-    private VehicleTypeDTO typeDTO;
-    private RatesDTO ratesDTO;
+    private VehicleTypeDTO type;
+    private RatesDTO rates;
 }

@@ -24,8 +24,8 @@ public class Vehicle {
     private String brand;
     private String color;
     private String status;
-    private String noOfPassengers;
-    private String runningKm;
+    private int noOfPassengers;
+    private double runningKm;
     private String fuelType;
     private String transmissionType;
 
