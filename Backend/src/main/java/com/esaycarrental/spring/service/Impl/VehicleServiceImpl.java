@@ -61,7 +61,7 @@ public class VehicleServiceImpl implements VehicleService {
 //            System.out.println("\nchange : "+ vehicleDTO+"\n");
             repo.save(mapper.map(vehicleDTO, Vehicle.class));
         }else {
-            throw new RuntimeException("User Already Exist");
+            throw new RuntimeException("Vehicle Already Exist");
         }
     }
 
