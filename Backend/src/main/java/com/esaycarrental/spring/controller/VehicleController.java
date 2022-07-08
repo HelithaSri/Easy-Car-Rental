@@ -4,6 +4,7 @@ import com.esaycarrental.spring.dto.VehicleDTO;
 import com.esaycarrental.spring.service.VehicleService;
 import com.esaycarrental.spring.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class VehicleController {
         return new ResponseUtil(200,"Ok",service.getAllVehicles());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveVehicle(@RequestBody VehicleDTO dto){
         service.saveVehicle(dto);
