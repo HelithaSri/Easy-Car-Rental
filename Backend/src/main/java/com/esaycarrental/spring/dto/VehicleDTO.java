@@ -26,6 +26,6 @@ public class VehicleDTO {
     private String runningKm;
     private String fuelType;
     private String transmissionType;
-    private VehicleType type;
-    private Rates rates;
+    private VehicleTypeDTO typeDTO;
+    private RatesDTO ratesDTO;
 }

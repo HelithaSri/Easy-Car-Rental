@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @ToString
-public class RateDTO {
+public class RatesDTO {
     private String rateId;
     private double monthlyRate;
     private double dailyRate;
