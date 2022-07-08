@@ -41,7 +41,7 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
         if (repo.existsById(userId)){
             repo.deleteById(userId);
         }else{
-            throw new RuntimeException("Please check the Registration User ID... No Such User Delete!");
+            throw new RuntimeException("Please check the Registration User ID... No Such User to Delete!");
         }
     }
 
