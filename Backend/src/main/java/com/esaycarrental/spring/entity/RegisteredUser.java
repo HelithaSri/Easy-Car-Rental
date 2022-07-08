@@ -30,7 +30,7 @@ public class RegisteredUser{
     private String mobileNo;
     private String password;
     private String email;
-/*
-    @OneToMany(mappedBy = "RegisteredUser", cascade = CascadeType.ALL)
+
+   /* @OneToMany(mappedBy = "registereduser", cascade = CascadeType.ALL)
     private List<RegisteredUsersImg> img;*/
 }

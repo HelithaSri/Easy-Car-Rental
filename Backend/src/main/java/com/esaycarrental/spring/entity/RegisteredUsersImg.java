@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @project Easy Car Rental
  */
 
-/*@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
@@ -23,12 +23,10 @@ public class RegisteredUsersImg {
     @Id
     private String imgId;
     private String pathUrl;
-    private String registrationNo;
-    private String type;
     private String Description;
-    private String regUserId;
-*//*
-    @ManyToOne
-    @JoinColumn(name = "regUserId", nullable = false)
-    private RegisteredUser registeredUser;*//*
-}*/
+    private String registerUserId;
+
+    /*@ManyToOne
+    @JoinColumn(name = "registerUserId", referencedColumnName = "regUserId", insertable = false, updatable = false)
+    private RegisteredUser registeredUser;*/
+}
