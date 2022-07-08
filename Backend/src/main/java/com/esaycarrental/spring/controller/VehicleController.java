@@ -28,8 +28,6 @@ public class VehicleController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveVehicle(@RequestBody VehicleDTO dto){
-        System.out.println("obj : "+dto);
-        System.out.println("obj c  : "+dto.getType().getVehicleTypeId());
         service.saveVehicle(dto);
         return new ResponseUtil(200,"New Vehicle Added Successfully",null);
     }
