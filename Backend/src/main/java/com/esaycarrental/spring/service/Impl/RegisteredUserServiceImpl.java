@@ -38,12 +38,20 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
 
     @Override
     public void deleteUser(String userId) {
-
+        if (repo.existsById(userId)){
+            repo.deleteById(userId);
+        }else{
+            throw new RuntimeException("Please check the Registration User ID... No Such User Delete!");
+        }
     }
 
     @Override
     public void updateUser(RegisteredUserDTO userDTO) {
-
+        if (repo.existsById(userDTO.getRegUserId())){
+            repo.save(mapper.map(userDTO, RegisteredUser.class));
+        }else {
+            throw new RuntimeException("Please check the Registration User ID... No Such User to Update!");
+        }
     }
 
     @Override
