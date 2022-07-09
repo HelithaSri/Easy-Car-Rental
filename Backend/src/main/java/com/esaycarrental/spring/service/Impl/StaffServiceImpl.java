@@ -56,7 +56,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public List<Staff> getAllStaffs() {
+    public List<StaffDTO> getAllStaffs() {
         return mapper.map(repo.findAll(), new TypeToken<List<StaffDTO>>() {
         }.getType());
     }
