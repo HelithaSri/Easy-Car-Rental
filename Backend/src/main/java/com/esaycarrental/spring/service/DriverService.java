@@ -20,6 +20,6 @@ public interface DriverService {
 
     void updateDriver(DriverDTO driverDTO);
 
-    List<DriverDTO> getAllStaffs();
+    List<DriverDTO> getAllDrivers();
 
 }
