@@ -1,5 +1,6 @@
 package com.esaycarrental.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class DriveScheduleDTO {
     private String registrationNumber;
     private String rentId;
     private String staffId;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate rentDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 }
