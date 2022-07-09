@@ -40,6 +40,7 @@ public class StaffController {
         return new ResponseUtil(200,"Staff Delete Successfully",null);
     }
 
+    @PutMapping
     public ResponseUtil updateStaff(@RequestBody StaffDTO staffDTO){
         service.updateStaff(staffDTO);
         return new ResponseUtil(200,"Staff Update Successfully",null);
