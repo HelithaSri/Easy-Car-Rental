@@ -19,6 +19,6 @@ public interface StaffService {
 
     void updateStaff(StaffDTO staffDTO);
 
-    List<Staff> getAllStaffs();
+    List<StaffDTO> getAllStaffs();
 
 }
