@@ -20,5 +20,5 @@ import java.io.Serializable;
 public class DriveSchedule_PK implements Serializable {
     private String registrationNumber;
     private String rentId;
-    private String staffId;
+    private String driverId;
 }

@@ -39,6 +39,6 @@ public class DriveSchedule {
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "staffId", referencedColumnName = "staffId", insertable = false, updatable = false)
-    private Staff staff;
+    @JoinColumn(name = "driverId", referencedColumnName = "driverId", insertable = false, updatable = false)
+    private Driver driver;
 }
