@@ -29,33 +29,34 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
 
     @Override
     public void saveUser(RegisteredUserDTO registeredUserDTO) {
-        if (!repo.existsById(registeredUserDTO.getRegUserId())){
+        if (!repo.existsById(registeredUserDTO.getRegUserId())) {
             repo.save(mapper.map(registeredUserDTO, RegisteredUser.class));
-        }else {
+        } else {
             throw new RuntimeException("User Already Exist");
         }
     }
 
     @Override
     public void deleteUser(String userId) {
-        if (repo.existsById(userId)){
+        if (repo.existsById(userId)) {
             repo.deleteById(userId);
-        }else{
+        } else {
             throw new RuntimeException("Please check the Registration User ID... No Such User to Delete!");
         }
     }
 
     @Override
     public void updateUser(RegisteredUserDTO userDTO) {
-        if (repo.existsById(userDTO.getRegUserId())){
+        if (repo.existsById(userDTO.getRegUserId())) {
             repo.save(mapper.map(userDTO, RegisteredUser.class));
-        }else {
+        } else {
             throw new RuntimeException("Please check the Registration User ID... No Such User to Update!");
         }
     }
 
     @Override
     public List<RegisteredUserDTO> getAllUsers() {
-        return mapper.map(repo.findAll(), new TypeToken<List<RegisteredUserDTO>>(){}.getType());
+        return mapper.map(repo.findAll(), new TypeToken<List<RegisteredUserDTO>>() {
+        }.getType());
     }
 }

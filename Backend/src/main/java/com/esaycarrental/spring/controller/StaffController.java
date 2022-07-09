@@ -23,27 +23,27 @@ public class StaffController {
     StaffService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil getAllStaffs(){
-        return new ResponseUtil(200,"Ok",service.getAllStaffs());
+    public ResponseUtil getAllStaffs() {
+        return new ResponseUtil(200, "Ok", service.getAllStaffs());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveStaff(@ModelAttribute StaffDTO staffDTO){
+    public ResponseUtil saveStaff(@ModelAttribute StaffDTO staffDTO) {
         service.saveStaff(staffDTO);
-        return new ResponseUtil(200,"New Staff Added Successfully",null);
+        return new ResponseUtil(200, "New Staff Added Successfully", null);
     }
 
     @DeleteMapping
-    public ResponseUtil deleteStaff(@RequestParam String staffId){
+    public ResponseUtil deleteStaff(@RequestParam String staffId) {
         service.deleteStaff(staffId);
-        return new ResponseUtil(200,"Staff Delete Successfully",null);
+        return new ResponseUtil(200, "Staff Delete Successfully", null);
     }
 
     @PutMapping
-    public ResponseUtil updateStaff(@RequestBody StaffDTO staffDTO){
+    public ResponseUtil updateStaff(@RequestBody StaffDTO staffDTO) {
         service.updateStaff(staffDTO);
-        return new ResponseUtil(200,"Staff Update Successfully",null);
+        return new ResponseUtil(200, "Staff Update Successfully", null);
     }
 
 }

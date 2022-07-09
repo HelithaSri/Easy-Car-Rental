@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @project Easy Car Rental
  */
 
-public interface StaffRepo extends JpaRepository<Staff,String> {
+public interface StaffRepo extends JpaRepository<Staff, String> {
 }

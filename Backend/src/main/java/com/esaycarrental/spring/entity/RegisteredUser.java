@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * @author Helitha Sri
@@ -20,7 +19,7 @@ import java.util.List;
 @Data
 @ToString
 @Entity
-public class RegisteredUser{
+public class RegisteredUser {
     @Id
     private String regUserId;
     private String name;

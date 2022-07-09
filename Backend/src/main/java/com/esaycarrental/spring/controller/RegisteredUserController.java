@@ -23,27 +23,27 @@ public class RegisteredUserController {
     RegisteredUserService userService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil getAllUsers(){
-        return new ResponseUtil(200,"Ok",userService.getAllUsers());
+    public ResponseUtil getAllUsers() {
+        return new ResponseUtil(200, "Ok", userService.getAllUsers());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveUser(@ModelAttribute RegisteredUserDTO userDTO){
+    public ResponseUtil saveUser(@ModelAttribute RegisteredUserDTO userDTO) {
         userService.saveUser(userDTO);
-        return new ResponseUtil(200,"New User Create Successfully",null);
+        return new ResponseUtil(200, "New User Create Successfully", null);
     }
 
     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteUser(@RequestParam String regUserId){
+    public ResponseUtil deleteUser(@RequestParam String regUserId) {
         userService.deleteUser(regUserId);
-        return new ResponseUtil(200,"User Delete Successfully",null);
+        return new ResponseUtil(200, "User Delete Successfully", null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateUser(@RequestBody RegisteredUserDTO dto){
+    public ResponseUtil updateUser(@RequestBody RegisteredUserDTO dto) {
         userService.updateUser(dto);
-        return new ResponseUtil(200,"User Update Successfully",null);
+        return new ResponseUtil(200, "User Update Successfully", null);
     }
 
 }

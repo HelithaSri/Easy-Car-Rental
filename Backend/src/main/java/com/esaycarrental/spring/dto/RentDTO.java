@@ -1,8 +1,6 @@
 package com.esaycarrental.spring.dto;
 
-import com.esaycarrental.spring.entity.DriveSchedule;
 import com.esaycarrental.spring.entity.RegisteredUser;
-import com.esaycarrental.spring.entity.RentDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

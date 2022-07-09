@@ -23,27 +23,27 @@ public class VehicleTypeController {
     VehicleTypeService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil getAllVehicleTypes(){
-        return new ResponseUtil(200,"Ok",service.getAllVehicleType());
+    public ResponseUtil getAllVehicleTypes() {
+        return new ResponseUtil(200, "Ok", service.getAllVehicleType());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveVehicleType(@ModelAttribute VehicleTypeDTO typeDTO){
+    public ResponseUtil saveVehicleType(@ModelAttribute VehicleTypeDTO typeDTO) {
         service.saveVehicleType(typeDTO);
-        return new ResponseUtil(200,"New Vehicle Type Added Successfully",null);
+        return new ResponseUtil(200, "New Vehicle Type Added Successfully", null);
     }
 
     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteVehicleType(@RequestParam String typeId){
+    public ResponseUtil deleteVehicleType(@RequestParam String typeId) {
         service.deleteVehicleType(typeId);
-        return new ResponseUtil(200,"Vehicle Type Delete Successfully",null);
+        return new ResponseUtil(200, "Vehicle Type Delete Successfully", null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicleType(@RequestBody VehicleTypeDTO typeDTO){
+    public ResponseUtil updateVehicleType(@RequestBody VehicleTypeDTO typeDTO) {
         service.updateVehicleType(typeDTO);
-        return new ResponseUtil(200,"Vehicle Type Update Successfully",null);
+        return new ResponseUtil(200, "Vehicle Type Update Successfully", null);
     }
 
 }

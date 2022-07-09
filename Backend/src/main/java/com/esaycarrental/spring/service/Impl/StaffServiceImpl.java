@@ -30,33 +30,34 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void saveStaff(StaffDTO staffDTO) {
-        if (!repo.existsById(staffDTO.getStaffId())){
-            repo.save(mapper.map(staffDTO,Staff.class));
-        }else {
+        if (!repo.existsById(staffDTO.getStaffId())) {
+            repo.save(mapper.map(staffDTO, Staff.class));
+        } else {
             throw new RuntimeException("User Already Exist");
         }
     }
 
     @Override
     public void deleteStaff(String staffId) {
-        if (repo.existsById(staffId)){
+        if (repo.existsById(staffId)) {
             repo.deleteById(staffId);
-        }else {
+        } else {
             throw new RuntimeException("Please check the Staff ID... No Such Staff to Delete!");
         }
     }
 
     @Override
     public void updateStaff(StaffDTO staffDTO) {
-        if (repo.existsById(staffDTO.getStaffId())){
-            repo.save(mapper.map(staffDTO,Staff.class));
-        }else {
+        if (repo.existsById(staffDTO.getStaffId())) {
+            repo.save(mapper.map(staffDTO, Staff.class));
+        } else {
             throw new RuntimeException("Please check the Staff ID... No Such Staff to Update!");
         }
     }
 
     @Override
     public List<Staff> getAllStaffs() {
-        return mapper.map(repo.findAll(), new TypeToken<List<StaffDTO>>(){}.getType());
+        return mapper.map(repo.findAll(), new TypeToken<List<StaffDTO>>() {
+        }.getType());
     }
 }

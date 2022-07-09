@@ -1,7 +1,5 @@
 package com.esaycarrental.spring.dto;
 
-import com.esaycarrental.spring.entity.Rates;
-import com.esaycarrental.spring.entity.VehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

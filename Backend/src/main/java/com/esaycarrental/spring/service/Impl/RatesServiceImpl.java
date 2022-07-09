@@ -1,10 +1,8 @@
 package com.esaycarrental.spring.service.Impl;
 
 import com.esaycarrental.spring.dto.RatesDTO;
-import com.esaycarrental.spring.dto.RegisteredUserDTO;
 import com.esaycarrental.spring.entity.Rates;
 import com.esaycarrental.spring.repo.RatesRepo;
-import com.esaycarrental.spring.repo.RegisteredUserRepo;
 import com.esaycarrental.spring.service.RatesService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -33,34 +31,35 @@ public class RatesServiceImpl implements RatesService {
 
     @Override
     public void saveRates(RatesDTO ratesDTO) {
-        if (!repo.existsById(ratesDTO.getRateId())){
-            repo.save(mapper.map(ratesDTO,Rates.class));
-        }else {
+        if (!repo.existsById(ratesDTO.getRateId())) {
+            repo.save(mapper.map(ratesDTO, Rates.class));
+        } else {
             throw new RuntimeException("Rate Already Exist");
         }
     }
 
     @Override
     public void deleteRates(String rateID) {
-        if (repo.existsById(rateID)){
+        if (repo.existsById(rateID)) {
             repo.deleteById(rateID);
-        }else {
+        } else {
             throw new RuntimeException("Please check the Rate ID... No Such Rate to Delete!");
         }
     }
 
     @Override
     public void updateRates(RatesDTO ratesDTO) {
-        if (repo.existsById(ratesDTO.getRateId())){
-            repo.save(mapper.map(ratesDTO,Rates.class));
-        }else {
+        if (repo.existsById(ratesDTO.getRateId())) {
+            repo.save(mapper.map(ratesDTO, Rates.class));
+        } else {
             throw new RuntimeException("Please check the Rate ID... No Such Rate to Update!");
         }
     }
 
     @Override
     public List<RatesDTO> getAllRates() {
-        return mapper.map(repo.findAll(), new TypeToken<List<RatesDTO>>(){}.getType());
+        return mapper.map(repo.findAll(), new TypeToken<List<RatesDTO>>() {
+        }.getType());
 
     }
 }

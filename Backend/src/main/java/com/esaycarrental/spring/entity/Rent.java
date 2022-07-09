@@ -27,7 +27,7 @@ public class Rent {
     private String status;
     private String reason;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "userId", referencedColumnName = "regUserId", nullable = false)
     private RegisteredUser userId;
 

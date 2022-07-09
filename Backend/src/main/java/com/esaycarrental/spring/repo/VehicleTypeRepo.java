@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @project Easy Car Rental
  */
 
-public interface VehicleTypeRepo extends JpaRepository<VehicleType,String> {
+public interface VehicleTypeRepo extends JpaRepository<VehicleType, String> {
 
-    VehicleType findByVehicleTypeId (String vehicleId);
+    VehicleType findByVehicleTypeId(String vehicleId);
 
 }
