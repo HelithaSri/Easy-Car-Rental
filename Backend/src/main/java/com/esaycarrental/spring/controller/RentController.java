@@ -27,23 +27,24 @@ public class RentController {
         return new ResponseUtil(200, "Ok", service.getAllRents());
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
     public ResponseUtil saveRent(@RequestBody RentDTO rentDTO) {
-        service.saveRent(rentDTO);
-        return new ResponseUtil(200, "New Rate Added Successfully", null);
+        System.out.println("\nsave : "+rentDTO.toString());
+//        service.saveRent(rentDTO);
+        return new ResponseUtil(200, "New Rent Added Successfully", null);
     }
 
     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteRent(@RequestParam String rentId) {
         service.deleteRent(rentId);
-        return new ResponseUtil(200, "Rate Delete Successfully", null);
+        return new ResponseUtil(200, "Rent Delete Successfully", null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateRent(@RequestBody RentDTO rentDTO) {
         service.updateRent(rentDTO);
-        return new ResponseUtil(200, "Rate Update Successfully", null);
+        return new ResponseUtil(200, "Rent Update Successfully", null);
     }
 
 }
