@@ -28,7 +28,7 @@ public class RentController {
     }
 
 //    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping(consumes="application/json")
     public ResponseUtil saveRent(@RequestBody RentDTO rentDTO) {
         System.out.println("\nsave : "+rentDTO.toString());
 //        service.saveRent(rentDTO);

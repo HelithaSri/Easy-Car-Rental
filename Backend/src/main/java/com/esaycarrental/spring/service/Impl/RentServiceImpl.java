@@ -85,7 +85,16 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public List<RentDTO> getAllRents() {
-        return mapper.map(rentRepo.findAll(), new TypeToken<List<RentDTO>>() {
-        }.getType());
+        List<Rent> all = rentRepo.findAll();
+        for (Rent rent : all) {
+            System.out.println(rent.getRentId());
+            System.out.println(rent.getUserId().getName());
+
+        }
+//        Rent rent = all.get(0);
+//        System.out.println(" Hello "+ rent.toString());
+//        return mapper.map(rentRepo.findAll(), new TypeToken<List<RentDTO>>() {
+//        }.getType());
+        return null;
     }
 }

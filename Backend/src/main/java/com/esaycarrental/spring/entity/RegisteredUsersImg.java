@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @project Easy Car Rental
  */
 
-@NoArgsConstructor
+/*@NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
@@ -26,7 +26,7 @@ public class RegisteredUsersImg {
     private String Description;
     private String registerUserId;
 
-    /*@ManyToOne
+    *//*@ManyToOne
     @JoinColumn(name = "registerUserId", referencedColumnName = "regUserId", insertable = false, updatable = false)
-    private RegisteredUser registeredUser;*/
-}
+    private RegisteredUser registeredUser;*//*
+}*/

@@ -1,9 +1,6 @@
 package com.esaycarrental.spring.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,8 +14,10 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@ToString
+//@Data
+@Getter
+@Setter
+//@ToString
 @Entity
 public class Rent {
     @Id
@@ -31,10 +30,12 @@ public class Rent {
     @JoinColumn(name = "userId", referencedColumnName = "regUserId", nullable = false)
     private RegisteredUser userId;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rent", cascade = CascadeType.PERSIST)
     private List<RentDetails> rentDetails;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rent", cascade = CascadeType.PERSIST)
     private List<DriveSchedule> driveSchedules;
+
+
 
 }

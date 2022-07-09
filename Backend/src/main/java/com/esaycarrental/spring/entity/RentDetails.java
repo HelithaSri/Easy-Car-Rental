@@ -1,9 +1,6 @@
 package com.esaycarrental.spring.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,8 +13,10 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@ToString
+//@Data
+@Getter
+@Setter
+//@ToString
 @Entity
 @IdClass(RentDetails_PK.class)
 public class RentDetails {
