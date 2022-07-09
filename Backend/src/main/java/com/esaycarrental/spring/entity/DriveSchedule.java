@@ -26,7 +26,7 @@ public class DriveSchedule {
     @Id
     private String rentId;
     @Id
-    private String staffId;
+    private String driverId;
     private LocalDate rentDate;
     private LocalDate returnDate;
 
