@@ -24,12 +24,12 @@ public class RentController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllRents() {
-        return new ResponseUtil(200, "New Rent Added Successfully", service.getAllRents());
+        return new ResponseUtil(200, "Ok", service.getAllRents());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveRent(@ModelAttribute RentDTO rentDTO) {
+    public ResponseUtil saveRent(@RequestBody RentDTO rentDTO) {
         service.saveRent(rentDTO);
         return new ResponseUtil(200, "New Rate Added Successfully", null);
     }
