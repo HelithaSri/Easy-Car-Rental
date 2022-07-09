@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class DriveScheduleDTO {
     private String registrationNumber;
     private String rentId;
-    private String staffId;
+    private String driverId;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate rentDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
