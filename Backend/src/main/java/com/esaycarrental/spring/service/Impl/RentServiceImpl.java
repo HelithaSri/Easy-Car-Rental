@@ -1,9 +1,8 @@
 package com.esaycarrental.spring.service.Impl;
 
 import com.esaycarrental.spring.dto.RentDTO;
-import com.esaycarrental.spring.entity.Rent;
-import com.esaycarrental.spring.entity.RentDetails;
-import com.esaycarrental.spring.entity.Vehicle;
+import com.esaycarrental.spring.entity.*;
+import com.esaycarrental.spring.repo.DriverRepo;
 import com.esaycarrental.spring.repo.RentRepo;
 import com.esaycarrental.spring.repo.VehicleRepo;
 import com.esaycarrental.spring.service.RentService;
@@ -32,7 +31,7 @@ public class RentServiceImpl implements RentService {
     private VehicleRepo vehicleRepo;
 
     @Autowired
-    private RentRepo rentRepo;
+    private DriverRepo driverRepo;
 
     @Autowired
     private ModelMapper mapper;
@@ -47,15 +46,19 @@ public class RentServiceImpl implements RentService {
                 throw new RuntimeException("No Vehicle added for the Rent..!");
             }
 
-            for (RentDetails details:rent.getRentDetails()){
+            /*for (RentDetails details:rent.getRentDetails()){
                 Vehicle vehicle = vehicleRepo.findById(details.getRentId()).get();
                 vehicle.setStatus("Rented out");
                 vehicleRepo.save(vehicle);
             }
 
             if (rentDTO.getDriveSchedules().size()>=1){
-                for ()
-            }
+                for (DriveSchedule schedule :rent.getDriveSchedules()){
+                    Driver driver = driverRepo.findById(schedule.getDriverId()).get();
+                    driver.setStatus("On Drive");
+                    driverRepo.save(driver);
+                }
+            }*/
 
         } else {
             throw new RuntimeException("Rent Already Exist");
