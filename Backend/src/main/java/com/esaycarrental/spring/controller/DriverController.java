@@ -40,6 +40,7 @@ public class DriverController {
         return new ResponseUtil(200, "Driver Delete Successfully", null);
     }
 
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateDriver(DriverDTO driverDTO){
         service.updateDriver(driverDTO);
         return new ResponseUtil(200, "Driver Update Successfully", null);
