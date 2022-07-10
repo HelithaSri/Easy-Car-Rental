@@ -27,7 +27,7 @@ public class DriveSchedule {
     private String rentId;
     @Id
     private String driverId;
-    private LocalDate rentDate;
+    private LocalDate checking;
     private LocalDate returnDate;
 
     @ManyToOne

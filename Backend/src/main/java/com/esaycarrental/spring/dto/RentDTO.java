@@ -26,7 +26,7 @@ public class RentDTO {
     private LocalDate date;
     private String status;
     private String reason;
-    private RegisteredUser userId;
+    private RegisteredUserDTO userId;
     private List<RentDetailsDTO> rentDetails;
     private List<DriveScheduleDTO> driveSchedules;
 }

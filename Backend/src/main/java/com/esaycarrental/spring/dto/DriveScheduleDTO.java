@@ -23,7 +23,7 @@ public class DriveScheduleDTO {
     private String rentId;
     private String driverId;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate rentDate;
+    private LocalDate checking;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 }

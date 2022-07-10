@@ -30,10 +30,10 @@ public class Rent {
     @JoinColumn(name = "userId", referencedColumnName = "regUserId", nullable = false)
     private RegisteredUser userId;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "rent", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<RentDetails> rentDetails;
 
-    @OneToMany(mappedBy = "rent", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "rent", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<DriveSchedule> driveSchedules;
 
 

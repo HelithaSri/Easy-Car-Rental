@@ -23,7 +23,7 @@ public class RentDetailsDTO {
     private String registrationNumber;
     private String Status;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate rentDate;
+    private LocalDate checking;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
     private double km;

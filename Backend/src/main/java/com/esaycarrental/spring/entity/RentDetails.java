@@ -25,7 +25,7 @@ public class RentDetails {
     @Id
     private String registrationNumber;
     private String Status;
-    private LocalDate rentDate;
+    private LocalDate checking;
     private LocalDate returnDate;
     private double km;
     private double damageCost;
