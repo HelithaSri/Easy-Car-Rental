@@ -13,10 +13,10 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Data
-@Getter
-@Setter
-//@ToString
+@Data
+//@Getter
+//@Setter
+@ToString
 @Entity
 @IdClass(RentDetails_PK.class)
 public class RentDetails {

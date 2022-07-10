@@ -14,10 +14,10 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Data
-@Getter
-@Setter
-//@ToString
+@Data
+/*@Getter
+@Setter*/
+@ToString
 @Entity
 public class Rent {
     @Id
