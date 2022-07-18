@@ -60,7 +60,7 @@ class NavBar extends Component {
             </div>*/
 
           <AppBar color="transparent" position={"sticky"}>
-            <nav className="flex justify-between items-center h-16 px-12 bg-yellow-400">
+            <nav className="flex justify-between items-center h-16 px-12 bg-yellow-400 bg-zinc-800">
               <div>
                 <Typography variant={"h5"} className="text-white font-bold tracking-wide">
                   Easy Car Rental
@@ -87,7 +87,7 @@ class NavBar extends Component {
                         >
                             <AccountCircle />
                         </IconButton>*/}
-                <CommonButton size="large" variant="text" label="Login" className='text-white'/>
+                <CommonButton size="large" variant="text" label="Login" className='text-white bg-blue-300 bg-opacity-10  backdrop-blur-sm'/>
               </div>
             </nav>
           </AppBar>
