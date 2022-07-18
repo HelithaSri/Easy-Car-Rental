@@ -16,7 +16,7 @@ import CommonButton from "../common/Button";
 class NavBar extends Component {
     render() {
         return (
-            /*<div>
+          /*<div>
                 <Box sx={{ flexGrow: 1 }}>
                     <AppBar position="static">
                         <Toolbar>
@@ -59,19 +59,15 @@ class NavBar extends Component {
                 </Box>
             </div>*/
 
-            <AppBar position={"sticky"}>
-                {/*<nav style={{height:'70px', backgroundColor:"transparent", display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0px 50px', position:'static'}}>*/}
-                <nav className="" >
-                    <div><Typography variant={"h5"} style={{color:'blue'}}>Easy Car Rental</Typography></div>
-                    <div style={{
-                        display: 'flex',
-                        // backgroundColor: 'lightgreen',
-                        width: '10%',
-                        alignItems: 'center',
-                        justifyContent: 'flex-end',
-                        gap: '10px'
-                    }}>
-                       {/* <IconButton
+          <AppBar color="transparent" position={"sticky"}>
+            <nav className="flex justify-between items-center h-16 px-12 bg-yellow-400">
+              <div>
+                <Typography variant={"h5"} className="text-white font-bold tracking-wide">
+                  Easy Car Rental
+                </Typography>
+              </div>
+              <div className='flex w-1/12 justify-end gap-3'>
+                {/* <IconButton
                             size="large"
                             aria-label="show 17 new notifications"
                             color="inherit"
@@ -79,7 +75,8 @@ class NavBar extends Component {
                             <Badge badgeContent={5} color="error">
                                 <ShoppingCartIcon  />
                             </Badge>
-                        </IconButton>*/}{/*<IconButton
+                        </IconButton>*/}
+                {/*<IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
@@ -90,10 +87,10 @@ class NavBar extends Component {
                         >
                             <AccountCircle />
                         </IconButton>*/}
-                        <CommonButton size="large" variant="text" label="Login"/>
-                    </div>
-                </nav>
-            </AppBar>
+                <CommonButton size="large" variant="text" label="Login" className='text-white'/>
+              </div>
+            </nav>
+          </AppBar>
         );
     }
 }
