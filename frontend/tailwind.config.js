@@ -7,7 +7,11 @@ module.exports = {
   important: '#root',
 
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'hero-pattern':"url('assets/img/cover/car_02.jpg')"
+      }
+    },
   },
   plugins: [],
 }
