@@ -9,8 +9,11 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        'hero-pattern':"url('assets/img/cover/car_03.jpg')"
-      }
+        'hero-pattern':"url('assets/img/cover/car_02.jpg')"
+      },
+      fontFamily:{
+        'dosis':"'Dosis',sans-serif",
+      },
     },
   },
   plugins: [],
