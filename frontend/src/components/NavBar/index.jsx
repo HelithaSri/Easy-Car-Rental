@@ -59,10 +59,10 @@ class NavBar extends Component {
                 </Box>
             </div>*/
 
-          <AppBar color="transparent" position={"sticky"}>
-            <nav className="flex justify-between items-center h-16 px-12 bg-yellow-400 bg-zinc-800">
+          <AppBar color="transparent" position={"fixed"}>
+            <nav className="flex justify-between items-center h-16 px-12 bg-zinc-800 bg-opacity-25 p-10 backdrop-blur-sm">
               <div>
-                <Typography variant={"h5"} className="text-white font-bold tracking-wide">
+                <Typography variant={"h5"} className="text-white font-bold tracking-wide select-none">
                   Easy Car Rental
                 </Typography>
               </div>
@@ -87,7 +87,7 @@ class NavBar extends Component {
                         >
                             <AccountCircle />
                         </IconButton>*/}
-                <CommonButton size="large" variant="text" label="Login" className='text-white bg-blue-300 bg-opacity-10  backdrop-blur-sm'/>
+                <CommonButton size="large" variant="outlined" label="Login" className='text-white border-white hover:bg-white hover:text-black' />
               </div>
             </nav>
           </AppBar>
