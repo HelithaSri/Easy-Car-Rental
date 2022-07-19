@@ -49,10 +49,10 @@ class HeroWithGrid extends Component {
         <Grid item xs={12} sm={12} md={5} lg={6}>
           <Typography
             variant={"h4"}
-            className="text-white font-bold select-none md:text-7xl lg:text-left lg:text-7xl xl:text-7xl tracking-wide font-dosis"
+            className="text-white font-bold select-none md:text-7xl lg:text-left lg:text-7xl xl:text-7xl tracking-wide"
             align="center"
           >
-            <span className="text-yellow-500 font-dosis">Faster & Secure</span>
+            <span className="text-yellow-500">Faster & Secure</span>
             <br /> <span> Rent A Car Service </span>
           </Typography>
         </Grid>
