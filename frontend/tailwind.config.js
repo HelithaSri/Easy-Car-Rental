@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily:{
         'dosis':"'Dosis',sans-serif",
+        'roboto':"'Roboto Condensed', sans-serif",
       },
     },
   },
