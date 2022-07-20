@@ -31,9 +31,9 @@ class ListVehicle extends Component {
               <Typography
                 variant="h3"
                 component="h2"
-                className="font-extrabold p-5 pt-10"
+                className="font-extrabold p-5 pt-10 tracking-wide"
               >
-                Get Our Rental Cars
+                Our Rental Fleets
               </Typography>
             </Grid>
           </Grid>
