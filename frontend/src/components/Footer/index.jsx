@@ -9,7 +9,7 @@ class Footer extends Component {
   render() {
     return (
       <Grid container direction="column">
-        <Grid container gap='5px' justifyContent={'space-evenly'} className=" text-white bg-stone-800 h-20">
+        <Grid container gap='5px' justifyContent={'space-evenly'} className=" text-white bg-stone-800 ">
 
           <Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
             <Grid container gap="10px" direction="row" justifyContent={'center'} alignItems='center' className="">
