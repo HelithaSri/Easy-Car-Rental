@@ -9,7 +9,7 @@ class Footer extends Component {
         direction="column"
         justifyContent="center"
         alignItems="stretch"
-        className="bg-stone-900 text-stone-600 h-44"
+        className="bg-stone-900 text-stone-300 h-44"
       >
         <Grid
           container
