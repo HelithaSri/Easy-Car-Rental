@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar";
 import Hero from "../../components/Hero/withFlex";
 import HeroWithGrid from '../../components/Hero/withGrid';
 import ListVehicle from '../../components/ListVehicle';
+import Footer from '../../components/Footer';
 
 class Home extends Component {
     render() {
@@ -11,6 +12,7 @@ class Home extends Component {
                 <NavBar/>
                 <HeroWithGrid/>
                 <ListVehicle/>
+                <Footer/>
             </div>
         );
     }
