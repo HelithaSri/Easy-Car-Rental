@@ -22,7 +22,7 @@ class LuxuryCars extends Component {
             <Typography
               variant="h4"
               component="h2"
-              className="font-extrabold p-5 text-yellow-500 underline  underline-offset-4"
+              className="font-extrabold p-5 text-yellow-500 underline  underline-offset-4 font-dosis"
             >
               Luxury Cars
             </Typography>

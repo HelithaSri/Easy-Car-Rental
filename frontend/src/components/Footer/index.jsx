@@ -109,9 +109,9 @@ class Footer extends Component {
                 item
                 direction="column"
                 justifyContent="center"
-                className="bg-blue-000 text-white text-center h-12 justify-end"
+                className="bg-blue-000 text-white text-center h-12 justify-end "
               >
-                <Typography variant="h5">Esay Car Rental</Typography>
+                <Typography variant="h5" className="font-dosis">Esay Car Rental</Typography>
               </Grid>
               <Grid
                 container

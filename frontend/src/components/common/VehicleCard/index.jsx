@@ -24,7 +24,7 @@ class VehicleCard extends Component {
             className="flex justify-center items-center text-center bg-slate-000 p-4"
             style={{ maxWidth: "330px", height: "93.06px" }}
           >
-            <Typography variant="h5" className="font-bold break-words">
+            <Typography variant="h5" className="font-bold break-words font-dosis">
               Toyota Corolla Axio
             </Typography>
           </div>
