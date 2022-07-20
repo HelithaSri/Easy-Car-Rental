@@ -56,12 +56,12 @@ class VehicleCard extends Component {
             style={{ height: "70px" }}
           >
             <div className="flex flex-col justify-center items-center">
-              <Typography variant="h6">Rs. 2500</Typography>
+              <Typography variant="p" className="font-bold">Rs. 2500</Typography>
               <Typography variant="p">Day</Typography>
             </div>
             <div></div>
             <div className=" flex flex-col justify-center items-center">
-              <Typography variant="h6">Rs. 25000</Typography>
+              <Typography variant="p" className="font-bold">Rs. 25000</Typography>
               <Typography variant="p">Month</Typography>
             </div>
           </div>
