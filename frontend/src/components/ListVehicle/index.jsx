@@ -2,6 +2,8 @@ import { Container, Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../common/Button";
 import VehicleCard from "../common/VehicleCard";
+import GeneralCars from "../GeneralCars";
+import PremiumCars from "../PremiumCars";
 
 class ListVehicle extends Component {
   render() {
@@ -28,14 +30,14 @@ class ListVehicle extends Component {
               <Typography
                 variant="h3"
                 component="h2"
-                className="font-extrabold p-5"
+                className="font-extrabold p-5 pt-10"
               >
                 Get Our Rental Cars
               </Typography>
             </Grid>
           </Grid>
           {/* General Car Section Start */}
-          <Grid
+          {/* <Grid
             container
             justifyContent="flex-start"
             alignItems="stretch"
@@ -83,7 +85,11 @@ class ListVehicle extends Component {
                 />
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
+
+          <GeneralCars/>
+          <PremiumCars/>
+
           {/* General Car Section End */}
         </Grid>
       </Grid>

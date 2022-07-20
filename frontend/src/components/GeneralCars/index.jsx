@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../common/Button";
 import VehicleCard from "../common/VehicleCard";
@@ -10,7 +10,7 @@ class GeneralCars extends Component {
         container
         justifyContent="flex-start"
         alignItems="stretch"
-        className="backdrop-blur-md"
+        className="backdrop-blur-md pt-10"
       >
         <Grid
           item
@@ -22,7 +22,7 @@ class GeneralCars extends Component {
             <Typography
               variant="h4"
               component="h2"
-              className="font-extrabold p-5 text-yellow-500"
+              className="font-extrabold p-5 text-yellow-500 underline  underline-offset-4"
             >
               General Cars
             </Typography>
