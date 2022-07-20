@@ -9,7 +9,7 @@ class Footer extends Component {
         direction="column"
         justifyContent="center"
         alignItems="stretch"
-        className="bg-stone-900 text-stone-600 h-80"
+        className="bg-stone-900 text-stone-600 h-44"
       >
         <Grid
           container
@@ -36,7 +36,7 @@ class Footer extends Component {
             item
             direction="column"
             justifyContent="center"
-            className="bg-blue-000 text-white text-center h-48"
+            className="bg-blue-000 text-white text-center h-12 justify-end"
           >
             <Typography variant="h5">Esay Car Rental</Typography>
           </Grid>
