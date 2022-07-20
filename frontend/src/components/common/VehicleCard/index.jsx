@@ -1,6 +1,10 @@
 import { ClassNames } from "@emotion/react";
 import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
+import LocalGasStationOutlinedIcon from '@mui/icons-material/LocalGasStationOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import DriveEtaOutlinedIcon from '@mui/icons-material/DriveEtaOutlined';
 // import car from "../../../assets/img/cover/car_01.jpg"
 
 class VehicleCard extends Component {
@@ -16,34 +20,37 @@ class VehicleCard extends Component {
           style={{ height: "204px" }}
         ></div>
         <div className="text-white flex flex-col justify-between">
-          <div className="flex justify-center bg-slate-000 p-4">
-            <Typography variant="h5">BMW</Typography>
+          <div className="flex justify-center text-center bg-slate-000 p-4" style={{ maxWidth: "330px"}}>
+            <Typography variant="h5" className="font-bold">Toyota Corolla Axio/ NZE141 dsadasd</Typography>
           </div>
           <div
-            className=" flex justify-evenly items-center bg-stone-800"
-            style={{ height: "93px" }}
+            className=" flex flex-row justify-evenly items-center bg-stone-800 text-stone-300"
+            style={{ height: "60px" }}
           >
-            <div>
-              <div>😉 Petrol</div>
-              <div>🔴 Auto</div>
-              <div>🎮 4 Persons</div>
+            <div className="flex flex-col items-center">
+              <div><LocalGasStationOutlinedIcon/></div>
+              <div>Petrol</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div><PeopleAltOutlinedIcon/></div>
+              <div>4</div>
             </div>
             <div>
-              <div>😉 Petrol</div>
-              <div>🔴 Auto</div>
-              <div>🎮 4 Persons</div>
+              <div className="flex flex-col items-center"><SettingsOutlinedIcon/></div>
+              <div>Auto</div>
             </div>
           </div>
           <div
             className="flex flex-row justify-around items-center bg-yellow-000 rounded-b-3xl "
             style={{ height: "70px" }}
           >
-            <div className="flex flex-col justify-center items-center font-bold">
-              <Typography variant="p">Rs.2500/=</Typography>
+            <div className="flex flex-col justify-center items-center">
+              <Typography variant="h6">Rs. 2500</Typography>
               <Typography variant="p">Day</Typography>
             </div>
-            <div className=" flex flex-col justify-center items-center font-bold">
-              <Typography variant="p">Rs.2500/=</Typography>
+            <div></div>
+            <div className=" flex flex-col justify-center items-center">
+              <Typography variant="h6">Rs. 25000</Typography>
               <Typography variant="p">Month</Typography>
             </div>
           </div>
