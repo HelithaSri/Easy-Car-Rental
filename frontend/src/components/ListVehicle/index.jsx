@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CommonButton from "../common/Button";
 import VehicleCard from "../common/VehicleCard";
 import GeneralCars from "../GeneralCars";
+import LuxuryCars from "../LuxuryCars";
 import PremiumCars from "../PremiumCars";
 
 class ListVehicle extends Component {
@@ -89,6 +90,7 @@ class ListVehicle extends Component {
 
           <GeneralCars/>
           <PremiumCars/>
+          <LuxuryCars/>
 
           {/* General Car Section End */}
         </Grid>
