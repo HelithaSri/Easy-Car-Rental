@@ -2,9 +2,9 @@ import { Container, Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../common/Button";
 import VehicleCard from "../common/VehicleCard";
-import GeneralCars from "../GeneralCars";
-import LuxuryCars from "../LuxuryCars";
-import PremiumCars from "../PremiumCars";
+import PremiumCars from './../Car Section/PremiumCars/index';
+import LuxuryCars from './../Car Section/LuxuryCars/index';
+import GeneralCars from './../Car Section/GeneralCars/index';
 
 class ListVehicle extends Component {
   render() {

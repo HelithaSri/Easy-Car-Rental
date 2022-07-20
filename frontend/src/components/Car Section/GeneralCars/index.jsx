@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
-import CommonButton from "../common/Button";
-import VehicleCard from "../common/VehicleCard";
+import CommonButton from "../../common/Button";
+import VehicleCard from "../../common/VehicleCard";
 
 class GeneralCars extends Component {
   render() {

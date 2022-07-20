@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
-import CommonButton from "../common/Button";
-import VehicleCard from "../common/VehicleCard";
+import CommonButton from "../../common/Button";
+import VehicleCard from "../../common/VehicleCard";
 
-class LuxuryCars extends Component {
+class PremiumCars extends Component {
   render() {
     return (
       <Grid
@@ -24,7 +24,7 @@ class LuxuryCars extends Component {
               component="h2"
               className="font-extrabold p-5 text-yellow-500 underline  underline-offset-4 font-dosis"
             >
-              Luxury Cars
+              Premium Cars
             </Typography>
           </Grid>
         </Grid>
@@ -58,4 +58,4 @@ class LuxuryCars extends Component {
     );
   }
 }
-export default LuxuryCars;
+export default PremiumCars;
