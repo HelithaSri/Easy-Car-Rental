@@ -1,17 +1,17 @@
 import { ClassNames } from "@emotion/react";
 import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
-import LocalGasStationOutlinedIcon from '@mui/icons-material/LocalGasStationOutlined';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import DriveEtaOutlinedIcon from '@mui/icons-material/DriveEtaOutlined';
+import LocalGasStationOutlinedIcon from "@mui/icons-material/LocalGasStationOutlined";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import DriveEtaOutlinedIcon from "@mui/icons-material/DriveEtaOutlined";
 // import car from "../../../assets/img/cover/car_01.jpg"
 
 class VehicleCard extends Component {
   render() {
     return (
       <div
-        style={{ minWidth: "330px", height: "430.98px", }}
+        style={{ minWidth: "330px", height: "430.98px" }}
         // style={{ width: "412.5px", height: "567.38px" }}
         className="flex flex-col bg-stone-900 rounded-3xl shadow-md hover:shadow-2xl order-blue-500 border"
       >
@@ -20,23 +20,34 @@ class VehicleCard extends Component {
           style={{ height: "204px" }}
         ></div>
         <div className="text-white flex flex-col justify-between">
-          <div className="flex justify-center text-center bg-slate-000 p-4" style={{ maxWidth: "330px"}}>
-            <Typography variant="h5" className="font-bold">Toyota Corolla Axio/ NZE141 dsadasd</Typography>
+          <div
+            className="flex justify-center items-center text-center bg-slate-000 p-4"
+            style={{ maxWidth: "330px", height: "93.06px" }}
+          >
+            <Typography variant="h5" className="font-bold">
+              Toyota Corolla Axio
+            </Typography>
           </div>
           <div
             className=" flex flex-row justify-evenly items-center bg-stone-800 text-stone-300"
             style={{ height: "60px" }}
           >
             <div className="flex flex-col items-center">
-              <div><LocalGasStationOutlinedIcon/></div>
+              <div>
+                <LocalGasStationOutlinedIcon />
+              </div>
               <div>Petrol</div>
             </div>
             <div className="flex flex-col items-center">
-              <div><PeopleAltOutlinedIcon/></div>
+              <div>
+                <PeopleAltOutlinedIcon />
+              </div>
               <div>4</div>
             </div>
             <div>
-              <div className="flex flex-col items-center"><SettingsOutlinedIcon/></div>
+              <div className="flex flex-col items-center">
+                <SettingsOutlinedIcon />
+              </div>
               <div>Auto</div>
             </div>
           </div>
