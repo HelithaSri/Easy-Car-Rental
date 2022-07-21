@@ -10,7 +10,8 @@ module.exports = {
     extend: {
       backgroundImage:{
         'hero-pattern':"url('assets/img/cover/car_04.jpg')",
-        'loginAdmin-img': "url('assets/img/cover/car_02.jpg')"
+        'loginAdmin-img': "url('assets/img/cover/car_02.jpg')",
+        'loginDriver-img': "url('assets/img/cover/car_03.jpg')"
       },
       fontFamily:{
         'dosis':"'Dosis',sans-serif",
