@@ -4,6 +4,10 @@ import Hero from "../../components/Hero/withFlex";
 import HeroWithGrid from '../../components/Hero/withGrid';
 import ListVehicle from '../../components/ListVehicle';
 import Footer from '../../components/Footer';
+import LoginUser from '../Session/Login/user';
+import CustomizedDialogs from '../../components/common/Dialog';
+import LoginAdmin from '../Session/Login/admin';
+import LoginDriver from '../Session/Login/driver';
 
 class Home extends Component {
     render() {
@@ -13,6 +17,10 @@ class Home extends Component {
                 <HeroWithGrid/>
                 <ListVehicle/>
                 <Footer/>
+                <LoginUser/> 
+               
+                {/* <LoginAdmin/>
+                <LoginDriver/> */}
             </div>
         );
     }

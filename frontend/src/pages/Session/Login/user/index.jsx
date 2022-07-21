@@ -60,7 +60,7 @@ class LoginUser extends Component {
             <Grid container item direction={"column"} gap="20px" className="">
               <Grid item>
                 <Typography
-                  variant="h5"
+                  variant="h4"
                   className="text-center uppercase font-bold"
                 >
                   Login
