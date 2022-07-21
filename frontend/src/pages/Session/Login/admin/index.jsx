@@ -70,7 +70,7 @@ class LoginAdmin extends Component {
           >
             <Grid item>
               <Typography
-                variant="h5"
+                variant="h4"
                 className="text-center uppercase font-bold text-white"
               >
                 Login
