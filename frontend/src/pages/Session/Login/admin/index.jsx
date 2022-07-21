@@ -2,6 +2,8 @@ import { Grid, Link, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../../../../components/common/Button";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import { styleSheet } from "./style";
+import {withStyles} from "@mui/styles";
 
 class LoginAdmin extends Component {
   constructor(props) {
@@ -43,70 +45,77 @@ class LoginAdmin extends Component {
   };
 
   render() {
+    const {classes} = this.props;
     return (
       <Grid
         container
         direction={"row"}
-        alignItems="center"
-        justifyContent={"center"}
-        className="h-screen w-screen bg-loginAdmin-img bg-cover bg-no-repeat bg-center bg-blend-overlay  bg-neutral-800"
+        justifyContent="center"
+        alignItems="stretch"
+        className="h-screen min-h-min w-screen bg-loginAdmin-img bg-no-repeat bg-bottoms bg-cover bg-center bg-blend-overlay  bg-stone-800"
       >
-        <Grid container direction={"column"} alignItems="center">
-          <Grid
-            item
-            container
-            className="min-h-96  w-96 bg-slate-50 rounded-lg p-10 drop-shadow-lg"
+        <Grid
+          container
+          direction={"row"}
+          item
+          xs={12}
+          md={12}
+          lg={12}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <div
+            className="flex gap-6 flex-col h-fit w-96 rounded-xl bg-blue-300 p-10 m-5 md:m-0 bg-opacity-10  backdrop-blur-sm"
+            style={{ border: "1px solid rgba(255, 255, 255, 0.09)" }}
           >
-            <Grid container item direction={"column"} gap="20px" className="">
-              <Grid item>
-                <Typography
-                  variant="h5"
-                  className="text-center uppercase font-bold"
-                >
-                  Login
-                </Typography>
-              </Grid>
-              <ValidatorForm
-                onSubmit={this.handleSubmit}
-                onError={(errors) => console.log(errors)}
+            <Grid item>
+              <Typography
+                variant="h5"
+                className="text-center uppercase font-bold text-white"
               >
-                <Grid item container direction={"column"} rowGap="20px">
-                  <TextValidator
-                    label="User Name"
-                    onChange={this.handleChange}
-                    name="userName"
-                    value={this.state.formData.userName}
-                    validators={["required"]}
-                    errorMessages={["This field is required"]}
-                    className="w-full"
-                  />
-                  <TextValidator
-                    label="Password"
-                    onChange={this.handleChange}
-                    name="password"
-                    value={this.state.formData.password}
-                    validators={["required"]}
-                    errorMessages={["This field is required"]}
-                    type={"password"}
-                    className="w-full"
-                  />
-                  <Typography variant="p" className="text-slate-500 -mt-3">
-                    Frogot password ?
-                  </Typography>
-                  <CommonButton
-                    size="large"
-                    variant="contained"
-                    label="Login"
-                    type="submit"
-                    className="text-white bg-blue-500 font-bold tracking-wide"
-                  />
-                </Grid>
-              </ValidatorForm>
+                Login
+              </Typography>
             </Grid>
-          </Grid>
+            <ValidatorForm
+              onSubmit={this.handleSubmit}
+              onError={(errors) => console.log(errors)}
+            >
+              <Grid item container direction={"column"} rowGap="20px">
+                <TextValidator
+                  label="User Name"
+                  onChange={this.handleChange}
+                  name="userName"
+                  value={this.state.formData.userName}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  className={[classes.textField,'w-full']}
+                />
+                <TextValidator
+                  label="Password"
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.formData.password}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  type={"password"}
+                  className={[classes.textField,'w-full']}
+                />
+                <Typography variant="p" className="text-slate-500 -mt-3">
+                  Frogot password ?
+                </Typography>
+                <CommonButton
+                  size="large"
+                  variant="contained"
+                  label="Login"
+                  type="submit"
+                  className="text-white bg-blue-500 font-bold tracking-wide"
+                />
+              </Grid>
+            </ValidatorForm>
+          </div>
         </Grid>
       </Grid>
     );
   }
 }
-export default LoginAdmin;
+export default withStyles(styleSheet)(LoginAdmin);
