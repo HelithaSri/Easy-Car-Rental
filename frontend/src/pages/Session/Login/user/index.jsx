@@ -49,7 +49,7 @@ class LoginUser extends Component {
         direction={"column"}
         alignItems="center"
         justifyContent={"center"}
-        className="h-screen w-screen bg-red-200 "
+        className="h-screen w-screen bg-red-200"
       >
         <Grid container direction={"column"} alignItems="center">
           <Grid
@@ -58,19 +58,19 @@ class LoginUser extends Component {
             className="min-h-96  w-96 bg-slate-50 rounded-lg p-10 drop-shadow-lg"
           >
             <Grid container item direction={"column"} gap="20px" className="">
-              <Grid item>
+              {/* <Grid item>
                 <Typography
                   variant="h4"
                   className="text-center uppercase font-bold"
                 >
                   Login
                 </Typography>
-              </Grid>
+              </Grid> */}
               <ValidatorForm
                 onSubmit={this.handleSubmit}
                 onError={(errors) => console.log(errors)}
               >
-                <Grid item container direction={"column"} rowGap="20px">
+                <Grid item container direction={"column"} alignItems rowGap="20px">
                   <TextValidator
                     label="User Name"
                     onChange={this.handleChange}
@@ -79,6 +79,7 @@ class LoginUser extends Component {
                     validators={["required"]}
                     errorMessages={["This field is required"]}
                     className="w-full"
+                    style={{minWidth:'100%'}}
                   />
                   <TextValidator
                     label="Password"
@@ -89,6 +90,7 @@ class LoginUser extends Component {
                     errorMessages={["This field is required"]}
                     type={"password"}
                     className="w-full"
+                    style={{minWidth:'100%'}}
                   />
                   <Typography variant="p" className="text-slate-500 -mt-3">
                     Frogot password ?

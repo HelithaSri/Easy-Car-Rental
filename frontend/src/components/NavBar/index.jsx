@@ -1,22 +1,30 @@
-import React, {Component} from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import {Badge} from "@mui/material";
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
+import React, { Component } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Badge } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import CommonButton from "../common/Button";
-
+import DialogBox from "../common/Dialog";
+import LoginUser from "../../pages/Session/Login/user";
 
 class NavBar extends Component {
-    render() {
-        return (
-          /*<div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      openPopup: false,
+    };
+  }
+
+  render() {
+    return (
+      /*<div>
                 <Box sx={{ flexGrow: 1 }}>
                     <AppBar position="static">
                         <Toolbar>
@@ -59,15 +67,18 @@ class NavBar extends Component {
                 </Box>
             </div>*/
 
-          <AppBar color="transparent" position={"fixed"}>
-            <nav className="flex justify-between items-center h-16 px-12 bg-zinc-800 bg-opacity-25 p-10 backdrop-blur-sm">
-              <div>
-                <Typography variant={"h5"} className="text-white font-dosis font-bold tracking-wide select-none">
-                  Easy Car Rental
-                </Typography>
-              </div>
-              <div className='flex w-1/12 justify-end gap-3'>
-                {/* <IconButton
+      <AppBar color="transparent" position={"fixed"}>
+        <nav className="flex justify-between items-center h-16 px-12 bg-zinc-800 bg-opacity-25 p-10 backdrop-blur-sm">
+          <div>
+            <Typography
+              variant={"h5"}
+              className="text-white font-dosis font-bold tracking-wide select-none"
+            >
+              Easy Car Rental
+            </Typography>
+          </div>
+          <div className="flex w-1/12 justify-end gap-3">
+            {/* <IconButton
                             size="large"
                             aria-label="show 17 new notifications"
                             color="inherit"
@@ -76,7 +87,7 @@ class NavBar extends Component {
                                 <ShoppingCartIcon  />
                             </Badge>
                         </IconButton>*/}
-                {/*<IconButton
+            {/*<IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
@@ -87,12 +98,21 @@ class NavBar extends Component {
                         >
                             <AccountCircle />
                         </IconButton>*/}
-                <CommonButton size="large" variant="outlined" label="Login" className='text-white border-white hover:bg-white hover:text-black' />
-              </div>
-            </nav>
-          </AppBar>
-        );
-    }
+            <CommonButton
+              size="large"
+              variant="outlined"
+              label="Login"
+              className="text-white border-white hover:bg-white hover:text-black"
+              onClick={() => this.setState({ openPopup: true })}
+            />
+          </div>
+        </nav>
+        <DialogBox title={"Login"} openPopup={this.state.openPopup} divider>
+          <LoginUser />
+        </DialogBox>
+      </AppBar>
+    );
+  }
 }
 
 export default NavBar;

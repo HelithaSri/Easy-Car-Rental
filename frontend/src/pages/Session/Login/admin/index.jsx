@@ -5,6 +5,7 @@ import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { styleSheet } from "./style";
 import {withStyles} from "@mui/styles";
 
+
 class LoginAdmin extends Component {
   constructor(props) {
     super(props);
@@ -88,7 +89,7 @@ class LoginAdmin extends Component {
                   value={this.state.formData.userName}
                   validators={["required"]}
                   errorMessages={["This field is required"]}
-                  className={[classes.textField,'w-full']}
+                  className={[classes.textField,'w-full text-red-500']}
                 />
                 <TextValidator
                   label="Password"

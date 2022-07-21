@@ -12,7 +12,8 @@ import LoginDriver from '../Session/Login/driver';
 class Home extends Component {
     render() {
         return (
-            <div style={{display:'flex', flexDirection:'column', overflowX:'hidden'}}>
+            // overflowX:'hidden'
+            <div style={{display:'flex', flexDirection:'column'}}>
                 <NavBar/>
                 <HeroWithGrid/>
                 <ListVehicle/>
