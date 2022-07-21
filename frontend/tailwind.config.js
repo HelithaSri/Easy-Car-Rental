@@ -9,7 +9,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        'hero-pattern':"url('assets/img/cover/car_04.jpg')"
+        'hero-pattern':"url('assets/img/cover/car_04.jpg')",
+        'loginAdmin-img': "url('assets/img/cover/car_02.jpg')"
       },
       fontFamily:{
         'dosis':"'Dosis',sans-serif",

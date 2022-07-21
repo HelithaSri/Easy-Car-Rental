@@ -24,7 +24,10 @@ class VehicleCard extends Component {
             className="flex justify-center items-center text-center bg-slate-000 p-4"
             style={{ maxWidth: "330px", height: "93.06px" }}
           >
-            <Typography variant="h5" className="font-bold break-words font-dosis">
+            <Typography
+              variant="h5"
+              className="font-bold break-words font-dosis"
+            >
               Toyota Corolla Axio
             </Typography>
           </div>
@@ -56,13 +59,21 @@ class VehicleCard extends Component {
             style={{ height: "70px" }}
           >
             <div className="flex flex-col justify-center items-center">
-              <Typography variant="p" className="font-bold">Rs. 2500</Typography>
-              <Typography variant="p" className="overline">Day</Typography>
+              <Typography variant="p" className="font-bold">
+                Rs. 2500
+              </Typography>
+              <Typography variant="p" className="overline">
+                Day
+              </Typography>
             </div>
             <div></div>
             <div className=" flex flex-col justify-center items-center">
-              <Typography variant="p" className="font-bold">Rs. 25000</Typography>
-              <Typography variant="p" className="overline">Month</Typography>
+              <Typography variant="p" className="font-bold">
+                Rs. 25000
+              </Typography>
+              <Typography variant="p" className="overline">
+                Month
+              </Typography>
             </div>
           </div>
         </div>
