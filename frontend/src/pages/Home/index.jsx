@@ -12,12 +12,12 @@ import LoginDriver from '../Session/Login/driver';
 class Home extends Component {
     render() {
         return (
-            <div style={{display:'flex', flexDirection:'column'}}>
+            <div style={{display:'flex', flexDirection:'column', overflowX:'hidden'}}>
                 <NavBar/>
                 <HeroWithGrid/>
                 <ListVehicle/>
                 <Footer/>
-                <LoginUser/> 
+                {/* <LoginUser/>  */}
                
                 {/* <LoginAdmin/>
                 <LoginDriver/> */}

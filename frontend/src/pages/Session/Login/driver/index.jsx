@@ -52,7 +52,7 @@ class LoginDriver extends Component {
         direction={"row"}
         justifyContent="center"
         alignItems="stretch"
-        className="h-screen min-h-min w-screen bg-loginDriver-img bg-no-repeat bg-bottoms bg-cover bg-center bg-blend-overlay  bg-stone-800"
+        className="h-screen min-h-min w-screen p-0 m-0 bg-loginDriver-img bg-no-repeat bg-bottoms bg-cover bg-center bg-blend-overlay  bg-stone-800"
       >
         <Grid
           container

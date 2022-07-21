@@ -44,7 +44,7 @@ class HeroWithGrid extends Component {
         container
         justifyContent="center"
         alignItems="center"
-        className="h-screen w-screen bg-hero-pattern bg-no-repeat bg-bottoms bg-cover bg-center bg-blend-overlay  bg-stone-800"
+        className="h-screen bg-hero-pattern bg-no-repeat bg-bottoms bg-cover bg-center bg-blend-overlay  bg-stone-800"
       >
         <Grid item xs={12} sm={12} md={5} lg={6}>
           <Typography
