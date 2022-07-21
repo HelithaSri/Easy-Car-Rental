@@ -1,9 +1,47 @@
 import { Grid, Link, Typography } from "@mui/material";
 import React, { Component } from "react";
-import { TextField } from "@mui/material";
 import CommonButton from "../../../components/common/Button";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formData: {
+        userName: "",
+        password: "",
+      },
+    };
+  }
+
+  handleSubmit = async () => {
+    console.log("Hi handle");
+    console.log(this.state.formData);
+  };
+
+  handleChange = (event) => {
+    let id = event.target.name;
+    switch (id) {
+      case "userName":
+        const userName = event.target.value;
+        this.setState(
+          Object.assign(this.state.formData, { userName: userName })
+        );
+        // this.setState({ userId });
+        break;
+
+      case "password":
+        const password = event.target.value;
+        this.setState(
+          Object.assign(this.state.formData, { password: password })
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
+
   render() {
     return (
       <Grid
@@ -13,11 +51,7 @@ class Login extends Component {
         justifyContent={"center"}
         className="h-screen w-screen bg-red-200 "
       >
-        <Grid
-          container
-          direction={"column"}
-          alignItems="center"
-        >
+        <Grid container direction={"column"} alignItems="center">
           <Grid
             item
             container
@@ -32,29 +66,46 @@ class Login extends Component {
                   Login
                 </Typography>
               </Grid>
-              <Grid item container direction={"column"} rowGap="20px">
-                <TextField
-                  id="outlined-basic"
-                  label="User Name"
-                  variant="outlined"
-                />
-                <TextField
-                  id="outlined-basic"
-                  label="Password"
-                  type={"password"}
-                  variant="outlined"
-                />
-                <Typography variant="p" className="text-slate-500 -mt-3">Frogot password ?</Typography>
-                <CommonButton
-                  size="large"
-                  variant="contained"
-                  label="Login"
-                  className="text-white bg-blue-500 font-bold tracking-wide"
-                />
-                <Typography variant="p">
-                  You are not a member? <Link> Register Now</Link>
-                </Typography>
-              </Grid>
+              <ValidatorForm
+                onSubmit={this.handleSubmit}
+                onError={(errors) => console.log(errors)}
+              >
+                <Grid item container direction={"column"} rowGap="20px">
+                  <TextValidator
+                    label="User Name"
+                    onChange={this.handleChange}
+                    name="userName"
+                    value={this.state.formData.userName}
+                    validators={["required"]}
+                    errorMessages={["This field is required"]}
+                    className="w-full"
+                  />
+                  <TextValidator
+                    label="Password"
+                    onChange={this.handleChange}
+                    name="password"
+                    value={this.state.formData.password}
+                    validators={["required"]}
+                    errorMessages={["This field is required"]}
+                    type={"password"}
+                    className="w-full"
+                  />
+                  <Typography variant="p" className="text-slate-500 -mt-3">
+                    Frogot password ?
+                  </Typography>
+                  <CommonButton
+                    size="large"
+                    variant="contained"
+                    label="Login"
+                    type="submit"
+                    className="text-white bg-blue-500 font-bold tracking-wide"
+                  />
+
+                  <Typography variant="p">
+                    You are not a member? <Link> Register Now</Link>
+                  </Typography>
+                </Grid>
+              </ValidatorForm>
             </Grid>
           </Grid>
         </Grid>
