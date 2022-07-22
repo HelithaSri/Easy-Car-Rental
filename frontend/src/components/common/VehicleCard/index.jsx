@@ -11,9 +11,9 @@ class VehicleCard extends Component {
   render() {
     return (
       <div
-        style={{ minWidth: "330px", height: "430.98px" }}
+        style={{ minWidth: "330px", height: "430.98px"}}
         // style={{ width: "412.5px", height: "567.38px" }}
-        className="flex flex-col bg-stone-900 rounded-3xl shadow-md hover:shadow-2xl order-blue-500 border"
+        className="flex flex-col bg-stone-900 rounded-3xl order-blue-500 border hover:cursor-pointer hover:shadow-lg hover:shadow-yellow-500 hover:scale-105"
       >
         <div
           className="rounded-t-3xl bg-hero-pattern bg-cover"
