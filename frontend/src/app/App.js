@@ -1,16 +1,16 @@
 import Home from "../pages/Home";
-import Typography from "@mui/material/Typography";
-import ListVehicle from "../components/ListVehicle";
-import { Grid } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "../pages/Dashboard";
+import NotFound from '../pages/Session/NotFound'
 
 
 function App() {
   return (
-    <Grid container>
-      <Home/>
-      
-      
-    </Grid>
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route path="admin" element={<Dashboard />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
