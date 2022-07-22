@@ -1,72 +1,25 @@
 import React, { Component } from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Badge } from "@mui/material";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
+import {Dialog, DialogContent, DialogTitle } from "@mui/material";
 import CommonButton from "../common/Button";
-import DialogBox from "../common/Dialog";
 import LoginUser from "../../pages/Session/Login/user";
+import CloseIcon from "@mui/icons-material/Close";
+import { withStyles } from "@mui/styles";
+import { styleSheet } from "./style";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openPopup: false,
+      open: false,
     };
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      /*<div>
-                <Box sx={{ flexGrow: 1 }}>
-                    <AppBar position="static">
-                        <Toolbar>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                Easy Car Rental
-                            </Typography>
-                            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="show 17 new notifications"
-                                    color="inherit"
-                                >
-                                    <Badge badgeContent={17} color="error">
-                                        <NotificationsIcon />
-                                    </Badge>
-                                </IconButton>
-                                <IconButton
-                                    size="large"
-                                    edge="end"
-                                    aria-label="account of current user"
-                                    // aria-controls={menuId}
-                                    aria-haspopup="true"
-                                    // onClick={handleProfileMenuOpen}
-                                    color="inherit"
-                                >
-                                    <AccountCircle />
-                                </IconButton>
-                            </Box>
-                        </Toolbar>
-                    </AppBar>
-                </Box>
-            </div>*/
-
       <AppBar color="transparent" position={"fixed"}>
         <nav className="flex justify-between items-center h-16 px-12 bg-zinc-800 bg-opacity-25 p-10 backdrop-blur-sm">
           <div>
@@ -78,41 +31,46 @@ class NavBar extends Component {
             </Typography>
           </div>
           <div className="flex w-1/12 justify-end gap-3">
-            {/* <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={5} color="error">
-                                <ShoppingCartIcon  />
-                            </Badge>
-                        </IconButton>*/}
-            {/*<IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            // aria-controls={menuId}
-                            aria-haspopup="true"
-                            // onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>*/}
             <CommonButton
               size="large"
               variant="outlined"
               label="Login"
               className="text-white border-white hover:bg-white hover:text-black"
-              onClick={() => this.setState({ openPopup: true })}
+              onClick={() => this.setState({ open: true })}
             />
           </div>
         </nav>
-        <DialogBox title={"Login"} openPopup={this.state.openPopup} divider>
-          <LoginUser />
-        </DialogBox>
+        {/* <DialogBox title={"Login"} divider open={this.setState}></DialogBox> */}
+        {/* ----  Popup Dialog  ---- */}
+
+        <Dialog
+          open={this.state.open}
+          maxWidth="md"
+          classes={{ paper: classes.dialogWraper }}
+        >
+          <DialogTitle style={{ paddingRight: "0px" }}>
+            <div style={{ display: "flex" }}>
+              <Typography
+                variant="h4"
+                component="div"
+                className="font-bold flex-grow"
+                style={{ flexGrow: 1 }}
+              >
+                Login
+              </Typography>
+
+              <IconButton onClick={() => this.setState({ open: false })}>
+                <CloseIcon />
+              </IconButton>
+            </div>
+          </DialogTitle>
+          <DialogContent dividers>
+            <LoginUser />
+          </DialogContent>
+        </Dialog>
       </AppBar>
     );
   }
 }
 
-export default NavBar;
+export default withStyles(styleSheet)(NavBar);
