@@ -17,15 +17,24 @@ import CloseIcon from "@mui/icons-material/Close";
 class DialogBox extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+    };
   }
 
+  handleButtonClick = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
   render() {
-    const { title, children, openPopup } = this.props;
+    var { title, children } = this.props;
 
     const { classes } = this.props;
     return (
       <Dialog
-        open={openPopup}
+        open={this.state.open}
         maxWidth="md"
         classes={{ paper: classes.dialogWraper }}
       >
@@ -33,7 +42,6 @@ class DialogBox extends Component {
           <div style={{ display: "flex" }}>
             <Typography
               variant="h4"
-              // textAlign={"center"}
               component="div"
               className="font-bold flex-grow"
               style={{ flexGrow: 1 }}
@@ -41,7 +49,7 @@ class DialogBox extends Component {
               {title}
             </Typography>
 
-            <IconButton>
+            <IconButton onClick={this.handleButtonClick}>
               <CloseIcon />
             </IconButton>
           </div>
