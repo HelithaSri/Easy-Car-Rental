@@ -9,10 +9,14 @@ class Dashboard extends Component {
     return (
       <Grid container direction={'row'} columns='12'>
         <Grid item xs={'auto'} ><Sidebar/></Grid>
-        <Grid item xs className='bg-red-100'>
+        <Grid item xs className=''>
           <Navbar/>
-          <Grid item>
-            <Widget/>
+          <Grid container item xs={'auto'} className='flex p-5 gap-5'>
+            <Widget type="user" />
+            <Widget type="bookings" />
+            <Widget type="Available cars" />
+            <Widget type="Reserved cars" />
+            <Widget type="Active Bookings" />
           </Grid>
           </Grid>
       </Grid>
