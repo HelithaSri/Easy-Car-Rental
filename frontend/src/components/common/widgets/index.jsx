@@ -9,7 +9,7 @@ class Widget extends Component {
   render() {
     const { type } = this.props;
     return (
-      <div className="flex w-64 justify-between p-3 shadow-xl shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl h-28">
+      <div className="flex w-64 justify-between p-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl h-28">
         <div className="flex flex-col justify-between">
           <Typography
             variant="h6"
