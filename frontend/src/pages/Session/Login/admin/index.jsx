@@ -1,10 +1,10 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../../../../components/common/Button";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { styleSheet } from "./style";
-import {withStyles} from "@mui/styles";
-
+import { withStyles } from "@mui/styles";
+import { Link, Navigate } from "react-router-dom";
 
 class LoginAdmin extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class LoginAdmin extends Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <Grid
         container
@@ -89,7 +89,7 @@ class LoginAdmin extends Component {
                   value={this.state.formData.userName}
                   validators={["required"]}
                   errorMessages={["This field is required"]}
-                  className={[classes.textField,'w-full text-red-500']}
+                  className={[classes.textField, "w-full text-red-500"]}
                 />
                 <TextValidator
                   label="Password"
@@ -99,18 +99,26 @@ class LoginAdmin extends Component {
                   validators={["required"]}
                   errorMessages={["This field is required"]}
                   type={"password"}
-                  className={[classes.textField,'w-full']}
+                  className={[classes.textField, "w-full"]}
                 />
+
                 <Typography variant="p" className="text-slate-500 -mt-3">
                   Frogot password ?
                 </Typography>
-                <CommonButton
-                  size="large"
-                  variant="contained"
-                  label="Login"
-                  type="submit"
-                  className="text-white bg-blue-500 font-bold tracking-wide"
-                />
+
+                <Link to="dashboard">
+                  <CommonButton
+                    size="large"
+                    variant="contained"
+                    label="Login"
+                    type="submit"
+                    onClick={() => {
+                      this.checkValidity();
+                    }}
+                    className="text-white w-full bg-blue-500 font-bold tracking-wide"
+                  />
+                </Link>
+                
               </Grid>
             </ValidatorForm>
           </div>

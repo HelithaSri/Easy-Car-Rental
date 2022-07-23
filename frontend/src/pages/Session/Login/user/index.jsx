@@ -100,7 +100,7 @@ class LoginUser extends Component {
                     variant="contained"
                     label="Login"
                     type="submit"
-                    className="text-white bg-blue-500 font-bold tracking-wide"
+                    className="text-white bg-blue-500 font-bold tracking-wide" style={{backgroundColor:'rgba(25, 118, 210, 0.95)'}}
                   />
 
                   <Typography variant="p">
