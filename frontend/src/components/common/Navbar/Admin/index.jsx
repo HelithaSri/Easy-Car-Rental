@@ -20,10 +20,10 @@ class Navbar extends Component {
                 <NotificationsNoneOutlinedIcon color="action" />
               </Badge>
             </IconButton>
-            <IconButton size="large" className="mr-5"
+            {/* <IconButton size="large" className="mr-5"
             >
               <AccountCircleIcon />
-            </IconButton>
+            </IconButton> */}
           </div>
         </nav>
       </AppBar>

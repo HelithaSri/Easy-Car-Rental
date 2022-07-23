@@ -15,7 +15,7 @@ class CommonButton extends Component{
         color : PropTypes.string,
         type : PropTypes.string,
         endIcon : PropTypes.string,
-        startIcon : PropTypes
+        startIcon : PropTypes.string
 
     }
 
@@ -66,6 +66,7 @@ class CommonButton extends Component{
                 color={color}
                 type ={type}
                 endIcon= {endIcon}
+                startIcon= {startIcon}
                 style ={style}
             >
 
