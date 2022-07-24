@@ -36,32 +36,32 @@ class VehicleManage extends Component {
         {
           field: "registrationNumber",
           headerName: "Reg Num",
-          width: 90,
+          width: 150,
         },
 
         {
           field: "brand",
           headerName: "Brand",
-          width: 80,
+          width: 150,
         },
 
         {
           field: "color",
           headerName: "color",
-          width: 100,
+          width: 125,
           sortable: false,
         },
 
         {
           field: "fuelType",
-          headerName: "fuleType",
-          width: 100,
+          headerName: "Fule Type",
+          width: 150,
         },
 
         {
           field: "noOfPassengers",
           headerName: "Num. Passengers",
-          width: 100,
+          width: 150,
         },
 
         {
@@ -72,26 +72,26 @@ class VehicleManage extends Component {
 
         {
           field: "transmissionType",
-          headerName: "Transmition Type",
-          width: 100,
+          headerName: "Transmission Type",
+          width: 150,
         },
 
         {
-          field: "userId",
+          field: "rates",
           headerName: "Rates",
-          width: 100,
+          width: 150,
         },
 
         {
-          field: "userId",
-          headerName: "type",
-          width: 100,
+          field: "type",
+          headerName: "Type",
+          width: 150,
         },
 
         {
           field: "status",
           headerName: "Status",
-          width: 100,
+          width: 150,
         },
 
         {
@@ -105,74 +105,7 @@ class VehicleManage extends Component {
 
   async loadData() {
     // let resp = await PostService.fetchPosts();
-    const data = [
-      {
-        userId: 156984,
-        id: "Reg00-001",
-        title:
-          "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      },
-      {
-        userId: 1,
-        id: 2,
-        title: "qui est esse",
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-      },
-      {
-        userId: 1,
-        id: 4,
-        title: "eum et est occaecati",
-      },
-      {
-        userId: 1,
-        id: 5,
-        title: "nesciunt quas odio",
-      },
-      {
-        userId: 1,
-        id: 6,
-        title: "dolorem eum magni eos aperiam quia",
-      },
-      {
-        userId: 1,
-        id: 7,
-        title: "magnam facilis autem",
-      },
-      {
-        userId: 1,
-        id: 8,
-        title: "dolorem dolore est ipsam",
-      },
-      {
-        userId: 1,
-        id: 9,
-        title: "nesciunt iure omnis dolorem tempora et accusantium",
-      },
-      {
-        userId: 1,
-        id: 10,
-        title: "optio molestias id quia eum",
-      },
-      {
-        userId: 2,
-        id: 11,
-        title: "et ea vero quia laudantium autem",
-      },
-      {
-        userId: 2,
-        id: 12,
-        title: "in quibusdam tempore odit est dolorem",
-      },
-      {
-        userId: 2,
-        id: 13,
-        title: "dolorum ut in voluptas mollitia et saepe quo animi",
-      },
-    ];
+    const data = [];
     this.setState({
       loaded: true,
       data: data,

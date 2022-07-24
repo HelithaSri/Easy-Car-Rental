@@ -6,8 +6,9 @@ import LoginAdmin from "../pages/Session/Login/admin";
 import LoginDriver from "../pages/Session/Login/driver";
 import VehicleManage from "../pages/Admin/Vehicle Manage";
 import AddNewVehicle from "../components/AddVehicle";
-import VehicleType from "../pages/Admin/VehicleTypes";
-import VehicleRates from "../pages/Admin/VehicleRates";
+import VehicleType from "../pages/Admin/Vehicle Types";
+import VehicleRates from "../pages/Admin/Vehicle Rates";
+import DriverManage from "../pages/Admin/Driver Manage";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                     <Route path="vehiclemanage" element={<VehicleManage/>}/>
                     <Route path="vehiclerates" element={<VehicleRates/>}/>
                     <Route path="vehicletype" element={<VehicleType/>}/>
+                    <Route path="drivermanage" element={<DriverManage/>}/>
                     <Route path="test" element={<AddNewVehicle/>}/>
                 </Route>
             </Route>
