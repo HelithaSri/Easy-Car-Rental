@@ -1,7 +1,7 @@
 export const styleSheet = {
     container: {
         // backgroundColor:'red',
-        width: "700px"
+        width: "400px"
     }, validator: {
         width: '100%'
     },

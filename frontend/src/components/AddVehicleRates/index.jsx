@@ -51,7 +51,7 @@ class AddVehicleRates extends Component {
                 <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
                       alignContent={'center'}
                       className={classes.container}>
-                    <Grid item container direction={'column'} xs={6} gap={'15px'}>
+                    <Grid item container direction={'column'} xs={12} gap={'15px'}>
                         <TextValidator
                             label="Rate ID"
                             onChange={this.handleChange}

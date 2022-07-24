@@ -1,7 +1,7 @@
 export const styleSheet = {
     container: {
         // backgroundColor:'red',
-        width: "700px"
+        width: "500px"
     }, validator: {
         width: '100%'
     },
@@ -10,21 +10,21 @@ export const styleSheet = {
         '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
             backgroundColor: 'white', padding: '0px 10px', width: "maxWidth"
         }
-    }, imgDiv: {
-        backgroundColor: '#8aaedf1f', // padding: "50px",
-        border: '1px solid gray',
-        cursor: 'pointer',
-        width: '450px',
-        height: '131px',
+    },
+    btnUpload: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        width: '100%',
+        height: '98px',
+        padding: '0px',
+        margin: '0px',
+        flexDirection: 'column',
+        gap: '5px',
 
-    }, imgUpload: {
-        // backgroundColor: 'red',
-        // padding: "50px",
-        border: '1px solid gray', cursor: 'pointer', width: '450px', height: '131px', // display:'none'
-        opacity: 1, position: 'absolute'
-    }
+        '& .css-1d6wzja-MuiButton-startIcon>*:nth-of-type(1)':{
+            fontSize:'40px',
+            margin: 'auto'
+        }
+
+    },
 
 }

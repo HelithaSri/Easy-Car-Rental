@@ -54,7 +54,7 @@ class AddNewVehicle extends Component {
                 <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
                       alignContent={'center'}
                       className={classes.container}>
-                    <Grid item container direction={'column'} xs={5} gap={'15px'}>
+                    <Grid item container direction={'column'} xs={5.5} gap={'15px'}>
                         <TextValidator
                             label="Registration Number"
                             onChange={this.handleChange}
@@ -62,7 +62,6 @@ class AddNewVehicle extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -73,7 +72,6 @@ class AddNewVehicle extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -84,7 +82,6 @@ class AddNewVehicle extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -95,7 +92,7 @@ class AddNewVehicle extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
+                            type={"number"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -106,12 +103,11 @@ class AddNewVehicle extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                     </Grid>
-                    <Grid container direction={'column'} item xs={5} gap={'15px'}>
+                    <Grid container direction={'column'} item xs={5.5} gap={'15px'}>
 
                         <FormControl variant="outlined" className={classes.select}>
                             <InputLabel>Fuel Type</InputLabel>
@@ -202,8 +198,9 @@ class AddNewVehicle extends Component {
                         <Button
                             component="label"
                             variant="outlined"
-                            startIcon={<AddPhotoAlternateIcon/>}
+                            startIcon={<AddPhotoAlternateIcon className={classes.icon}/>}
                             sx={{marginRight: "1rem"}}
+                            className={classes.btnUpload}
                         >
                             Upload Image
                             <input type="file" accept="image/*" hidden/>
