@@ -113,16 +113,18 @@ class Sidebar extends Component {
                             </Typography>
                         </li>
                     </Link>
-                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
-                        <SupervisorAccountIcon className="text-blue-700 text-lg"/>
-                        <Typography
-                            variant="h6"
-                            component={"span"}
-                            className="text-sm font-semibold text-gray-700"
-                        >
-                            Employee Manage
-                        </Typography>
-                    </li>
+                    <Link to={"../employeemanage"}>
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                            <SupervisorAccountIcon className="text-blue-700 text-lg"/>
+                            <Typography
+                                variant="h6"
+                                component={"span"}
+                                className="text-sm font-semibold text-gray-700"
+                            >
+                                Employee Manage
+                            </Typography>
+                        </li>
+                    </Link>
                     <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
                         <PeopleIcon className="text-blue-700 text-lg"/>
                         <Typography

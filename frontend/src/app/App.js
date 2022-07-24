@@ -9,6 +9,7 @@ import AddNewVehicle from "../components/AddVehicle";
 import VehicleType from "../pages/Admin/Vehicle Types";
 import VehicleRates from "../pages/Admin/Vehicle Rates";
 import DriverManage from "../pages/Admin/Driver Manage";
+import EmployeeManage from "../pages/Admin/Employee Manage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                     <Route path="vehiclerates" element={<VehicleRates/>}/>
                     <Route path="vehicletype" element={<VehicleType/>}/>
                     <Route path="drivermanage" element={<DriverManage/>}/>
+                    <Route path="employeemanage" element={<EmployeeManage/>}/>
                     <Route path="test" element={<AddNewVehicle/>}/>
                 </Route>
             </Route>
