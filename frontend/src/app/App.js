@@ -11,13 +11,14 @@ import VehicleRates from "../pages/Admin/Vehicle Rates";
 import DriverManage from "../pages/Admin/Driver Manage";
 import EmployeeManage from "../pages/Admin/Employee Manage";
 import CustomerManage from "../pages/Admin/Customer Manage";
+import ViewAllVehicles from "../pages/ViewAllVehicles";
 
 
 function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route path="dashboard" element={<Dashboard/>}/>
+            <Route path="/vehicles/:regNumber" element={<ViewAllVehicles/>}/>
 
             <Route path="admin">
                 <Route index element={<LoginAdmin/>}/>
