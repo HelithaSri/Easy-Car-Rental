@@ -68,7 +68,7 @@ class SideFilter extends Component {
                                 <CommonButton
                                     size="small"
                                     variant="outlined"
-                                    label="Clears"
+                                    label="Clear"
                                     className=""
                                     // onClick={() => this.setState({ open: true })}
                                 />
