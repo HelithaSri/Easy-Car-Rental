@@ -11,7 +11,12 @@ class AddVehicleRates extends Component {
         super(props);
         this.state = {
             formData: {
-                userName: "", password: "",
+                "rateId": '',
+                "monthlyRate": '',
+                "dailyRate": '',
+                "freeKmForaMonth": '',
+                "freeKmForaDay": '',
+                "pricePerExtraKm":'',
             },
         };
     }
@@ -24,15 +29,35 @@ class AddVehicleRates extends Component {
     handleChange = (event) => {
         let id = event.target.name;
         switch (id) {
-            case "userName":
-                const userName = event.target.value;
-                this.setState(Object.assign(this.state.formData, {userName: userName}));
+            case "rateId":
+                const rateId = event.target.value;
+                this.setState(Object.assign(this.state.formData, {rateId: rateId}));
                 // this.setState({ userId });
                 break;
 
-            case "password":
-                const password = event.target.value;
-                this.setState(Object.assign(this.state.formData, {password: password}));
+            case "monthlyRate":
+                const monthlyRate = event.target.value;
+                this.setState(Object.assign(this.state.formData, {monthlyRate: monthlyRate}));
+                break;
+
+            case "dailyRate":
+                const dailyRate = event.target.value;
+                this.setState(Object.assign(this.state.formData, {dailyRate: dailyRate}));
+                break;
+
+            case "freeKmForaMonth":
+                const freeKmForaMonth = event.target.value;
+                this.setState(Object.assign(this.state.formData, {freeKmForaMonth: freeKmForaMonth}));
+                break;
+
+            case "freeKmForaDay":
+                const freeKmForaDay = event.target.value;
+                this.setState(Object.assign(this.state.formData, {freeKmForaDay: freeKmForaDay}));
+                break;
+
+            case "pricePerExtraKm":
+                const pricePerExtraKm = event.target.value;
+                this.setState(Object.assign(this.state.formData, {pricePerExtraKm: pricePerExtraKm}));
                 break;
 
             default:
@@ -55,66 +80,60 @@ class AddVehicleRates extends Component {
                         <TextValidator
                             label="Rate ID"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="rateId"
+                            value={this.state.formData.rateId}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Daily Rate"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="dailyRate"
+                            value={this.state.formData.dailyRate}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Free Km For a Day"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="freeKmForaDay"
+                            value={this.state.formData.freeKmForaDay}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Free Km For a Month"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="freeKmForaMonth"
+                            value={this.state.formData.freeKmForaMonth}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Monthly Rate"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="monthlyRate"
+                            value={this.state.formData.monthlyRate}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Price Per Extra Km"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="pricePerExtraKm"
+                            value={this.state.formData.pricePerExtraKm}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />

@@ -26,4 +26,5 @@ class CustomerService {
         return await promise;
     }
 }
+
 export default new CustomerService();

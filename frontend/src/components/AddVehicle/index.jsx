@@ -14,7 +14,27 @@ class AddNewVehicle extends Component {
         super(props);
         this.state = {
             formData: {
-                userName: "", password: "",
+                "registrationNumber": '',
+                "brand": '',
+                "color": '',
+                "status": '',
+                "noOfPassengers": '',
+                "runningKm": '',
+                "fuelType": '',
+                "transmissionType": '',
+                "type": {
+                    "vehicleTypeId": '',
+                    "ldw": '',
+                    "type": '',
+                },
+                "rates": {
+                    "rateId": '',
+                    "monthlyRate": '',
+                    "dailyRate": '',
+                    "freeKmForaMonth": '',
+                    "freeKmForaDay": '',
+                    "pricePerExtraKm": '',
+                }
             },
         };
     }
@@ -27,15 +47,15 @@ class AddNewVehicle extends Component {
     handleChange = (event) => {
         let id = event.target.name;
         switch (id) {
-            case "userName":
-                const userName = event.target.value;
-                this.setState(Object.assign(this.state.formData, {userName: userName}));
+            case "registrationNumber":
+                const registrationNumber = event.target.value;
+                this.setState(Object.assign(this.state.formData, {registrationNumber: registrationNumber}));
                 // this.setState({ userId });
                 break;
 
-            case "password":
-                const password = event.target.value;
-                this.setState(Object.assign(this.state.formData, {password: password}));
+            case "brand":
+                const brand = event.target.value;
+                this.setState(Object.assign(this.state.formData, {brand: brand}));
                 break;
 
             default:
@@ -58,8 +78,8 @@ class AddNewVehicle extends Component {
                         <TextValidator
                             label="Registration Number"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="registrationNumber"
+                            value={this.state.formData.registrationNumber}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -68,8 +88,8 @@ class AddNewVehicle extends Component {
                         <TextValidator
                             label="Brand"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="brand"
+                            value={this.state.formData.brand}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -78,8 +98,8 @@ class AddNewVehicle extends Component {
                         <TextValidator
                             label="Color"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="color"
+                            value={this.state.formData.color}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -88,8 +108,8 @@ class AddNewVehicle extends Component {
                         <TextValidator
                             label="No of Passengers"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="noOfPassengers"
+                            value={this.state.formData.noOfPassengers}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             type={"number"}
@@ -99,8 +119,8 @@ class AddNewVehicle extends Component {
                         <TextValidator
                             label="Running Km"
                             onChange={this.handleChange}
-                            name="password"
-                            value={this.state.formData.password}
+                            name="runningKm"
+                            value={this.state.formData.runningKm}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -113,8 +133,8 @@ class AddNewVehicle extends Component {
                             <InputLabel>Fuel Type</InputLabel>
                             <Select
                                 labelId="fuel"
-                                id="fuel"
-                                value={""}
+                                id="fuelType"
+                                value={this.state.formData.fuelType}
                                 // onChange={handleChange}
                                 label="fuel"
                             >
@@ -130,8 +150,8 @@ class AddNewVehicle extends Component {
                             <InputLabel>Transmission Type </InputLabel>
                             <Select
                                 labelId="transmission"
-                                id="transmission"
-                                value={""}
+                                id="transmissionType"
+                                value={this.state.formData.transmissionType}
                                 // onChange={handleChange}
                                 label="transmission"
                             >
@@ -147,7 +167,7 @@ class AddNewVehicle extends Component {
                             <Select
                                 labelId="rates"
                                 id="rates"
-                                value={""}
+                                value={this.state.formData.rates.rateId}
                                 // onChange={handleChange}
                                 label="rates"
                             >
@@ -163,8 +183,8 @@ class AddNewVehicle extends Component {
                             <InputLabel>Vehicle Type </InputLabel>
                             <Select
                                 labelId="vehicleType"
-                                id="vehicleType"
-                                value={""}
+                                id="type"
+                                value={this.state.formData.type.vehicleTypeId}
                                 // onChange={handleChange}
                                 label="vehicleType"
                             >
@@ -181,7 +201,7 @@ class AddNewVehicle extends Component {
                             <Select
                                 labelId="status"
                                 id="status"
-                                value={""}
+                                value={this.state.formData.status}
                                 // onChange={handleChange}
                                 label="Status"
                             >

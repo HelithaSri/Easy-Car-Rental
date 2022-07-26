@@ -5,8 +5,7 @@ import SideFilter from "../../components/common/SideFilter";
 import VehicleCardTwo from "../../components/common/VehicleCardTwo";
 import SearchIcon from '@mui/icons-material/Search';
 import CommonButton from "../../components/common/Button";
-import {withStyles} from "@mui/styles";
-import {styleSheet} from "./style";
+
 
 class ViewAllVehicles extends Component {
     render() {
@@ -84,4 +83,4 @@ class ViewAllVehicles extends Component {
     }
 }
 
-export default withStyles(styleSheet)(ViewAllVehicles);
+export default ViewAllVehicles;

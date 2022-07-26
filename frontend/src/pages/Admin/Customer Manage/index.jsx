@@ -1,4 +1,4 @@
-import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Typography,} from "@mui/material";
+import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography,} from "@mui/material";
 import React, {Component} from "react";
 import Navbar from "../../../components/common/Navbar/Admin";
 import Sidebar from "../../../components/common/Sidebar";
@@ -9,6 +9,10 @@ import {withStyles} from "@mui/styles";
 import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddDriver from "../../../components/AddDriver";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VehicleTypeService from "../../../services/VehicleTypeService";
+import CustomerService from "../../../services/CustomerService";
 
 class CustomerManage extends Component {
     constructor(props) {
@@ -83,24 +87,42 @@ class CustomerManage extends Component {
                     field: "Action",
                     headerName: "Action",
                     width: 175,
+                    renderCell: (params) => {
+                        return (
+                            <>
+                                <Tooltip title="Delete">
+                                    <IconButton onClick={async () => {
+                                        await this.deleteuser(params.row.regUserId);
+                                    }}>
+                                        <DeleteIcon className={'text-red-500'}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </>
+                        )
+                    }
                 },
             ],
         };
     }
 
-    async loadData() {
-        // let resp = await PostService.fetchPosts();
-        const data = [];
-        this.setState({
-            loaded: true,
-            data: data,
-        });
-        console.log(this.state.data);
-        // console.log(JSON.stringify(resp.data));
+    async loadUserData() {
+        let resp = await CustomerService.fetchCustomers();
+        let nData = [];
+        if (resp.status === 200) {
+            resp.data.data.map((value, index) => {
+                value.id = value.regUserId;
+                nData.push(value)
+            })
+
+            this.setState({
+                loaded: true,
+                data: nData,
+            });
+        }
     }
 
     componentDidMount() {
-        this.loadData();
+        this.loadUserData();
         console.log("Mounted");
     }
 
