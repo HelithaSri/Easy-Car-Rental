@@ -85,12 +85,12 @@ class AddDriver extends Component {
                 });
             }
         }
-        this.props.tblUpdate()
+        // this.props.tblUpdate()
     };
 
-    componentWillUnmount() {
+   /* componentWillUnmount() {
         this.props.parentCloseBtn()
-    }
+    }*/
 
     clearFields = () => {
         this.setState({
