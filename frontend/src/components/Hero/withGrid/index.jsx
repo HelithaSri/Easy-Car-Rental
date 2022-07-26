@@ -27,6 +27,12 @@ const CssTextField = styled(TextField)({
   "& label": {
     color: "#AAAAAA",
   },
+  "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline":{
+    borderColor:'gray'
+  },
+  "&:hover .css-1d3z3hw-MuiOutlinedInput-notchedOutline":{
+    borderColor:'#EAB308'
+  },
 });
 
 class HeroWithGrid extends Component {
