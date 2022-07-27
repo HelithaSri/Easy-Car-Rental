@@ -3,6 +3,12 @@ import { styled, TextField, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CommonButton from "../../common/Button";
 
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
+
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
     color: "#EAB308",
@@ -40,6 +46,8 @@ class HeroWithGrid extends Component {
     super(props);
     this.state = {
       navBar: false,
+      selectedRentDate:new Date(),
+      selectedReturnDate:new Date()
     };
   }
 
@@ -76,7 +84,7 @@ class HeroWithGrid extends Component {
             className="flex gap-6 flex-col h-fit w-96 rounded-xl bg-blue-300 p-10 m-5 md:m-0 bg-opacity-10  backdrop-blur-sm"
             style={{ border: "1px solid rgba(255, 255, 255, 0.09)" }}
           >
-            <CssTextField
+            {/*<CssTextField
               id="outlined-basic"
               label="Rent Date"
               variant="outlined"
@@ -87,12 +95,34 @@ class HeroWithGrid extends Component {
               id="outlined-basic"
               label="Return Date"
               variant="outlined"
-            />
+            />*/}
             {/* <CssTextField
               id="outlined-basic"
               label="Outlined"
               variant="outlined"
             /> */}
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <DesktopDatePicker
+                  disablePast={true}
+                  showToolbar={false}
+                  label="Rent Date"
+                  inputFormat="MM/D/yyyy"
+                  value={this.state.selectedDate}
+                  onChange={this.handleChangeDate}
+                  renderInput={(params) => <CssTextField {...params} />}
+
+              />
+              <DesktopDatePicker
+                  disablePast={true}
+                  showToolbar={false}
+                  label="Return Date"
+                  inputFormat="MM/D/yyyy"
+                  value={this.state.selectedDate}
+                  onChange={this.handleChangeDate}
+                  renderInput={(params) => <CssTextField {...params} />}
+
+              />
+            </LocalizationProvider>
 
             <CommonButton
               size="large"
@@ -104,6 +134,12 @@ class HeroWithGrid extends Component {
         </Grid>
       </Grid>
     );
+  }
+
+  handleChangeDate = (newValue) => {
+    this.setState({
+      selectedDate:newValue
+    })
   }
 }
 
