@@ -107,8 +107,8 @@ class AddVehicleType extends Component {
                                     onChange={this.handleChange}
                                     name="ldw"
                                     value={this.state.formData.ldw}
-                                    validators={["required"]}
-                                    errorMessages={["This field is required"]}
+                                    validators={["required","isFloat"]}
+                                    errorMessages={["This field is required",'input is not valid']}
                                     className="w-full"
                                     style={{minWidth: '100%'}}
                                 />
