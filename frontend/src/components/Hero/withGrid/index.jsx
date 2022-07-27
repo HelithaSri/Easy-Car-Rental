@@ -117,7 +117,7 @@ class HeroWithGrid extends Component {
                   showToolbar={false}
                   label="Return Date"
                   inputFormat="MM/D/yyyy"
-                  value={this.state.selectedDate}
+                  value={this.state.selectedReturnDate}
                   onChange={this.handleChangeDate}
                   renderInput={(params) => <CssTextField {...params} />}
 
