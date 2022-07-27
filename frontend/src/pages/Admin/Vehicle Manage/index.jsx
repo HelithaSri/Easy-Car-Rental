@@ -3,7 +3,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  IconButton,
+  IconButton, Tooltip,
   Typography,
 } from "@mui/material";
 import React, { Component } from "react";
@@ -18,6 +18,10 @@ import { styleSheet } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import LoginUser from "../../Session/Login/user";
 import AddNewVehicle from "../../../components/AddVehicle";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EmployeeService from "../../../services/EmployeeService";
+import VehicleService from "../../../services/VehicleService";
 class VehicleManage extends Component {
   constructor(props) {
     super(props);
@@ -77,7 +81,7 @@ class VehicleManage extends Component {
         },
 
         {
-          field: "rates",
+          field: "rateId",
           headerName: "Rates",
           width: 150,
         },
@@ -98,20 +102,58 @@ class VehicleManage extends Component {
           field: "action",
           headerName: "Action",
           width: 150,
+          renderCell: (params) => {
+            return (
+                <>
+                  <Tooltip title="Edit">
+                    <IconButton onClick={async () => {
+                      await this.updateVehicle(params.row);
+                    }}>
+                      <EditIcon className={'text-blue-500'}/>
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Delete">
+                    <IconButton onClick={async () => {
+                      await this.deleteVehicle(params.row.registrationNumber);
+                    }}>
+                      <DeleteIcon className={'text-red-500'}/>
+                    </IconButton>
+                  </Tooltip>
+                </>
+            )
+          }
         },
       ],
     };
   }
 
+  updateVehicle = async (data) =>{
+
+  }
+
+  deleteVehicle = async (data) =>{
+
+  }
+
+
   async loadData() {
-    // let resp = await PostService.fetchPosts();
-    const data = [];
-    this.setState({
-      loaded: true,
-      data: data,
-    });
-    console.log(this.state.data);
-    // console.log(JSON.stringify(resp.data));
+
+    let resp = await VehicleService.fetchVehicles();
+    let nData = [];
+    if (resp.status === 200) {
+      resp.data.data.map((value, index) => {
+        value.id = value.registrationNumber;
+        value.type=value.type.type
+        value.rateId=value.rates.rateId
+        nData.push(value)
+      })
+
+      this.setState({
+        loaded: true,
+        data: nData,
+      });
+    }
+    console.log(this.state.data)
   }
 
   componentDidMount() {
@@ -141,7 +183,7 @@ class VehicleManage extends Component {
                 label="Add Vehicle"
                 onClick={() => this.setState({ popup: true })}
                 startIcon={<AddIcon />}
-              />
+              />{/*
               <CommonButton
                 variant="outlined"
                 label="Add Vehicle Rates"
@@ -151,7 +193,7 @@ class VehicleManage extends Component {
                 variant="outlined"
                 label="Add Vehicle Types"
                 startIcon={<AddIcon />}
-              />
+              />*/}
             </Grid>
             <Grid
               container

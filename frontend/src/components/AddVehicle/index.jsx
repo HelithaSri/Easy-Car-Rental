@@ -1,15 +1,36 @@
-import {Button, FormControl, Grid, InputLabel} from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import React, {Component} from "react";
 import {styleSheet} from "./styles";
 import {withStyles} from "@mui/styles";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CommonButton from "../common/Button";
+import VehicleRates from "../../pages/Admin/Vehicle Rates";
+import VehicleReatsService from "../../services/VehicleReatsService";
+import VehicleTypeService from "../../services/VehicleTypeService";
 
 
 class AddNewVehicle extends Component {
+    'currencies' = [
+        {
+            value: 'USD',
+            label: '$',
+        },
+        {
+            value: 'EUR',
+            label: '€',
+        },
+        {
+            value: 'BTC',
+            label: '฿',
+        },
+        {
+            value: 'JPY',
+            label: '¥',
+        },
+    ];
+
     constructor(props) {
         super(props);
         this.state = {
@@ -37,27 +58,46 @@ class AddNewVehicle extends Component {
                 },
 
             },
+            ratesData:[],
+            typeData:[],
         };
     }
 
-    'currencies'= [
-        {
-            value: 'USD',
-            label: '$',
-        },
-        {
-            value: 'EUR',
-            label: '€',
-        },
-        {
-            value: 'BTC',
-            label: '฿',
-        },
-        {
-            value: 'JPY',
-            label: '¥',
-        },
-    ];
+    fetchRatesDataForSelect = async () => {
+        const rates = await VehicleReatsService.fetchRates();
+        let ratesData=[];
+        if (rates.status===200){
+            rates.data.data.map((value, index) => {
+                ratesData.push(value)
+            })
+            this.setState({
+                ratesData:ratesData,
+            })
+            // console.log('frd')
+        }
+    }
+
+    fetchVTypeDataForSelect = async () => {
+        const res = await VehicleTypeService.fetchVehicleType();
+        let typeData=[];
+        if (res.status===200){
+            res.data.data.map((value, index) => {
+                typeData.push(value)
+                console.log(value)
+            })
+            this.setState({
+                typeData:typeData,
+            })
+        }
+
+    }
+
+
+    async componentDidMount(){
+        await this.fetchRatesDataForSelect()
+        await this.fetchVTypeDataForSelect()
+        console.log('mount v')
+    }
 
     handleSubmit = async () => {
         console.log("Hi handle");
@@ -105,12 +145,12 @@ class AddNewVehicle extends Component {
 
             case "rateId":
                 const rateId = event.target.value;
-                this.setState(Object.assign(this.state.formData, {rates: {rateId:rateId}}));
+                this.setState(Object.assign(this.state.formData, {rates: {rateId: rateId}}));
                 break;
 
             case "vehicleTypeId":
                 const vehicleTypeId = event.target.value;
-                this.setState(Object.assign(this.state.formData, {type: {vehicleTypeId:vehicleTypeId}}));
+                this.setState(Object.assign(this.state.formData, {type: {vehicleTypeId: vehicleTypeId}}));
                 break;
 
             case "status":
@@ -180,8 +220,8 @@ class AddNewVehicle extends Component {
                             onChange={this.handleChange}
                             name="runningKm"
                             value={this.state.formData.runningKm}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
+                            validators={["required", ['isFloat']]}
+                            errorMessages={["This field is required", 'input is not valid']}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -283,11 +323,9 @@ class AddNewVehicle extends Component {
                             className="w-full"
                             style={{minWidth: '100%'}}
                         >
-                            {this.currencies.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
+                            <MenuItem key={'Petrol'} value={'Petrol'}>Petrol</MenuItem>
+                            <MenuItem key={'Diesel'} value={'Diesel'}>Diesel</MenuItem>
+                            <MenuItem key={'Electric'} value={'Electric'}>Electric</MenuItem>
                         </TextValidator>
 
                         <TextValidator
@@ -301,11 +339,8 @@ class AddNewVehicle extends Component {
                             className="w-full"
                             style={{minWidth: '100%'}}
                         >
-                            {this.currencies.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
+                            <MenuItem key={"Auto"} value={10}>Auto</MenuItem>
+                            <MenuItem key={"Manual"} value={20}>Manual</MenuItem>
                         </TextValidator>
 
                         <TextValidator
@@ -319,9 +354,9 @@ class AddNewVehicle extends Component {
                             className="w-full"
                             style={{minWidth: '100%'}}
                         >
-                            {this.currencies.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
+                            {this.state.ratesData.map((option) => (
+                                <MenuItem key={option.rateId} value={option.rateId}>
+                                    {option.rateId}
                                 </MenuItem>
                             ))}
                         </TextValidator>
@@ -337,11 +372,13 @@ class AddNewVehicle extends Component {
                             className="w-full"
                             style={{minWidth: '100%'}}
                         >
-                            {this.currencies.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
+
+                            {this.state.typeData.map((option) => (
+                                <MenuItem key={option.vehicleTypeId} value={option.vehicleTypeId}>
+                                    {option.type}
                                 </MenuItem>
                             ))}
+
                         </TextValidator>
 
                         <TextValidator
@@ -355,11 +392,9 @@ class AddNewVehicle extends Component {
                             className="w-full"
                             style={{minWidth: '100%'}}
                         >
-                            {this.currencies.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
+                            <MenuItem key={'Available'} value={'Available'}>Available</MenuItem>
+                            <MenuItem key={'Under Maintains'} value={'Under Maintains'}>Under Maintains</MenuItem>
+                            <MenuItem key={'Need Maintains'} value={'Need Maintains'}>Need Maintains</MenuItem>
                         </TextValidator>
 
 
@@ -375,8 +410,6 @@ class AddNewVehicle extends Component {
                             Upload Image
                             <input type="file" accept="image/*" hidden/>
                         </Button>
-
-
                     </Grid>
                     <CommonButton
                         size="large"
