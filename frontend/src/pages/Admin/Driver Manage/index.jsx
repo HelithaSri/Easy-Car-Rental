@@ -109,6 +109,12 @@ class DriverManage extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.popup == true){
+            this.loadData()
+        }
+    }
+
     deleteDriver = async (id) => {
         let params = {
             driverId: id

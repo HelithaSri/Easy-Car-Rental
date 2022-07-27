@@ -81,6 +81,12 @@ class VehicleType extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.popup == true){
+            this.loadVtypeData()
+        }
+    }
+
     deleteVehicleType = async (id) => {
         let params = {
             typeId: id

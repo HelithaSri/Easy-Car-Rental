@@ -100,6 +100,12 @@ class VehicleRates extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.popup == true){
+            this.loadData()
+        }
+    }
+
     deleteRates = async (id) => {
         let params = {
             rateID: id
