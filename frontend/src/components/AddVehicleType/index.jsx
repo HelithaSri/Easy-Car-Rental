@@ -12,9 +12,9 @@ class AddVehicleType extends Component {
         super(props);
         this.state = {
             formData: {
-                vehicleTypeId: '',
-                type: '',
-                ldw: ''
+                vehicleTypeId: props.isUpdate?props.typeObj.vehicleTypeId:'',
+                type: props.isUpdate?props.typeObj.type:'',
+                ldw:props.isUpdate?props.typeObj.ldw:'',
             },
             alert: false,
             message: '',
@@ -115,7 +115,7 @@ class AddVehicleType extends Component {
                                 <CommonButton
                                     size="large"
                                     variant="contained"
-                                    label="Add"
+                                    label={this.props.isUpdate ? 'Update' : 'Add'}
                                     type="submit"
                                     className="text-white bg-blue-500 font-bold tracking-wide"
                                     style={{backgroundColor: 'rgba(25, 118, 210, 0.95)', width: '100%'}}

@@ -26,6 +26,19 @@ class VehicleTypeService {
         return await promise;
     }
 
+    deleteVehicleType = async (params) => {
+        console.log(params)
+        const promise = new Promise((resolve, reject)=>{
+            axios.delete('vehicleType', {params:params})
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
+
 
 }
 export default new VehicleTypeService();
