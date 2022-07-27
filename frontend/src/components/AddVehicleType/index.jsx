@@ -23,24 +23,42 @@ class AddVehicleType extends Component {
     }
 
     handleSubmit = async () => {
-        console.log(this.state.formData)
         let formData = this.state.formData
-        let res = await VehicleTypeService.postVehicleType(formData)
-        console.log(res)
-        if (res.status === 201) {
-            this.setState({
-                alert:true,
-                message:'Vehicle Type Saved!',
-                severity:'success'
-            })
+        if (this.props.isUpdate){
+            let res = await VehicleTypeService.updateVehicleType(formData)
+            if (res.status === 200) {
+                this.setState({
+                    alert:true,
+                    message:'Vehicle Type Updated!',
+                    severity:'success'
+                })
+
+            }else {
+                this.setState({
+                    alert:false,
+                    message:'Vehicle Type Update Unsuccessful!',
+                    severity:'error'
+                })
+            }
 
         }else {
-            this.setState({
-                alert:false,
-                message:'Vehicle Type Saved Unsuccessful!',
-                severity:'error'
-            })
+            let res = await VehicleTypeService.postVehicleType(formData)
+            if (res.status === 201) {
+                this.setState({
+                    alert:true,
+                    message:'Vehicle Type Saved!',
+                    severity:'success'
+                })
+
+            }else {
+                this.setState({
+                    alert:false,
+                    message:'Vehicle Type Saved Unsuccessful!',
+                    severity:'error'
+                })
+            }
         }
+
     };
 
     handleChange = (event) => {
