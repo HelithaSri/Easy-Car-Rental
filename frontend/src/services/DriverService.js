@@ -27,7 +27,6 @@ class DriverService {
     }
 
     deleteDriver = async (params) => {
-        console.warn("hellow de")
         const promise = new Promise((resolve, reject) => {
             axios.delete('driver', {params:params})
                 .then((res) => {

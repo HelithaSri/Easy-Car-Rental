@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VehicleTypeService from "../../../services/VehicleTypeService";
 import CustomSnackBar from "../../../components/common/SnakBar";
+import vehicleTypeService from "../../../services/VehicleTypeService";
 
 class VehicleType extends Component {
     constructor(props) {
@@ -22,6 +23,9 @@ class VehicleType extends Component {
             alert: false,
             message: "",
             severity: "",
+
+            updateVehicleType:{},
+            isUpdate:false,
 
             //  for table
             data: [],
@@ -64,7 +68,7 @@ class VehicleType extends Component {
                                 </Tooltip>
                                 <Tooltip title="Delete">
                                     <IconButton onClick={async () => {
-                                        await this.deleteVehicleType(params.row.driverId);
+                                        await this.deleteVehicleType(params.row.vehicleTypeId);
                                     }}>
                                         <DeleteIcon className={'text-red-500'}/>
                                     </IconButton>
@@ -79,12 +83,37 @@ class VehicleType extends Component {
 
     deleteVehicleType = async (id) => {
         let params = {
-            vehicleTypeId: id
+            typeId: id
+        }
+        let res = await vehicleTypeService.deleteVehicleType(params)
+        if (res.status === 200){
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            })
+            this.loadVtypeData()
+        }else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            })
         }
     }
 
-    updateVehicleType = async (id) => {
-
+    updateVehicleType = async (data) => {
+        const row = data;
+        let updateVehicleType = {
+            "vehicleTypeId": row.vehicleTypeId,
+            "type": row.type,
+            "ldw": row.ldw,
+        }
+        await this.setState({updateVehicleType: updateVehicleType})
+        await this.setState({
+            popup: true,
+            isUpdate: true
+        })
     }
 
     async loadVtypeData() {
@@ -130,7 +159,7 @@ class VehicleType extends Component {
                                 <CommonButton
                                     variant="outlined"
                                     label="Add Vehicle Type"
-                                    onClick={() => this.setState({popup: true})}
+                                    onClick={() => this.setState({popup: true,isUpdate:false})}
                                     startIcon={<AddIcon/>}
                                 />
                             </Grid>
@@ -152,31 +181,6 @@ class VehicleType extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Dialog
-                        open={this.state.popup}
-                        maxWidth="md"
-                        classes={{paper: classes.dialogWraper}}
-                    >
-                        <DialogTitle style={{paddingRight: "0px"}}>
-                            <div style={{display: "flex"}}>
-                                <Typography
-                                    variant="h4"
-                                    component="div"
-                                    className="font-bold flex-grow"
-                                    style={{flexGrow: 1}}
-                                >
-                                    Add New Vehicle Type
-                                </Typography>
-
-                                <IconButton onClick={() => this.setState({popup: false})}>
-                                    <CloseIcon/>
-                                </IconButton>
-                            </div>
-                        </DialogTitle>
-                        <DialogContent dividers>
-                            <AddVehicleType/>
-                        </DialogContent>
-                    </Dialog>
                 </Grid>
                 <CustomSnackBar
                     open={this.state.alert}
@@ -188,6 +192,31 @@ class VehicleType extends Component {
                     severity={this.state.severity}
                     variant={'filled'}
                 />
+                <Dialog
+                    open={this.state.popup}
+                    maxWidth="md"
+                    classes={{paper: classes.dialogWraper}}
+                >
+                    <DialogTitle style={{paddingRight: "0px"}}>
+                        <div style={{display: "flex"}}>
+                            <Typography
+                                variant="h4"
+                                component="div"
+                                className="font-bold flex-grow"
+                                style={{flexGrow: 1}}
+                            >
+                                {this.state.isUpdate ? 'Update' : 'Add'} Vehicle Type
+                            </Typography>
+
+                            <IconButton onClick={() => this.setState({popup: false})}>
+                                <CloseIcon/>
+                            </IconButton>
+                        </div>
+                    </DialogTitle>
+                    <DialogContent dividers>
+                        <AddVehicleType isUpdate={this.state.isUpdate} typeObj={this.state.updateVehicleType}/>
+                    </DialogContent>
+                </Dialog>
             </>
         );
     }

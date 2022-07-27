@@ -29,7 +29,6 @@ class DriverManage extends Component {
 
             //  for table
             data: [],
-            datas: [],
             loaded: false,
 
             //  for data table
@@ -169,7 +168,7 @@ class DriverManage extends Component {
                 data: nData,
             });
         }
-        console.log(this.state.data);
+        // console.log(this.state.data);
         // console.log(this.state.data);
         /*this.state.data.map((value, index)=>{
             console.log(index)
@@ -179,9 +178,7 @@ class DriverManage extends Component {
     }
 
     componentDidMount() {
-        this.loadData().then(r => {
-            console.log("wade hari")
-        });
+        this.loadData()
 
         console.log("Mounted");
     }
@@ -260,7 +257,7 @@ class DriverManage extends Component {
                                 className="font-bold flex-grow"
                                 style={{flexGrow: 1}}
                             >
-                                Add New Driver
+                                {this.state.isUpdate ? 'Update' : 'Add'} Driver
                             </Typography>
 
                             <IconButton onClick={this.popupCloseBtn}>
@@ -270,7 +267,7 @@ class DriverManage extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <AddDriver isUpdate={this.state.isUpdate} obj={this.state.updateDriver}
-                                   parentCloseBtn={this.popupCloseBtn} tblUpdate={this.loadData()}/>
+                            /* parentCloseBtn={this.popupCloseBtn} tblUpdate={this.loadData()}*//>
                     </DialogContent>
                 </Dialog>
 
