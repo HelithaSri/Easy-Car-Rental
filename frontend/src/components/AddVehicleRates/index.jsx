@@ -4,6 +4,8 @@ import {styleSheet} from "./styles";
 import {withStyles} from "@mui/styles";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
+import CustomSnackBar from "../common/SnakBar";
+import VehicleReatsService from "../../services/VehicleReatsService";
 
 
 class AddVehicleRates extends Component {
@@ -11,19 +13,52 @@ class AddVehicleRates extends Component {
         super(props);
         this.state = {
             formData: {
-                "rateId": '',
-                "monthlyRate": '',
-                "dailyRate": '',
-                "freeKmForaMonth": '',
-                "freeKmForaDay": '',
-                "pricePerExtraKm":'',
+                "rateId": props.isUpdate ? props.obj.rateId : '',
+                "monthlyRate": props.isUpdate ? props.obj.monthlyRate : '',
+                "dailyRate": props.isUpdate ? props.obj.dailyRate : '',
+                "freeKmForaMonth": props.isUpdate ? props.obj.freeKmForaMonth : '',
+                "freeKmForaDay": props.isUpdate ? props.obj.freeKmForaDay : '',
+                "pricePerExtraKm": props.isUpdate ? props.obj.pricePerExtraKm : '',
             },
+            alert: false,
+            message: '',
+            severity: ''
         };
     }
 
     handleSubmit = async () => {
-        console.log("Hi handle");
-        console.log(this.state.formData);
+        let formData = this.state.formData;
+        if (this.props.isUpdate) {
+            let res = await VehicleReatsService.updateRates(formData)
+            if (res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: 'Rates Updated!',
+                    severity: 'success'
+                })
+            } else {
+                this.setState({
+                    alert: true,
+                    message: 'Rates Update Unsuccessful!',
+                    severity: 'error'
+                });
+            }
+        } else {
+            let res = await VehicleReatsService.postRates(formData)
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: 'Rates Saved!',
+                    severity: 'success'
+                })
+            } else {
+                this.setState({
+                    alert: true,
+                    message: 'Rates Saved Unsuccessful!',
+                    severity: 'error'
+                });
+            }
+        }
     };
 
     handleChange = (event) => {
@@ -67,90 +102,102 @@ class AddVehicleRates extends Component {
 
     render() {
         const {classes} = this.props;
-        return (<Grid container direction={'row'} xs={12} className={classes.container}>
-            <ValidatorForm
-                onSubmit={this.handleSubmit}
-                onError={(errors) => console.log(errors)}
-                className={classes.validator}
-            >
-                <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
-                      alignContent={'center'}
-                      className={classes.container}>
-                    <Grid item container direction={'column'} xs={12} gap={'15px'}>
-                        <TextValidator
-                            label="Rate ID"
-                            onChange={this.handleChange}
-                            name="rateId"
-                            value={this.state.formData.rateId}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Daily Rate"
-                            onChange={this.handleChange}
-                            name="dailyRate"
-                            value={this.state.formData.dailyRate}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Free Km For a Day"
-                            onChange={this.handleChange}
-                            name="freeKmForaDay"
-                            value={this.state.formData.freeKmForaDay}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Free Km For a Month"
-                            onChange={this.handleChange}
-                            name="freeKmForaMonth"
-                            value={this.state.formData.freeKmForaMonth}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Monthly Rate"
-                            onChange={this.handleChange}
-                            name="monthlyRate"
-                            value={this.state.formData.monthlyRate}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Price Per Extra Km"
-                            onChange={this.handleChange}
-                            name="pricePerExtraKm"
-                            value={this.state.formData.pricePerExtraKm}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <CommonButton
-                            size="large"
-                            variant="contained"
-                            label="Add"
-                            type="submit"
-                            className="text-white bg-blue-500 font-bold tracking-wide"
-                            style={{backgroundColor: 'rgba(25, 118, 210, 0.95)', width: '100%'}}
-                        />
-                    </Grid>
-
+        return (
+            <>
+                <Grid container direction={'row'} xs={12} className={classes.container}>
+                    <ValidatorForm
+                        onSubmit={this.handleSubmit}
+                        onError={(errors) => console.log(errors)}
+                        className={classes.validator}
+                    >
+                        <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
+                              alignContent={'center'}
+                              className={classes.container}>
+                            <Grid item container direction={'column'} xs={12} gap={'15px'}>
+                                <TextValidator
+                                    label="Rate ID"
+                                    onChange={this.handleChange}
+                                    name="rateId"
+                                    value={this.state.formData.rateId}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Daily Rate"
+                                    onChange={this.handleChange}
+                                    name="dailyRate"
+                                    value={this.state.formData.dailyRate}
+                                    validators={["required", "isFloat"]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Free Km For a Day"
+                                    onChange={this.handleChange}
+                                    name="freeKmForaDay"
+                                    value={this.state.formData.freeKmForaDay}
+                                    validators={["required", "isFloat"]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Free Km For a Month"
+                                    onChange={this.handleChange}
+                                    name="freeKmForaMonth"
+                                    value={this.state.formData.freeKmForaMonth}
+                                    validators={["required", "isFloat"]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Monthly Rate"
+                                    onChange={this.handleChange}
+                                    name="monthlyRate"
+                                    value={this.state.formData.monthlyRate}
+                                    validators={["required", "isFloat"]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Price Per Extra Km"
+                                    onChange={this.handleChange}
+                                    name="pricePerExtraKm"
+                                    value={this.state.formData.pricePerExtraKm}
+                                    validators={["required", "isFloat"]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <CommonButton
+                                    size="large"
+                                    variant="contained"
+                                    label={this.props.isUpdate ? 'Update' : 'Add'}
+                                    type="submit"
+                                    className="text-white bg-blue-500 font-bold tracking-wide"
+                                    style={{backgroundColor: 'rgba(25, 118, 210, 0.95)', width: '100%'}}
+                                />
+                            </Grid>
+                        </Grid>
+                    </ValidatorForm>
                 </Grid>
-            </ValidatorForm>
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
+            </>);
 
-        </Grid>);
     }
 }
 
