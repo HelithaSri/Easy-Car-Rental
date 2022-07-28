@@ -59,4 +59,9 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
         return mapper.map(repo.findAll(), new TypeToken<List<RegisteredUserDTO>>() {
         }.getType());
     }
+
+    @Override
+    public long countUsers() {
+        return repo.count();
+    }
 }

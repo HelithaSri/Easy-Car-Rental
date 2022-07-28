@@ -46,4 +46,9 @@ public class RegisteredUserController {
         return new ResponseUtil(200, "User Update Successfully", null);
     }
 
+    @GetMapping(path = "/count", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil userCount() {
+        return new ResponseUtil(200, "Ok", userService.countUsers());
+    }
+
 }

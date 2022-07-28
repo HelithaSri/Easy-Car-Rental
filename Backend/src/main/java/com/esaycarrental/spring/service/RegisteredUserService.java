@@ -19,4 +19,6 @@ public interface RegisteredUserService {
 
     List<RegisteredUserDTO> getAllUsers();
 
+    long countUsers();
+
 }

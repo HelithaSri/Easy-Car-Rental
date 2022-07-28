@@ -45,5 +45,13 @@ public class VehicleController {
         service.updateVehicle(dto);
         return new ResponseUtil(200, "User Update Successfully", null);
     }
+    @GetMapping(path = "/status",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllByStatus(@RequestParam String status) {
+        return new ResponseUtil(200, "Ok", service.getAllVehiclesByStatus(status));
+    }
 
+    @GetMapping(path = "/count/status",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countAllByStatus(@RequestParam String status) {
+        return new ResponseUtil(200, "Ok", service.countByStatus(status));
+    }
 }

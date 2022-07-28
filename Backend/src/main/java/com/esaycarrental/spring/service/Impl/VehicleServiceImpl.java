@@ -101,4 +101,15 @@ public class VehicleServiceImpl implements VehicleService {
         return mapper.map(repo.findAll(), new TypeToken<List<VehicleDTO>>() {
         }.getType());
     }
+
+    @Override
+    public List<VehicleDTO> getAllVehiclesByStatus(String status) {
+        return mapper.map(repo.searchVehiclesByStatus(status), new TypeToken<List<VehicleDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public long countByStatus(String status) {
+        return repo.countVehiclesByStatus(status);
+    }
 }
