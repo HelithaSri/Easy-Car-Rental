@@ -119,7 +119,6 @@ class DriverManage extends Component {
         let params = {
             driverId: id
         }
-        console.warn("hellow")
         let res = await DriverService.deleteDriver(params);
         console.log(res)
         if (res.status === 200) {
@@ -156,7 +155,6 @@ class DriverManage extends Component {
             popup: true,
             isUpdate: true
         })
-        console.log(this.state.updateDriver)
 
     }
 
