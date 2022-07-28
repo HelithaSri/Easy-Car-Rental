@@ -6,72 +6,58 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import MenuItem from '@mui/material/MenuItem';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CommonButton from "../common/Button";
-import VehicleRates from "../../pages/Admin/Vehicle Rates";
 import VehicleReatsService from "../../services/VehicleReatsService";
 import VehicleTypeService from "../../services/VehicleTypeService";
+import VehicleService from "../../services/VehicleService";
+import CustomSnackBar from "../common/SnakBar";
 
 
 class AddNewVehicle extends Component {
-    'currencies' = [
-        {
-            value: 'USD',
-            label: '$',
-        },
-        {
-            value: 'EUR',
-            label: '€',
-        },
-        {
-            value: 'BTC',
-            label: '฿',
-        },
-        {
-            value: 'JPY',
-            label: '¥',
-        },
-    ];
-
     constructor(props) {
         super(props);
         this.state = {
             formData: {
-                "registrationNumber": '',
-                "brand": '',
-                "color": '',
-                "status": '',
-                "noOfPassengers": '',
-                "runningKm": '',
-                "fuelType": '',
-                "transmissionType": '',
+                "registrationNumber": props.isUpdate ? props.obj.registrationNumber : '',
+                "brand": props.isUpdate ? props.obj.brand : '',
+                "color": props.isUpdate ? props.obj.color : '',
+                "status": props.isUpdate ? props.obj.status : '',
+                "noOfPassengers": props.isUpdate ? props.obj.noOfPassengers : '',
+                "runningKm": props.isUpdate ? props.obj.runningKm : '',
+                "fuelType": props.isUpdate ? props.obj.fuelType : '',
+                "transmissionType": props.isUpdate ? props.obj.transmissionType : '',
                 "type": {
-                    "vehicleTypeId": '',
-                    "ldw": '',
-                    "type": '',
+                    "vehicleTypeId": props.isUpdate ? props.obj.type.vehicleTypeId : '',
+                    "ldw": props.isUpdate ? props.obj.type.ldw : '',
+                    "type": props.isUpdate ? props.obj.type.type : '',
                 },
                 "rates": {
-                    "rateId": '',
-                    "monthlyRate": '',
-                    "dailyRate": '',
-                    "freeKmForaMonth": '',
-                    "freeKmForaDay": '',
-                    "pricePerExtraKm": '',
+                    "rateId": props.isUpdate ? props.obj.rates.rateId : '',
+                    "monthlyRate": props.isUpdate ? props.obj.rates.monthlyRate : '',
+                    "dailyRate": props.isUpdate ? props.obj.rates.dailyRate : '',
+                    "freeKmForaMonth": props.isUpdate ? props.obj.rates.freeKmForaMonth : '',
+                    "freeKmForaDay": props.isUpdate ? props.obj.rates.freeKmForaDay : '',
+                    "pricePerExtraKm": props.isUpdate ? props.obj.rates.pricePerExtraKm : '',
                 },
 
             },
-            ratesData:[],
-            typeData:[],
+            ratesData: [],
+            typeData: [],
+
+            alert: false,
+            message: '',
+            severity: ''
         };
     }
 
     fetchRatesDataForSelect = async () => {
         const rates = await VehicleReatsService.fetchRates();
-        let ratesData=[];
-        if (rates.status===200){
+        let ratesData = [];
+        if (rates.status === 200) {
             rates.data.data.map((value, index) => {
                 ratesData.push(value)
             })
             this.setState({
-                ratesData:ratesData,
+                ratesData: ratesData,
             })
             // console.log('frd')
         }
@@ -79,29 +65,60 @@ class AddNewVehicle extends Component {
 
     fetchVTypeDataForSelect = async () => {
         const res = await VehicleTypeService.fetchVehicleType();
-        let typeData=[];
-        if (res.status===200){
+        let typeData = [];
+        if (res.status === 200) {
             res.data.data.map((value, index) => {
                 typeData.push(value)
                 console.log(value)
             })
             this.setState({
-                typeData:typeData,
+                typeData: typeData,
             })
         }
 
     }
 
-
-    async componentDidMount(){
+    async componentDidMount() {
         await this.fetchRatesDataForSelect()
         await this.fetchVTypeDataForSelect()
         console.log('mount v')
+        console.log('type : ', this.props.obj)
     }
 
     handleSubmit = async () => {
-        console.log("Hi handle");
-        console.log(this.state.formData);
+        console.log("hi")
+        let formDate = this.state.formData
+        if (this.props.isUpdate) {
+            let res = await VehicleService.updateVehicle(formDate)
+            if (res.status === 200) {
+                this.setState({
+                    alert: true,
+                    message: 'Vehicle Updated!',
+                    severity: 'success'
+                })
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'error'
+                })
+            }
+        } else {
+            let res = await VehicleService.postVehicle(formDate)
+            if (res.status === 201) {
+                this.setState({
+                    alert: true,
+                    message: 'Vehicle Saved!',
+                    severity: 'success'
+                })
+            } else {
+                this.setState({
+                    alert: true,
+                    message: res.data.message,
+                    severity: 'error'
+                })
+            }
+        }
     };
 
     handleChange = (event) => {
@@ -143,12 +160,12 @@ class AddNewVehicle extends Component {
                 this.setState(Object.assign(this.state.formData, {transmissionType: transmissionType}));
                 break;
 
-            case "rateId":
+            case "rates":
                 const rateId = event.target.value;
                 this.setState(Object.assign(this.state.formData, {rates: {rateId: rateId}}));
                 break;
 
-            case "vehicleTypeId":
+            case "type":
                 const vehicleTypeId = event.target.value;
                 this.setState(Object.assign(this.state.formData, {type: {vehicleTypeId: vehicleTypeId}}));
                 break;
@@ -164,71 +181,73 @@ class AddNewVehicle extends Component {
 
     render() {
         const {classes} = this.props;
-        return (<Grid container direction={'row'} xs={12} className={classes.container}>
-            <ValidatorForm
-                onSubmit={this.handleSubmit}
-                onError={(errors) => console.log(errors)}
-                className={classes.validator}
-            >
-                <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
-                      alignContent={'center'}
-                      className={classes.container}>
-                    <Grid item container direction={'column'} xs={5.5} gap={'15px'}>
-                        <TextValidator
-                            label="Registration Number"
-                            onChange={this.handleChange}
-                            name="registrationNumber"
-                            value={this.state.formData.registrationNumber}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Brand"
-                            onChange={this.handleChange}
-                            name="brand"
-                            value={this.state.formData.brand}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Color"
-                            onChange={this.handleChange}
-                            name="color"
-                            value={this.state.formData.color}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="No of Passengers"
-                            onChange={this.handleChange}
-                            name="noOfPassengers"
-                            value={this.state.formData.noOfPassengers}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            type={"number"}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                        <TextValidator
-                            label="Running Km"
-                            onChange={this.handleChange}
-                            name="runningKm"
-                            value={this.state.formData.runningKm}
-                            validators={["required", ['isFloat']]}
-                            errorMessages={["This field is required", 'input is not valid']}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        />
-                    </Grid>
-                    <Grid container direction={'column'} item xs={5.5} gap={'15px'}>
+        return (
+            <>
+                <Grid container direction={'row'} xs={12} className={classes.container}>
+                    <ValidatorForm
+                        onSubmit={this.handleSubmit}
+                        onError={(errors) => console.log(errors)}
+                        className={classes.validator}
+                    >
+                        <Grid item container direction={'row'} xs={12} gap={'15px'} justifyContent={'center'}
+                              alignContent={'center'}
+                              className={classes.container}>
+                            <Grid item container direction={'column'} xs={5.5} gap={'15px'}>
+                                <TextValidator
+                                    label="Registration Number"
+                                    onChange={this.handleChange}
+                                    name="registrationNumber"
+                                    value={this.state.formData.registrationNumber}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Brand"
+                                    onChange={this.handleChange}
+                                    name="brand"
+                                    value={this.state.formData.brand}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Color"
+                                    onChange={this.handleChange}
+                                    name="color"
+                                    value={this.state.formData.color}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="No of Passengers"
+                                    onChange={this.handleChange}
+                                    name="noOfPassengers"
+                                    value={this.state.formData.noOfPassengers}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    type={"number"}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                                <TextValidator
+                                    label="Running Km"
+                                    onChange={this.handleChange}
+                                    name="runningKm"
+                                    value={this.state.formData.runningKm}
+                                    validators={["required", ['isFloat']]}
+                                    errorMessages={["This field is required", 'input is not valid']}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                />
+                            </Grid>
+                            <Grid container direction={'column'} item xs={5.5} gap={'15px'}>
 
-                        {/*<FormControl variant="outlined" className={classes.select}>
+                                {/*<FormControl variant="outlined" className={classes.select}>
                             <InputLabel>Fuel Type</InputLabel>
                             <Select
                                 labelId="fuel"
@@ -312,117 +331,130 @@ class AddNewVehicle extends Component {
                                 <MenuItem value={30}>Need Maintains</MenuItem>
                             </Select>
                         </FormControl>*/}
-                        <TextValidator
-                            select
-                            label="Fuel Type"
-                            name="fuelType"
-                            onChange={this.handleChange}
-                            value={this.state.formData.fuelType}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        >
-                            <MenuItem key={'Petrol'} value={'Petrol'}>Petrol</MenuItem>
-                            <MenuItem key={'Diesel'} value={'Diesel'}>Diesel</MenuItem>
-                            <MenuItem key={'Electric'} value={'Electric'}>Electric</MenuItem>
-                        </TextValidator>
+                                <TextValidator
+                                    select
+                                    label="Fuel Type"
+                                    name="fuelType"
+                                    onChange={this.handleChange}
+                                    value={this.state.formData.fuelType}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                >
+                                    <MenuItem key={'Petrol'} value={'Petrol'}>Petrol</MenuItem>
+                                    <MenuItem key={'Diesel'} value={'Diesel'}>Diesel</MenuItem>
+                                    <MenuItem key={'Electric'} value={'Electric'}>Electric</MenuItem>
+                                </TextValidator>
 
-                        <TextValidator
-                            select
-                            label="Transmission Type"
-                            name="transmissionType"
-                            onChange={this.handleChange}
-                            value={this.state.formData.transmissionType}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        >
-                            <MenuItem key={"Auto"} value={10}>Auto</MenuItem>
-                            <MenuItem key={"Manual"} value={20}>Manual</MenuItem>
-                        </TextValidator>
+                                <TextValidator
+                                    select
+                                    label="Transmission Type"
+                                    name="transmissionType"
+                                    onChange={this.handleChange}
+                                    value={this.state.formData.transmissionType}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                >
+                                    <MenuItem key={"Auto"} value={"Auto"}>Auto</MenuItem>
+                                    <MenuItem key={"Manual"} value={"Manual"}>Manual</MenuItem>
+                                </TextValidator>
 
-                        <TextValidator
-                            select
-                            label="Rates"
-                            name="rateId"
-                            onChange={this.handleChange}
-                            value={this.state.formData.rates.rateId}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        >
-                            {this.state.ratesData.map((option) => (
-                                <MenuItem key={option.rateId} value={option.rateId}>
-                                    {option.rateId}
-                                </MenuItem>
-                            ))}
-                        </TextValidator>
+                                <TextValidator
+                                    select
+                                    label="Rates"
+                                    name="rates"
+                                    onChange={this.handleChange}
+                                    value={this.state.formData.rates.rateId}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                >
+                                    {this.state.ratesData.map((option) => (
+                                        <MenuItem key={option.rateId} value={option.rateId}>
+                                            {option.rateId}
+                                        </MenuItem>
+                                    ))}
+                                </TextValidator>
 
-                        <TextValidator
-                            select
-                            label="Vehicle Type"
-                            name="vehicleTypeId"
-                            onChange={this.handleChange}
-                            value={this.state.formData.type.vehicleTypeId}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        >
+                                <TextValidator
+                                    select
+                                    label="Vehicle Type"
+                                    name="type"
+                                    onChange={this.handleChange}
+                                    value={this.state.formData.type.vehicleTypeId}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                >
 
-                            {this.state.typeData.map((option) => (
-                                <MenuItem key={option.vehicleTypeId} value={option.vehicleTypeId}>
-                                    {option.type}
-                                </MenuItem>
-                            ))}
+                                    {this.state.typeData.map((option) => (
+                                        <MenuItem key={option.vehicleTypeId} value={option.vehicleTypeId}>
+                                            {option.type}
+                                        </MenuItem>
+                                    ))}
 
-                        </TextValidator>
+                                </TextValidator>
 
-                        <TextValidator
-                            select
-                            label="Status"
-                            name="status"
-                            onChange={this.handleChange}
-                            value={this.state.formData.status}
-                            validators={["required"]}
-                            errorMessages={["This field is required"]}
-                            className="w-full"
-                            style={{minWidth: '100%'}}
-                        >
-                            <MenuItem key={'Available'} value={'Available'}>Available</MenuItem>
-                            <MenuItem key={'Under Maintains'} value={'Under Maintains'}>Under Maintains</MenuItem>
-                            <MenuItem key={'Need Maintains'} value={'Need Maintains'}>Need Maintains</MenuItem>
-                        </TextValidator>
+                                <TextValidator
+                                    select
+                                    label="Status"
+                                    name="status"
+                                    onChange={this.handleChange}
+                                    value={this.state.formData.status}
+                                    validators={["required"]}
+                                    errorMessages={["This field is required"]}
+                                    className="w-full"
+                                    style={{minWidth: '100%'}}
+                                >
+                                    <MenuItem key={'Available'} value={'Available'}>Available</MenuItem>
+                                    <MenuItem key={'Reserved'} value={'Reserved'}>Reserved</MenuItem>
+                                    <MenuItem key={'Under Maintains'} value={'Under Maintains'}>Under
+                                        Maintains</MenuItem>
+                                    <MenuItem key={'Need Maintains'} value={'Need Maintains'}>Need Maintains</MenuItem>
+                                </TextValidator>
 
 
-                    </Grid>
-                    <Grid container direction={'row'} xs={12} justifyContent={'center'}>
-                        <Button
-                            component="label"
-                            variant="outlined"
-                            startIcon={<AddPhotoAlternateIcon className={classes.icon}/>}
-                            sx={{marginRight: "1rem"}}
-                            className={classes.btnUpload}
-                        >
-                            Upload Image
-                            <input type="file" accept="image/*" hidden/>
-                        </Button>
-                    </Grid>
-                    <CommonButton
-                        size="large"
-                        variant="contained"
-                        label="Add"
-                        type="submit"
-                        className="text-white bg-blue-500 font-bold tracking-wide"
-                        style={{backgroundColor: 'rgba(25, 118, 210, 0.95)', width: '100%'}}
-                    />
+                            </Grid>
+                            <Grid container direction={'row'} xs={12} justifyContent={'center'}>
+                                <Button
+                                    component="label"
+                                    variant="outlined"
+                                    startIcon={<AddPhotoAlternateIcon className={classes.icon}/>}
+                                    sx={{marginRight: "1rem"}}
+                                    className={classes.btnUpload}
+                                >
+                                    Upload Image
+                                    <input type="file" accept="image/*" hidden/>
+                                </Button>
+                            </Grid>
+                            <CommonButton
+                                size="large"
+                                variant="contained"
+                                label={this.props.isUpdate ? 'Update' : 'Add'}
+                                type="submit"
+                                className="text-white bg-blue-500 font-bold tracking-wide"
+                                style={{backgroundColor: 'rgba(25, 118, 210, 0.95)', width: '100%'}}
+                            />
+                        </Grid>
+                    </ValidatorForm>
                 </Grid>
-            </ValidatorForm>
-
-        </Grid>);
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
+            </>
+        );
     }
 }
 
