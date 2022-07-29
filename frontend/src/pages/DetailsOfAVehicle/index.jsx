@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Typography} from "@mui/material";
 import NavBarVehicle from "../../components/common/Navbar/User";
 import Footer from "../../components/Footer";
+import SideRent from "../../components/SideRent";
 
 
 class DetailsOfAVehicle extends Component {
@@ -21,13 +22,14 @@ class DetailsOfAVehicle extends Component {
                                 </Grid>
                             </Grid>
 
-                            <Grid item xs={12}  sm={12} md={12} lg={8} className={'bg-white p-5 break-words mt-4 rounded-2xl'}>
+                            <Grid item xs={12} sm={12} md={12} lg={8}
+                                  className={'bg-white p-5 break-words mt-4 rounded-2xl'}>
                                 <Typography variant={'h5'}>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 </Typography>
                                 <hr/>
                                 <br/>
-
+                                dsadasdasd
                             </Grid>
 
                         </Grid>
@@ -39,15 +41,17 @@ class DetailsOfAVehicle extends Component {
                                     <hr/>
                                 </Typography>
                                 <Typography variant={'p'}>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit.
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={12} sm={12} md={12} lg={3} className={'bg-yellow-500 mt-4 rounded-2xl p-5'}>
+                    {/*<Grid item xs={12} sm={12} md={12} lg={3} className={'bg-yellow-500 mt-4 rounded-2xl p-5'}>
                         dsa
-                    </Grid>
+                    </Grid>*/}
+                    <SideRent/>
                 </Grid>
                 <Footer/>
             </Grid>
