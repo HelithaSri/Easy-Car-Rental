@@ -12,13 +12,16 @@ import DriverManage from "../pages/Admin/Driver Manage";
 import EmployeeManage from "../pages/Admin/Employee Manage";
 import CustomerManage from "../pages/Admin/Customer Manage";
 import ViewAllVehicles from "../pages/ViewAllVehicles";
+import DetailsOfaVehicle from "../pages/DetailsOfAVehicle";
+import DetailsOfAVehicle from "../pages/DetailsOfAVehicle";
 
 
 function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route path="/vehicles/:regNumber" element={<ViewAllVehicles/>}/>
+            <Route path="/vehicles" element={<ViewAllVehicles/>}/>
+            <Route path="/vehicles/:regNumber" element={<DetailsOfAVehicle/>}/>
 
             <Route path="admin">
                 <Route index element={<LoginAdmin/>}/>

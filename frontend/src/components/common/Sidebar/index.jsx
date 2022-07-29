@@ -12,6 +12,12 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import {Link} from "react-router-dom";
 
 class Sidebar extends Component {
+
+    constructor(props) {
+        super(props);
+
+    }
+
     render() {
         return (<Grid
             container
@@ -38,7 +44,7 @@ class Sidebar extends Component {
                         Main
                     </Typography>
                     <Link to={".."}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <DashboardIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -49,7 +55,7 @@ class Sidebar extends Component {
                             </Typography>
                         </li>
                     </Link>
-                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                         <CarRentalIcon className="text-blue-700 text-lg"/>
                         <Typography
                             variant="h6"
@@ -63,7 +69,7 @@ class Sidebar extends Component {
                         Vehicle Manage
                     </Typography>
                     <Link to={"../vehiclemanage"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <DirectionsCarIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -75,7 +81,7 @@ class Sidebar extends Component {
                         </li>
                     </Link>
                     <Link to={"../vehiclerates"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <DirectionsCarIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -87,7 +93,7 @@ class Sidebar extends Component {
                         </li>
                     </Link>
                     <Link to={"../vehicletype"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <DirectionsCarIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -102,7 +108,7 @@ class Sidebar extends Component {
                         Manage
                     </Typography>
                     <Link to={"../drivermanage"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <PersonOutlineOutlinedIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -114,7 +120,7 @@ class Sidebar extends Component {
                         </li>
                     </Link>
                     <Link to={"../employeemanage"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <SupervisorAccountIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -126,7 +132,7 @@ class Sidebar extends Component {
                         </li>
                     </Link>
                     <Link to={"../customermanage"}>
-                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                        <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                             <PeopleIcon className="text-blue-700 text-lg"/>
                             <Typography
                                 variant="h6"
@@ -140,7 +146,7 @@ class Sidebar extends Component {
                     <Typography variant="p" component={"p"} className="text-xs font-bold text-gray-600 mt-4 mb-1">
                         Useful
                     </Typography>
-                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                         <CalculateIcon className="text-blue-700 text-lg"/>
                         <Typography
                             variant="h6"
@@ -150,7 +156,7 @@ class Sidebar extends Component {
                             Calculate Income
                         </Typography>
                     </li>
-                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                         <AssessmentIcon className="text-blue-700 text-lg"/>
                         <Typography
                             variant="h6"
@@ -163,7 +169,7 @@ class Sidebar extends Component {
                     <Typography variant="p" component={"p"} className="text-xs font-bold text-gray-600 mt-4 mb-1">
                         Profile
                     </Typography>
-                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg">
+                    <li className="flex items-center gap-2 p-2 mr-3 cursor-pointer hover:bg-yellow-200 m-1 rounded-lg" onClick={this.clickHandle}>
                         <LoginIcon className="text-blue-700 text-lg"/>
                         <Typography
                             variant="h6"
