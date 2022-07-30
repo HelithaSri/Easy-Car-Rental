@@ -115,7 +115,7 @@ class DetailsOfAVehicle extends Component {
                         </Grid>
 
                         <Grid container item sm={"auto"}>
-                            <Grid item xs={12} sm={12} className={'bg-white p-5 break-words mt-4 rounded-2xl'}>
+                            <Grid item xs={12} sm={12} className={'bg-white p-5 break-words mt-4 rounded-2xl pb-16'}>
                                 <Typography variant={'h6'}>
                                     Description
                                     <hr/>
