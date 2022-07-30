@@ -31,7 +31,7 @@ class VehicleCardTwo extends Component {
                         >
                             <Typography
                                 variant="h5"
-                                className="font-bold break-words font-dosis"
+                                className="font-bold break-words font-dosis capitalize"
                             >
                                 {vehicle.brand}
                             </Typography>
