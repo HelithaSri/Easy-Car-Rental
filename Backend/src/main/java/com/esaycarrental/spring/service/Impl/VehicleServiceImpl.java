@@ -112,4 +112,9 @@ public class VehicleServiceImpl implements VehicleService {
     public long countByStatus(String status) {
         return repo.countVehiclesByStatus(status);
     }
+
+    @Override
+    public VehicleDTO vehicleDetails(String regNo) {
+        return mapper.map(repo.findById(regNo), VehicleDTO.class);
+    }
 }

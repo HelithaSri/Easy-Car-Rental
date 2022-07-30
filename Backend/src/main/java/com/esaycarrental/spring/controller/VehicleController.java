@@ -54,4 +54,9 @@ public class VehicleController {
     public ResponseUtil countAllByStatus(@RequestParam String status) {
         return new ResponseUtil(200, "Ok", service.countByStatus(status));
     }
+
+    @GetMapping(path = "/regNo",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getVehicleDetails(@RequestParam String regNo) {
+        return new ResponseUtil(200, "Ok", service.vehicleDetails(regNo));
+    }
 }
