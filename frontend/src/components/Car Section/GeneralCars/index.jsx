@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../../common/Button";
 import VehicleCard from "../../common/VehicleCard";
+import {Link} from "react-router-dom";
 
 class GeneralCars extends Component {
   render() {
@@ -46,12 +47,14 @@ class GeneralCars extends Component {
             <VehicleCard />
           </Grid>
           <Grid>
+            <Link to={"/vehicles"}>
             <CommonButton
               size="large"
               variant="outlined"
               label="See More"
               className="text-white border-white hover:bg-white hover:text-black font-bold"
             />
+            </Link>
           </Grid>
         </Grid>
       </Grid>

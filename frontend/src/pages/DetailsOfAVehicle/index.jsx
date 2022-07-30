@@ -17,6 +17,29 @@ class DetailsOfAVehicle extends Component {
                 monthly: '50000.00',
                 driver: '1000.00',
                 ldw: '60000.00'
+            },
+            vehicleObj:{
+                "registrationNumber": "V001",
+                "brand": "Civic",
+                "color": "Black",
+                "status": "Available",
+                "noOfPassengers": 4,
+                "runningKm": 50000.0,
+                "fuelType": "petrol",
+                "transmissionType": "auto",
+                "type": {
+                    "vehicleTypeId": "type001",
+                    "ldw": 100.0,
+                    "type": "Genarel"
+                },
+                "rates": {
+                    "rateId": "Rate001",
+                    "monthlyRate": 31.0,
+                    "dailyRate": 32.0,
+                    "freeKmForaMonth": 43.0,
+                    "freeKmForaDay": 43.0,
+                    "pricePerExtraKm": 43.0
+                }
             }
         }
     }
@@ -41,23 +64,23 @@ class DetailsOfAVehicle extends Component {
                             <Grid item xs={12} sm={12} md={12} lg={8}
                                   className={'bg-white p-5 break-words mt-4 rounded-2xl capitalize'}>
                                 <Typography variant={'h5'} className={'mb-5 font-medium'}>
-                                    {this.state.title}
+                                    {this.state.vehicleObj.brand}
                                 </Typography>
                                 <hr/>
                                 <br/>
                                 <Grid item container direction={'column'} gap={2} className={"font-bold px-6"}>
                                     <ul className={'list-disc list-outside flex flex-col gap-3'}>
                                         <li><Typography variant={'p'}>
-                                            Per Day Charge : {this.state.price.perDay}
+                                            Per Day Charge : {this.state.vehicleObj.rates.dailyRate}
                                         </Typography></li>
                                         <li><Typography variant={'p'}>
-                                            Monthly Charge : {this.state.price.monthly}
+                                            Monthly Charge : {this.state.vehicleObj.rates.monthlyRate}
                                         </Typography></li>
                                         <li><Typography variant={'p'}>
                                             Driver Per Day Charge : {this.state.price.driver}
                                         </Typography></li>
                                         <li><Typography variant={'p'} component={'div'} className={'flex flex-col'}>
-                                            Loss Damage Waiver(LDW) : {this.state.price.ldw} <br/>
+                                            Loss Damage Waiver(LDW) : {this.state.vehicleObj.type.ldw} <br/>
                                             <Typography variant={'span'} className={'text-sm  text-red-500 font-thin'}>*After
                                                 the
                                                 vehicle is returned, a brief inspection will be done, and if the vehicle
@@ -78,63 +101,86 @@ class DetailsOfAVehicle extends Component {
                                     Description
                                     <hr/>
                                 </Typography>
-                                <Grid item container justifyContent={'center'}>
-                                    <Grid item container direction={'column'} gap={1} xs={6} className={'mt-4 divide-dashed divide-yellow-500'}>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Type</Typography>
-                                            <Typography variant={'p'}>Honda</Typography>
-                                        </Grid>
-                                        <hr/>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Color</Typography>
-                                            <Typography variant={'p'}>Red</Typography>
-                                        </Grid>
-                                        <hr/>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Type</Typography>
-                                            <Typography variant={'p'}>Honda</Typography>
-                                        </Grid>
-                                        <hr/>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Color</Typography>
-                                            <Typography variant={'p'}>Red</Typography>
-                                        </Grid>
-                                        <hr/>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Type</Typography>
-                                            <Typography variant={'p'}>Honda</Typography>
-                                        </Grid>
-                                        <hr/>
-                                        <Grid item container justifyContent={'space-between'}>
-                                            <Typography variant={'p'} className={'font-medium'}>Color</Typography>
-                                            <Typography variant={'p'}>Red</Typography>
+                                <Grid container item className={'pb-5'}>
+                                    <Grid item container justifyContent={'center'} xs={12} gap={5}>
+                                        <Grid item container direction={'column'} gap={1} xs={12} sm={12} md={5}
+                                              className={'mt-4 divide-dashed divide-yellow-500'}>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Brand</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.brand}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Color</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.color}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>No. Of
+                                                    Passengers</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.noOfPassengers}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Loss Damage
+                                                    Waiver(LDW)</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.type.ldw}</Typography>
+                                            </Grid>
+
                                         </Grid>
 
+                                        <Grid item container direction={'column'} gap={1} xs={12} sm={12} md={5}
+                                              className={'mt-4 divide-dashed divide-yellow-500'}>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Fuel
+                                                    Type</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.fuelType}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Transmission
+                                                    Type</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.transmissionType}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Running
+                                                    Km</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.runningKm}</Typography>
+                                            </Grid>
+                                            <hr/>
+                                            <Grid item container justifyContent={'space-between'}>
+                                                <Typography variant={'p'} className={'font-medium'}>Type</Typography>
+                                                <Typography variant={'p'}>{this.state.vehicleObj.type.type}</Typography>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                                <Grid>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, facilis
-                                        fugit minima nam nostrum quas quasi repellat repellendus. Doloremque ducimus,
-                                        enim et harum modi quibusdam saepe tempore temporibus ut veritatis!
-                                    </div>
-                                    <div>Autem delectus ducimus exercitationem fuga illo impedit libero magnam minus,
-                                        necessitatibus neque nisi obcaecati optio perspiciatis provident quam quasi qui
-                                        quibusdam quidem reiciendis sit tempore temporibus ut! Debitis, unde voluptates.
-                                    </div>
-                                    <div>Aspernatur cum enim inventore magnam mollitia, nisi nobis, officiis perferendis
-                                        quia quisquam recusandae repellat vel voluptatum? Dolorum eaque, eligendi eos ex
-                                        impedit incidunt officia, quidem repellendus reprehenderit sed voluptas
-                                        voluptates.
-                                    </div>
-                                    <div>Adipisci amet commodi consequatur consequuntur cum cupiditate dolores et
-                                        explicabo fugit, incidunt ipsam minima, obcaecati, quia quibusdam quidem quos
-                                        rem repudiandae saepe vitae voluptatibus? Architecto cum dolores sit vel veniam.
-                                    </div>
-                                    <div>Culpa, cum impedit quibusdam quo reprehenderit saepe tempora temporibus unde.
-                                        Accusamus animi at cum, distinctio dolore, dolorem eveniet excepturi fuga fugiat
-                                        incidunt praesentium quis reprehenderit rerum tenetur veritatis voluptas
-                                        voluptatibus!
-                                    </div>
+
+                                <Grid container item direction={'row'} justifyContent={'center'} xs={12}>
+                                    <Grid item>
+                                        <table className={'border-collapse'}>
+                                            <caption className={'font-medium'}>Rates</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Monthly Rate</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Daily Rate</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Free Km For a Month</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Free Km For a Day</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Price Per Extra Km</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td className={'border border-slate-600 border-dashed text-center'}>{this.state.vehicleObj.rates.monthlyRate}</td>
+                                                    <td className={'border border-slate-600 border-dashed text-center'}>{this.state.vehicleObj.rates.dailyRate}</td>
+                                                    <td className={'border border-slate-600 border-dashed text-center'}>{this.state.vehicleObj.rates.freeKmForaMonth}</td>
+                                                    <td className={'border border-slate-600 border-dashed text-center'}>{this.state.vehicleObj.rates.freeKmForaDay}</td>
+                                                    <td className={'border border-slate-600 border-dashed text-center'}>{this.state.vehicleObj.rates.pricePerExtraKm}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
