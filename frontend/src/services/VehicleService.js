@@ -61,5 +61,17 @@ class VehicleService {
         })
         return await promise;
     }
+
+    fetchVehicle = async (id) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('vehicle/regNo',{params:{regNo:id}})
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
 }
 export default new VehicleService();

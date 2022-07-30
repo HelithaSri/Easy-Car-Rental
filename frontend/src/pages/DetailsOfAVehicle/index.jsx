@@ -3,6 +3,8 @@ import {Grid, Typography} from "@mui/material";
 import NavBarVehicle from "../../components/common/Navbar/User";
 import Footer from "../../components/Footer";
 import SideRent from "../../components/SideRent";
+import {withRouter} from '../../withRouter'
+import vehicleService from "../../services/VehicleService";
 
 
 class DetailsOfAVehicle extends Component {
@@ -19,29 +21,46 @@ class DetailsOfAVehicle extends Component {
                 ldw: '60000.00'
             },
             vehicleObj:{
-                "registrationNumber": "V001",
-                "brand": "Civic",
-                "color": "Black",
-                "status": "Available",
-                "noOfPassengers": 4,
-                "runningKm": 50000.0,
-                "fuelType": "petrol",
-                "transmissionType": "auto",
+                "registrationNumber": '',
+                "brand": '',
+                "color": '',
+                "status": '',
+                "noOfPassengers": '',
+                "runningKm": '',
+                "fuelType": '',
+                "transmissionType": '',
                 "type": {
-                    "vehicleTypeId": "type001",
-                    "ldw": 100.0,
-                    "type": "Genarel"
+                    "vehicleTypeId": '',
+                    "ldw": '',
+                    "type": '',
                 },
                 "rates": {
-                    "rateId": "Rate001",
-                    "monthlyRate": 31.0,
-                    "dailyRate": 32.0,
-                    "freeKmForaMonth": 43.0,
-                    "freeKmForaDay": 43.0,
-                    "pricePerExtraKm": 43.0
+                    "rateId": '',
+                    "monthlyRate": '',
+                    "dailyRate": '',
+                    "freeKmForaMonth": '',
+                    "freeKmForaDay": '',
+                    "pricePerExtraKm": '',
                 }
-            }
+            },
         }
+    }
+
+    async loadVehicle(id){
+        let res = await vehicleService.fetchVehicle(id)
+        if (res.status === 200){
+            this.setState({
+                vehicleObj:res.data.data
+            })
+        }else {
+            console.log(res.status)
+        }
+    }
+
+    async componentDidMount() {
+        const {regNumber} = this.props.params
+        await this.loadVehicle(regNumber)
+
     }
 
     render() {
@@ -71,16 +90,16 @@ class DetailsOfAVehicle extends Component {
                                 <Grid item container direction={'column'} gap={2} className={"font-bold px-6"}>
                                     <ul className={'list-disc list-outside flex flex-col gap-3'}>
                                         <li><Typography variant={'p'}>
-                                            Per Day Charge : {this.state.vehicleObj.rates.dailyRate}
+                                            Per Day Charge : Rs {this.state.vehicleObj.rates.dailyRate}
                                         </Typography></li>
                                         <li><Typography variant={'p'}>
-                                            Monthly Charge : {this.state.vehicleObj.rates.monthlyRate}
+                                            Monthly Charge : Rs {this.state.vehicleObj.rates.monthlyRate}
                                         </Typography></li>
                                         <li><Typography variant={'p'}>
-                                            Driver Per Day Charge : {this.state.price.driver}
+                                            Driver Per Day Charge : Rs {this.state.price.driver}
                                         </Typography></li>
                                         <li><Typography variant={'p'} component={'div'} className={'flex flex-col'}>
-                                            Loss Damage Waiver(LDW) : {this.state.vehicleObj.type.ldw} <br/>
+                                            Loss Damage Waiver(LDW) : Rs {this.state.vehicleObj.type.ldw} <br/>
                                             <Typography variant={'span'} className={'text-sm  text-red-500 font-thin'}>*After
                                                 the
                                                 vehicle is returned, a brief inspection will be done, and if the vehicle
@@ -163,11 +182,11 @@ class DetailsOfAVehicle extends Component {
                                             <caption className={'font-medium'}>Rates</caption>
                                             <thead>
                                                 <tr>
-                                                    <th className={'border border-slate-600 border-dashed p-1'}>Monthly Rate</th>
-                                                    <th className={'border border-slate-600 border-dashed p-1'}>Daily Rate</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Monthly Rate (Rs)</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Daily Rate (Rs)</th>
                                                     <th className={'border border-slate-600 border-dashed p-1'}>Free Km For a Month</th>
                                                     <th className={'border border-slate-600 border-dashed p-1'}>Free Km For a Day</th>
-                                                    <th className={'border border-slate-600 border-dashed p-1'}>Price Per Extra Km</th>
+                                                    <th className={'border border-slate-600 border-dashed p-1'}>Price Per Extra Km (Rs)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -197,4 +216,4 @@ class DetailsOfAVehicle extends Component {
     }
 }
 
-export default DetailsOfAVehicle;
+export default withRouter(DetailsOfAVehicle);
