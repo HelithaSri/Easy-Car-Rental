@@ -1,6 +1,7 @@
 package com.esaycarrental.spring.service;
 
 import com.esaycarrental.spring.dto.VehicleDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface VehicleService {
     long countByStatus(String status);
 
     VehicleDTO vehicleDetails(String regNo);
+
+    void saveVehicleWithImg(String vehicle, MultipartFile file);
 }

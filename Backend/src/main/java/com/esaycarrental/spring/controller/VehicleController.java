@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Helitha Sri
@@ -58,5 +59,15 @@ public class VehicleController {
     @GetMapping(path = "/regNo",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getVehicleDetails(@RequestParam String regNo) {
         return new ResponseUtil(200, "Ok", service.vehicleDetails(regNo));
+    }
+
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil uploadFile(@RequestParam("myFile") MultipartFile myFile,@RequestParam("vehicle") String vehicle){
+        System.out.println("Hey");
+        System.out.println(vehicle);
+        System.out.println(myFile.getName());
+
+        service.saveVehicleWithImg(vehicle,myFile);
+        return new ResponseUtil(200, "New img Added Successfully", null);
     }
 }

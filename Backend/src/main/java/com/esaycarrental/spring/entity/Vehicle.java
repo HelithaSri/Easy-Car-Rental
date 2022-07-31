@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Helitha Sri
@@ -36,4 +37,8 @@ public class Vehicle {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "rates", referencedColumnName = "rateId", nullable = false)
     private Rates rates;
+
+    @OneToMany(targetEntity = CarImg.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "carId", referencedColumnName = "registrationNumber")
+    private List<CarImg> imgs;
 }

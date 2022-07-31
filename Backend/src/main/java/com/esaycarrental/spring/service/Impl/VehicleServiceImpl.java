@@ -1,19 +1,28 @@
 package com.esaycarrental.spring.service.Impl;
 
+import com.esaycarrental.spring.dto.CarImgDTO;
 import com.esaycarrental.spring.dto.RatesDTO;
 import com.esaycarrental.spring.dto.VehicleDTO;
 import com.esaycarrental.spring.dto.VehicleTypeDTO;
+import com.esaycarrental.spring.entity.CarImg;
 import com.esaycarrental.spring.entity.Vehicle;
 import com.esaycarrental.spring.repo.RatesRepo;
 import com.esaycarrental.spring.repo.VehicleRepo;
 import com.esaycarrental.spring.repo.VehicleTypeRepo;
 import com.esaycarrental.spring.service.VehicleService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +40,9 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     private RatesRepo ratesRepo;
@@ -116,5 +128,64 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleDTO vehicleDetails(String regNo) {
         return mapper.map(repo.findById(regNo), VehicleDTO.class);
+    }
+
+    @Override
+    public void saveVehicleWithImg(String vehicle, MultipartFile file) {
+        VehicleDTO vehicleDTO = null;
+        String path = null;
+        try {
+            vehicleDTO = objectMapper.readValue(vehicle, VehicleDTO.class);
+            /*CarImg img = new CarImg("Img001", "");
+            ArrayList<CarImg> carImgs = new ArrayList<>();
+            carImgs.add(img);
+            vehicleDTO.setImgs(carImgs);*/
+            System.out.println(vehicleDTO);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        if (!repo.existsById(vehicleDTO.getRegistrationNumber())) {
+            System.out.println("-------------------------");
+            /*if (vehicleTypeRepo.existsById(vehicleDTO.getType().getVehicleTypeId())) {
+                System.out.println("-----------Type--------------");
+                VehicleTypeDTO type = mapper.map(vehicleTypeRepo.findByVehicleTypeId(vehicleDTO.getType().getVehicleTypeId()), VehicleTypeDTO.class);
+                vehicleDTO.setType(type);
+            } else {
+                throw new RuntimeException("Please Check the Vehicle Type ID");
+            }
+            if (ratesRepo.existsById(vehicleDTO.getRates().getRateId())) {
+                RatesDTO rates = mapper.map(ratesRepo.findByRateId(vehicleDTO.getRates().getRateId()), RatesDTO.class);
+                vehicleDTO.setRates(rates);
+                System.out.println("------------rates-------------");
+            } else {
+                throw new RuntimeException("Please Check the RateID");
+            }*/
+
+
+//            for (CarImg img : vehicleDTO.getImgs()) {
+            System.out.println("-------------------------");
+                try {
+                    String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+                    File uploadDir = new File(projectPath + "/uploads");
+                    uploadDir.mkdir();
+                    file.transferTo(new File(uploadDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
+                    path = "uploads/" + file.getOriginalFilename();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            CarImgDTO imgDTO = new CarImgDTO();
+                imgDTO.setPath(path);
+            ArrayList<CarImgDTO> carImgDTOS = new ArrayList<CarImgDTO>();
+            carImgDTOS.add(imgDTO);
+            System.out.println(imgDTO.getPath());
+//            }
+            vehicleDTO.setImgs(carImgDTOS);
+            repo.save(mapper.map(vehicleDTO, Vehicle.class));
+
+        } else {
+            throw new RuntimeException("Vehicle Already Exist");
+        }
     }
 }

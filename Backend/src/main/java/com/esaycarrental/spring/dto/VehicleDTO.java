@@ -1,9 +1,12 @@
 package com.esaycarrental.spring.dto;
 
+import com.esaycarrental.spring.entity.CarImg;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 /**
  * @author Helitha Sri
@@ -26,4 +29,5 @@ public class VehicleDTO {
     private String transmissionType;
     private VehicleTypeDTO type;
     private RatesDTO rates;
+    private List<CarImgDTO> imgs;
 }
