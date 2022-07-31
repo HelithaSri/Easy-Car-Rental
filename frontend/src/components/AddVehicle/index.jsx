@@ -45,7 +45,8 @@ class AddNewVehicle extends Component {
 
             alert: false,
             message: '',
-            severity: ''
+            severity: '',
+            file:null
         };
     }
 
@@ -104,7 +105,13 @@ class AddNewVehicle extends Component {
                 })
             }
         } else {
-            let res = await VehicleService.postVehicle(formDate)
+            let data = new FormData();
+            data.append("vehicle",JSON.stringify(formDate));
+            data.append("myFile",this.state.file)
+            console.log(this.state.file)
+            console.log(this.state.file.name)
+
+            let res = await VehicleService.postVehicleIMG(data)
             if (res.status === 201) {
                 this.setState({
                     alert: true,
@@ -114,7 +121,7 @@ class AddNewVehicle extends Component {
             } else {
                 this.setState({
                     alert: true,
-                    message: res.data.message,
+                    message: res.message,
                     severity: 'error'
                 })
             }
@@ -178,6 +185,13 @@ class AddNewVehicle extends Component {
                 break;
         }
     };
+
+    handleFile(e){
+        let file = e.target.files[0]
+        this.setState({
+            file:file
+        })
+    }
 
     render() {
         const {classes} = this.props;
@@ -429,7 +443,7 @@ class AddNewVehicle extends Component {
                                     className={classes.btnUpload}
                                 >
                                     Upload Image
-                                    <input type="file" accept="image/*" hidden/>
+                                    <input type="file" accept="image/*" hidden onChange={(e) =>this.handleFile(e)}/>
                                 </Button>
                             </Grid>
                             <CommonButton

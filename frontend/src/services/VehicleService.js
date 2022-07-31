@@ -14,6 +14,19 @@ class VehicleService {
         return await promise;
     }
 
+    postVehicleIMG = async (data) =>{
+
+        const promise = new Promise((resolve, reject) => {
+            axios.post('vehicle/upload',data)
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
+
     fetchVehicles = async () =>{
         const promise = new Promise((resolve, reject) => {
             axios.get('vehicle')
