@@ -13,7 +13,7 @@ root.render(
     <StyledEngineProvider injectFirst>
       <BrowserRouter>
           <ScrollToTop/>
-        <App />
+        <App/>
       </BrowserRouter>
     </StyledEngineProvider>
   </React.StrictMode>

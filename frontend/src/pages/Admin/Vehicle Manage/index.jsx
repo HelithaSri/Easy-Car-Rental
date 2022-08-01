@@ -162,7 +162,13 @@ class VehicleManage extends Component {
                 "freeKmForaMonth":row.rates.freeKmForaMonth,
                 "freeKmForaDay": row.rates.freeKmForaDay,
                 "pricePerExtraKm": row.rates.pricePerExtraKm,
-            }
+            },
+            "imgs": [
+                {
+                    "imgId": row.imgs[0].imgId,
+                    "path": row.imgs[0].path
+                }
+            ]
         }
         await this.setState({updateVehicle: updateVehicle});
         await this.setState({
@@ -249,7 +255,8 @@ class VehicleManage extends Component {
                                     label="Add Vehicle"
                                     onClick={() => this.setState({popup: true, isUpdate:false})}
                                     startIcon={<AddIcon/>}
-                                />{/*
+                                />
+                                {/*
               <CommonButton
                 variant="outlined"
                 label="Add Vehicle Rates"

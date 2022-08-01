@@ -38,6 +38,12 @@ class AddNewVehicle extends Component {
                     "freeKmForaDay": props.isUpdate ? props.obj.rates.freeKmForaDay : '',
                     "pricePerExtraKm": props.isUpdate ? props.obj.rates.pricePerExtraKm : '',
                 },
+                "imgs": [
+                    {
+                        "imgId": "ff8ba0bf-a019-4754-b980-0cdaca5ff08f",
+                        "path": "uploads/3456.jpg"
+                    }
+                ]
 
             },
             ratesData: [],
@@ -46,7 +52,7 @@ class AddNewVehicle extends Component {
             alert: false,
             message: '',
             severity: '',
-            file:null
+            file: null
         };
     }
 
@@ -88,6 +94,14 @@ class AddNewVehicle extends Component {
 
     handleSubmit = async () => {
         console.log("hi")
+        if (this.state.file==null){
+            this.setState({
+                alert: true,
+                message: "Please Select Image",
+                severity: 'error'
+            })
+            return;
+        }
         let formDate = this.state.formData
         if (this.props.isUpdate) {
             let res = await VehicleService.updateVehicle(formDate)
@@ -106,13 +120,13 @@ class AddNewVehicle extends Component {
             }
         } else {
             let data = new FormData();
-            data.append("vehicle",JSON.stringify(formDate));
-            data.append("myFile",this.state.file)
+            data.append("vehicle", JSON.stringify(formDate));
+            data.append("myFile", this.state.file)
             console.log(this.state.file)
             console.log(this.state.file.name)
 
             let res = await VehicleService.postVehicleIMG(data)
-            if (res.status === 201) {
+            if (res.status === 200) {
                 this.setState({
                     alert: true,
                     message: 'Vehicle Saved!',
@@ -186,10 +200,10 @@ class AddNewVehicle extends Component {
         }
     };
 
-    handleFile(e){
+    handleFile(e) {
         let file = e.target.files[0]
         this.setState({
-            file:file
+            file: file
         })
     }
 
@@ -443,7 +457,7 @@ class AddNewVehicle extends Component {
                                     className={classes.btnUpload}
                                 >
                                     Upload Image
-                                    <input type="file" accept="image/*" hidden onChange={(e) =>this.handleFile(e)}/>
+                                    <input type="file" accept="image/*" hidden onChange={(e) => this.handleFile(e)}/>
                                 </Button>
                             </Grid>
                             <CommonButton
