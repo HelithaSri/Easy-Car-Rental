@@ -10,9 +10,13 @@ import {Link} from "react-router-dom";
 class VehicleCardTwo extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            img:props.obj.imgs.length!==0?'http://localhost:8080/backend/'+props.obj.imgs[0].path:'https://images.unsplash.com/photo-1583267746897-2cf415887172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXV0b21vYmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80g'
+        }
     }
     render() {
         let vehicle = this.props.obj
+
         return (
             <Link to={`/vehicles/${this.props.obj.registrationNumber}`}>
                 <div
@@ -21,8 +25,8 @@ class VehicleCardTwo extends Component {
                     className="flex flex-col bg-stone-900 rounded-3xl order-blue-500 border hover:cursor-pointer"
                 >
                     <div
-                        className="rounded-t-3xl bg-hero-pattern bg-cover"
-                        style={{height: "204px"}}
+                        className="rounded-t-3xl bg-cover"
+                        style={{height: "204px",backgroundImage: `url(${this.state.img})`}}
                     ></div>
                     <div className="text-white flex flex-col justify-between">
                         <div

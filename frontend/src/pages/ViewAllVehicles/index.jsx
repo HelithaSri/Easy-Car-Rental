@@ -67,6 +67,7 @@ class ViewAllVehicles extends Component {
                           className={'bg-gray-100 pb-20 pr-10'}>
 
                         {this.state.vehicles.map((value,) => (
+                            console.log(value),
                             <VehicleCardTwo key={value.registrationNumber} obj={value}/>
                         ))}
 
