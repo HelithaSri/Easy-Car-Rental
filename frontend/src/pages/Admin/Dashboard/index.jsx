@@ -78,7 +78,10 @@ class Dashboard extends Component {
 
 
     render() {
-        return (<Grid container direction={'row'} columns='12'>
+        return (
+            <>
+
+            <Grid container direction={'row'} columns='12'>
                 <Grid item xs={'auto'}><Sidebar/></Grid>
                 <Grid item xs className=''>
                     <Navbar/>
@@ -96,7 +99,8 @@ class Dashboard extends Component {
                         <Widget type="Under Maintenance" path="../vehiclemanage" number={this.state.underMaintenance}/>
                     </Grid>
                 </Grid>
-            </Grid>)
+            </Grid>
+            </>)
     }
 }
 

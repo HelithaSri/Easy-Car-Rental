@@ -18,7 +18,7 @@ import DetailsOfAVehicle from "../pages/DetailsOfAVehicle";
 function App() {
     return (
         <Routes>
-            <Route exact path="/" element={<Home/>}/>
+            <Route exact path="/" element={<Home/>} />
             <Route path="/vehicles" element={<ViewAllVehicles/>}/>
             <Route path="/vehicles/:regNumber" element={<DetailsOfAVehicle/>}/>
 

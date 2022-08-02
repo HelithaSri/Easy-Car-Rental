@@ -11,7 +11,7 @@ class VehicleCard extends Component {
     constructor(props) {
         super(props);
         this.state={
-            img:props.obj.imgs.length!==0?'http://localhost:8080/backend/'+props.obj.imgs[0].path:'https://images.unsplash.com/photo-1583267746897-2cf415887172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXV0b21vYmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80g'
+            img:props.obj.imgs.length==0?'http://localhost:8080/backend/'+props.obj.imgs[0].path:'https://images.unsplash.com/photo-1583267746897-2cf415887172?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXV0b21vYmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80g'
         }
     }
 
