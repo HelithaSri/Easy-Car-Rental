@@ -20,10 +20,12 @@ code {
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
 /*
-.css-11lq3yg-MuiGrid-root{
+.css-11lq3yg-MuiGrid-root:nth-child(1){
     flex-direction: column;
 }
 #dash{
     flex-direction: row;
-}*/
+}
+*/

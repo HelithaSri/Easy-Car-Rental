@@ -42,7 +42,7 @@ class GeneralCars extends Component {
         container
         justifyContent="flex-start"
         alignItems="stretch"
-        className="backdrop-blur-md pt-10"
+        className="backdrop-blur-md pt-10 "
       >
         <Grid
           item

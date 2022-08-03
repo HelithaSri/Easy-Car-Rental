@@ -82,7 +82,9 @@ class Dashboard extends Component {
             <>
 
             <Grid container direction={'row'} columns='12'>
-                <Grid item xs={'auto'}><Sidebar/></Grid>
+                <Grid item xs={'auto'}>
+                    <Sidebar/>
+                </Grid>
                 <Grid item xs className=''>
                     <Navbar/>
                     <Grid container item xs={'auto'} className='flex p-5 gap-5'>

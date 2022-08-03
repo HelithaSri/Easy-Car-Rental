@@ -4,7 +4,7 @@ import CommonButton from "../../../../components/common/Button";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { styleSheet } from "./style";
 import { withStyles } from "@mui/styles";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class LoginAdmin extends Component {
   constructor(props) {

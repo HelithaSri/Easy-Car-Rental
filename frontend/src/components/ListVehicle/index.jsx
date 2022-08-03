@@ -25,7 +25,7 @@ class ListVehicle extends Component {
             item
             direction="column"
             container
-            className="bg-zinc-000 bg-red-000 text-white text-center"
+            className="bg-zinc-000 bg-red-000 text-white text-center "
           >
             <Grid item>
               <Typography

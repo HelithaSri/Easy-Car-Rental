@@ -13,6 +13,8 @@ import EmployeeManage from "../pages/Admin/Employee Manage";
 import CustomerManage from "../pages/Admin/Customer Manage";
 import ViewAllVehicles from "../pages/ViewAllVehicles";
 import DetailsOfAVehicle from "../pages/DetailsOfAVehicle";
+import RentalRequests from "../pages/Admin/RentalRequests";
+import RegisterCustomer from "../components/RegisterCustomer";
 
 
 function App() {
@@ -21,11 +23,13 @@ function App() {
             <Route exact path="/" element={<Home/>} />
             <Route path="/vehicles" element={<ViewAllVehicles/>}/>
             <Route path="/vehicles/:regNumber" element={<DetailsOfAVehicle/>}/>
+            <Route path="/register" element={<RegisterCustomer/>}/>
 
             <Route path="admin">
                 <Route index element={<LoginAdmin/>}/>
                 <Route path="dashboard">
                     <Route index element={<Dashboard/>}/>
+                    <Route path="rentalrequests" element={<RentalRequests/>}/>
                     <Route path="vehiclemanage" element={<VehicleManage/>}/>
                     <Route path="vehiclerates" element={<VehicleRates/>}/>
                     <Route path="vehicletype" element={<VehicleType/>}/>
