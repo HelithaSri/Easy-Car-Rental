@@ -1,15 +1,24 @@
 package com.esaycarrental.spring.service.Impl;
 
+import com.esaycarrental.spring.dto.CustomerVerificationImgDTO;
 import com.esaycarrental.spring.dto.RegisteredUserDTO;
+import com.esaycarrental.spring.entity.CustomerVerificationImg;
 import com.esaycarrental.spring.entity.RegisteredUser;
 import com.esaycarrental.spring.repo.RegisteredUserRepo;
 import com.esaycarrental.spring.service.RegisteredUserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +35,9 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Override
     public void saveUser(RegisteredUserDTO registeredUserDTO) {
@@ -63,5 +75,38 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
     @Override
     public long countUsers() {
         return repo.count();
+    }
+
+    @Override
+    public void saveCustomerWithImg(String customer, MultipartFile file) {
+        RegisteredUserDTO userDTO = null;
+        String path = null;
+        try {
+            userDTO = objectMapper.readValue(customer, RegisteredUserDTO.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        if (!repo.existsById(userDTO.getRegUserId())){
+            try {
+                String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+                File uploadDir = new File(projectPath + "/uploads");
+                uploadDir.mkdir();
+                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+userDTO.getRegUserId()+"_"+file.getOriginalFilename()));
+                path="uploads/"+userDTO.getRegUserId()+"_"+file.getOriginalFilename();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            CustomerVerificationImgDTO imgDTO = new CustomerVerificationImgDTO();
+            imgDTO.setPath(path);
+            ArrayList<CustomerVerificationImgDTO> arrayList = new ArrayList<>();
+            arrayList.add(imgDTO);
+            System.out.println(imgDTO.getPath());
+            userDTO.setImgs(arrayList);
+            repo.save(mapper.map(userDTO,RegisteredUser.class));
+        }else {
+            throw new RuntimeException("Customer Already Exist");
+        }
     }
 }

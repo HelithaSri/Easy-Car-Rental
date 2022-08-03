@@ -168,8 +168,8 @@ public class VehicleServiceImpl implements VehicleService {
                     String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
                     File uploadDir = new File(projectPath + "/uploads");
                     uploadDir.mkdir();
-                    file.transferTo(new File(uploadDir.getAbsolutePath() + "/" + file.getOriginalFilename()));
-                    path = "uploads/" + file.getOriginalFilename();
+                    file.transferTo(new File(uploadDir.getAbsolutePath() + "/" +vehicleDTO.getRegistrationNumber()+"_"+  file.getOriginalFilename()));
+                    path = "uploads/" +vehicleDTO.getRegistrationNumber()+"_"+ file.getOriginalFilename();
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @author Helitha Sri
  * @created 7/7/2022 - 6:28 PM
@@ -24,4 +26,5 @@ public class RegisteredUserDTO {
     private String mobileNo;
     private String password;
     private String email;
+    private List<CustomerVerificationImgDTO> imgs;
 }

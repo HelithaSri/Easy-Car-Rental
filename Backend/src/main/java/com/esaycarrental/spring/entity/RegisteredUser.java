@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Helitha Sri
@@ -30,6 +30,7 @@ public class RegisteredUser {
     private String password;
     private String email;
 
-   /* @OneToMany(mappedBy = "registereduser", cascade = CascadeType.ALL)
-    private List<RegisteredUsersImg> img;*/
+    @OneToMany(targetEntity = CustomerVerificationImg.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerID", referencedColumnName = "regUserId")
+    private List<CustomerVerificationImg> imgs;
 }
