@@ -4,7 +4,7 @@ import qs from "qs";
 class CustomerService {
     postCustomer = async (data) => {
         const promise = new Promise((resolve, reject) => {
-            axios.post('user', qs.stringify(data))
+            axios.post('user/upload', data)
                 .then((res) => {
                     return resolve(res)
                 }).catch((err) => {
