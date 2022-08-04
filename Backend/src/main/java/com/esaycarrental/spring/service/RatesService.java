@@ -18,4 +18,6 @@ public interface RatesService {
     void updateRates(RatesDTO ratesDTO);
 
     List<RatesDTO> getAllRates();
+
+    String generateRatesId();
 }

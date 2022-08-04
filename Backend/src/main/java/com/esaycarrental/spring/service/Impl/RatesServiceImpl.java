@@ -62,4 +62,26 @@ public class RatesServiceImpl implements RatesService {
         }.getType());
 
     }
+
+    @Override
+    public String generateRatesId() {
+        long count = repo.count();
+        String id = "R00-000";
+
+        if (count != 0) {
+            String generateRatesId = repo.generateRatesId();
+            int tempId = Integer.parseInt(generateRatesId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "R00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "R00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "R00-" + tempId;
+            }
+        } else {
+            id = "R00-000";
+        }
+        return id;
+    }
 }

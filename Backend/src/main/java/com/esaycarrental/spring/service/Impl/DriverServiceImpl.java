@@ -60,4 +60,26 @@ public class DriverServiceImpl implements DriverService {
     public List<DriverDTO> getAllDrivers() {
         return mapper.map(repo.findAll(), new TypeToken<List<DriverDTO>>(){}.getType());
     }
+
+    @Override
+    public String generateDriverId() {
+        long count = repo.count();
+        String id = "D00-000";
+
+        if (count != 0) {
+            String generateDriverId = repo.generateDriverId();
+            int tempId = Integer.parseInt(generateDriverId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "D00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "D00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "D00-" + tempId;
+            }
+        } else {
+            id = "D00-000";
+        }
+        return id;
+    }
 }

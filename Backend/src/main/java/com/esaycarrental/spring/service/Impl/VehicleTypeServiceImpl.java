@@ -60,4 +60,26 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
         return mapper.map(repo.findAll(), new TypeToken<List<VehicleTypeDTO>>() {
         }.getType());
     }
+
+    @Override
+    public String generateVehicleTypeId() {
+        long count = repo.count();
+        String id = "T00-000";
+
+        if (count != 0) {
+            String generateVehicleTypeId = repo.generateVehicleTypeId();
+            int tempId = Integer.parseInt(generateVehicleTypeId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "T00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "T00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "T00-" + tempId;
+            }
+        } else {
+            id = "T00-000";
+        }
+        return id;
+    }
 }

@@ -188,4 +188,26 @@ public class VehicleServiceImpl implements VehicleService {
             throw new RuntimeException("Vehicle Already Exist");
         }
     }
+
+    @Override
+    public String generateVehicleId() {
+        long count = repo.count();
+        String id = "V00-000";
+
+        if (count != 0) {
+            String generateVehicleId = repo.generateVehicleId();
+            int tempId = Integer.parseInt(generateVehicleId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "V00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "V00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "V00-" + tempId;
+            }
+        } else {
+            id = "V00-000";
+        }
+        return id;
+    }
 }

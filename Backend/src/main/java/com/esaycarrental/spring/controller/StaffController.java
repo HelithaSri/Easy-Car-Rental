@@ -46,5 +46,9 @@ public class StaffController {
         return new ResponseUtil(200, "Staff Update Successfully", null);
     }
 
+    @GetMapping(value = "/generate",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getGenerateID() {
+        return new ResponseUtil(200, "Ok", service.generateStaffId());
+    }
 }
 

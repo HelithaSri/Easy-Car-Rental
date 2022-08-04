@@ -22,4 +22,5 @@ public interface DriverService {
 
     List<DriverDTO> getAllDrivers();
 
+    String generateDriverId();
 }

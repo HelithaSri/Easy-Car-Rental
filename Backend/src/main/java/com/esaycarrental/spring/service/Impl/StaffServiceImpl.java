@@ -60,4 +60,26 @@ public class StaffServiceImpl implements StaffService {
         return mapper.map(repo.findAll(), new TypeToken<List<StaffDTO>>() {
         }.getType());
     }
+
+    @Override
+    public String generateStaffId() {
+        long count = repo.count();
+        String id = "E00-000";
+
+        if (count != 0) {
+            String generateStaffId = repo.generateStaffId();
+            int tempId = Integer.parseInt(generateStaffId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "E00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "E00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "E00-" + tempId;
+            }
+        } else {
+            id = "E00-000";
+        }
+        return id;
+    }
 }

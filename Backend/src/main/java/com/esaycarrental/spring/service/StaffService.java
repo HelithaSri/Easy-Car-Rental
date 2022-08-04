@@ -21,4 +21,5 @@ public interface StaffService {
 
     List<StaffDTO> getAllStaffs();
 
+    String generateStaffId();
 }

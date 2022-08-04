@@ -62,4 +62,9 @@ public class RegisteredUserController {
         userService.saveCustomerWithImg(customer,myFile);
         return new ResponseUtil(200, "New User Create Successfully", null);
     }
+
+    @GetMapping(value = "/generate",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getGenerateID() {
+        return new ResponseUtil(200, "Ok", userService.generateCustomerId());
+    }
 }

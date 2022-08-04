@@ -18,4 +18,6 @@ public interface VehicleTypeService {
     void updateVehicleType(VehicleTypeDTO typeDTO);
 
     List<VehicleTypeDTO> getAllVehicleType();
+
+    String generateVehicleTypeId();
 }

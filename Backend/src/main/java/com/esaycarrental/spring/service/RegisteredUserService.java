@@ -24,4 +24,6 @@ public interface RegisteredUserService {
 
     void saveCustomerWithImg(String customer, MultipartFile file);
 
+    String generateCustomerId();
+
 }

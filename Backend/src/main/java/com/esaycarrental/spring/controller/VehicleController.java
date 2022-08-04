@@ -70,4 +70,9 @@ public class VehicleController {
         service.saveVehicleWithImg(vehicle,myFile);
         return new ResponseUtil(200, "New img Added Successfully", null);
     }
+
+    @GetMapping(value = "/generate",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getGenerateID() {
+        return new ResponseUtil(200, "Ok", service.generateVehicleId());
+    }
 }

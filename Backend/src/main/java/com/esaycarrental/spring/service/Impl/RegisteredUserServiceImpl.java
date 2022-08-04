@@ -109,4 +109,26 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
             throw new RuntimeException("Customer Already Exist");
         }
     }
+
+    @Override
+    public String generateCustomerId() {
+        long count = repo.count();
+        String id = "C00-000";
+
+        if (count != 0) {
+            String generateCustomerId = repo.generateCustomerId();
+            int tempId = Integer.parseInt(generateCustomerId.split("-")[1]);
+            tempId += 1;
+            if (tempId < 10) {
+                id = "C00-00" + tempId;
+            } else if (tempId < 100) {
+                id = "C00-0" + tempId;
+            } else if (tempId < 1000) {
+                id = "C00-" + tempId;
+            }
+        } else {
+            id = "C00-000";
+        }
+        return id;
+    }
 }

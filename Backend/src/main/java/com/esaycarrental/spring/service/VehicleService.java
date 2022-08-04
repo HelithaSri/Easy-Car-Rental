@@ -28,4 +28,7 @@ public interface VehicleService {
     VehicleDTO vehicleDetails(String regNo);
 
     void saveVehicleWithImg(String vehicle, MultipartFile file);
+
+    String generateVehicleId();
+
 }
