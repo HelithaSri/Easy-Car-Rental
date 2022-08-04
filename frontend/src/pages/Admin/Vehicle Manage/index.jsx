@@ -83,7 +83,6 @@ class VehicleManage extends Component {
                     renderCell:(params)=>{
                         return(
                             <>
-                                {console.log("ra",params)}
                                 {params.row.rates.rateId}
                             </>
                         )

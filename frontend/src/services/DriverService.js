@@ -49,6 +49,18 @@ class DriverService {
         });
         return await promise;
     }
+
+    generateDriverID = async () =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('driver/generate')
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
 }
 
 export default new DriverService();

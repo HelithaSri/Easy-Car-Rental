@@ -6,6 +6,8 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
 import CustomSnackBar from "../common/SnakBar";
 import VehicleReatsService from "../../services/VehicleReatsService";
+import vehicleService from "../../services/VehicleService";
+import vehicleRates from "../../pages/Admin/Vehicle Rates";
 
 
 class AddVehicleRates extends Component {
@@ -24,6 +26,19 @@ class AddVehicleRates extends Component {
             message: '',
             severity: ''
         };
+    }
+
+    ratesIdGenerate = async () =>{
+        if (!this.props.isUpdate){
+            const res = await VehicleReatsService.generateRatesID();
+            if (res.status===200){
+                this.setState(Object.assign(this.state.formData, {rateId: res.data.data}));
+            }
+        }
+    }
+
+    async componentDidMount() {
+        await this.ratesIdGenerate()
     }
 
     handleSubmit = async () => {
@@ -122,6 +137,7 @@ class AddVehicleRates extends Component {
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
+                                    disabled={true}
                                     style={{minWidth: '100%'}}
                                 />
                                 <TextValidator

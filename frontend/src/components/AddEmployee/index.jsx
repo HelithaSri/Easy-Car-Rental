@@ -6,6 +6,7 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
 import EmployeeService from "../../services/EmployeeService";
 import CustomSnackBar from "../common/SnakBar";
+import vehicleService from "../../services/VehicleService";
 
 
 class AddEmployee extends Component {
@@ -25,6 +26,19 @@ class AddEmployee extends Component {
             message: '',
             severity: ''
         };
+    }
+
+    employeeIdGenerate = async () =>{
+        if (!this.props.isUpdate){
+            const res = await EmployeeService.generateStaffID();
+            if (res.status===200){
+                this.setState(Object.assign(this.state.formData, {staffId: res.data.data}));
+            }
+        }
+    }
+
+    async componentDidMount(){
+        await this.employeeIdGenerate();
     }
 
     handleSubmit = async () => {
@@ -129,6 +143,7 @@ class AddEmployee extends Component {
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
+                                    disabled={true}
                                     style={{minWidth: '100%'}}
                                 />
                                 <TextValidator
@@ -166,8 +181,8 @@ class AddEmployee extends Component {
                                     onChange={this.handleChange}
                                     name="email"
                                     value={this.state.formData.email}
-                                    validators={["required"]}
-                                    errorMessages={["This field is required"]}
+                                    validators={["required", "isEmail"]}
+                                    errorMessages={["This field is required", "Email is not valid"]}
                                     className="w-full"
                                     style={{minWidth: '100%'}}
                                 />

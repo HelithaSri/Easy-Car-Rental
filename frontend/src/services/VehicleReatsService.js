@@ -49,5 +49,17 @@ class VehicleReatsService {
         });
         return await promise;
     }
+
+    generateRatesID = async () =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('rates/generate')
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
 }
 export default new VehicleReatsService();

@@ -6,6 +6,7 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
 import VehicleTypeService from "../../services/VehicleTypeService";
 import CustomSnackBar from "../common/SnakBar";
+import vehicleService from "../../services/VehicleService";
 
 class AddVehicleType extends Component {
     constructor(props) {
@@ -20,6 +21,19 @@ class AddVehicleType extends Component {
             message: '',
             severity: ''
         };
+    }
+
+    vehicleTypeIdGenerate = async () => {
+        if (!this.props.isUpdate){
+            const res = await VehicleTypeService.generateTypeID();
+            if (res.status===200){
+                this.setState(Object.assign(this.state.formData, {vehicleTypeId: res.data.data}));
+            }
+        }
+}
+
+    async componentDidMount() {
+        await this.vehicleTypeIdGenerate();
     }
 
     handleSubmit = async () => {
@@ -108,6 +122,7 @@ class AddVehicleType extends Component {
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
+                                    disabled={true}
                                     style={{minWidth: '100%'}}
                                 />
                                 <TextValidator

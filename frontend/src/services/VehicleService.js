@@ -98,5 +98,17 @@ class VehicleService {
         })
         return await promise;
     }
+
+    generateVehicleID = async () =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('vehicle/generate')
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
 }
 export default new VehicleService();

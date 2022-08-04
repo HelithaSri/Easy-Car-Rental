@@ -10,6 +10,7 @@ import VehicleReatsService from "../../services/VehicleReatsService";
 import VehicleTypeService from "../../services/VehicleTypeService";
 import VehicleService from "../../services/VehicleService";
 import CustomSnackBar from "../common/SnakBar";
+import vehicleService from "../../services/VehicleService";
 
 
 class AddNewVehicle extends Component {
@@ -85,10 +86,22 @@ class AddNewVehicle extends Component {
 
     }
 
+    vehicleIdGenerate = async () =>{
+        if (!this.props.isUpdate){
+            const res = await vehicleService.generateVehicleID();
+            if (res.status===200){
+                this.setState(Object.assign(this.state.formData, {registrationNumber: res.data.data}));
+            }
+        }
+    }
+
     async componentDidMount() {
         await this.fetchRatesDataForSelect()
         await this.fetchVTypeDataForSelect()
+        await this.vehicleIdGenerate()
         console.log('mount v')
+        console.log(this.state.formData)
+
         console.log('type : ', this.props.obj)
     }
 
@@ -229,6 +242,7 @@ class AddNewVehicle extends Component {
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
+                                    disabled={true}
                                     style={{minWidth: '100%'}}
                                 />
                                 <TextValidator

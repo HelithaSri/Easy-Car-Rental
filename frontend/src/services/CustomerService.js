@@ -49,6 +49,18 @@ class CustomerService {
         })
         return await promise;
     }
+
+    generateCustomerID = async () =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.get('user/generate')
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
 }
 
 export default new CustomerService();
