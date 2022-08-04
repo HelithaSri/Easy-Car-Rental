@@ -71,6 +71,13 @@ class EmployeeManage extends Component {
                     headerName: "Password",
                     width: 200,
                     sortable: false,
+                    renderCell:(params) => {
+                        return(
+                            <>
+                                <span style={{'-webkit-text-security': 'disc'}} >{params.row.password}</span>
+                            </>
+                        )
+                    }
                 },
 
                 {
@@ -88,14 +95,14 @@ class EmployeeManage extends Component {
                         return (
                             <>
                                 <Tooltip title="Edit">
-                                    <IconButton onClick={async () => {
+                                    <IconButton className={'bg-blue-100 mr-2 '} onClick={async () => {
                                         await this.updateEmployee(params.row);
                                     }}>
                                         <EditIcon className={'text-blue-500'}/>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Delete">
-                                    <IconButton onClick={async () => {
+                                    <IconButton className={'bg-red-100 mr-2 '} onClick={async () => {
                                         await this.deleteEmployee(params.row.staffId);
                                     }}>
                                         <DeleteIcon className={'text-red-500'}/>

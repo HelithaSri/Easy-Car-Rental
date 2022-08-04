@@ -78,6 +78,13 @@ class CustomerManage extends Component {
                     headerName: "Password",
                     width: 175,
                     sortable: false,
+                    renderCell:(params) => {
+                        return(
+                            <>
+                                <span style={{'-webkit-text-security': 'disc'}} >{params.row.password}</span>
+                            </>
+                        )
+                    }
                 },
 
                 {
@@ -88,7 +95,7 @@ class CustomerManage extends Component {
                         return (
                             <>
                                 <Tooltip title="Delete">
-                                    <IconButton onClick={async () => {
+                                    <IconButton className={'bg-red-100 '} onClick={async () => {
                                         await this.deleteUser(params.row.regUserId);
                                     }}>
                                         <DeleteIcon className={'text-red-500'}/>

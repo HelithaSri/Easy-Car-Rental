@@ -60,14 +60,14 @@ class VehicleType extends Component {
                         return (
                             <>
                                 <Tooltip title="Edit">
-                                    <IconButton onClick={async () => {
+                                    <IconButton className={'bg-blue-100 mr-2 '} onClick={async () => {
                                         await this.updateVehicleType(params.row);
                                     }}>
                                         <EditIcon className={'text-blue-500'}/>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Delete">
-                                    <IconButton onClick={async () => {
+                                    <IconButton className={'bg-red-100 mr-2 '} onClick={async () => {
                                         await this.deleteVehicleType(params.row.vehicleTypeId);
                                     }}>
                                         <DeleteIcon className={'text-red-500'}/>
