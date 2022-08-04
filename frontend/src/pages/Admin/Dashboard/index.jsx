@@ -5,6 +5,7 @@ import Sidebar from '../../../components/common/Sidebar'
 import Widget from '../../../components/common/widgets'
 import CustomerService from "../../../services/CustomerService";
 import VehicleService from "../../../services/VehicleService";
+import DriverService from "../../../services/DriverService";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -67,14 +68,38 @@ class Dashboard extends Component {
         }
     }
 
+    availableDrivers = async () => {
+        const res = await DriverService.countByStatus('Available');
+        if (res.status === 200){
+            this.setState({
+                availableDrivers:res.data.data
+            })
+        }
+    }
+
+    occupiedDrivers = async () => {
+        const res = await DriverService.countByStatus('Occupied');
+        if (res.status === 200){
+            this.setState({
+                occupiedDrivers:res.data.data
+            })
+        }
+    }
+
+
+
     async componentDidMount() {
         await this.usersCount()
         await this.availableCars()
         await this.reservedCars()
         await this.underMaintenanceCars()
         await this.needMaintenanceCars()
+        await this.availableDrivers()
+        await this.occupiedDrivers()
 
     }
+
+
 
 
     render() {
@@ -94,8 +119,8 @@ class Dashboard extends Component {
                         <Widget type="Reserved cars" path="../vehiclemanage" number={this.state.reservedCars}/>
                         <Widget type="Active Bookings" path="/driver" number='5'/>
 
-                        <Widget type="Available Drivers" path="/driver" number='5'/>
-                        <Widget type="Occupied Drivers" path="/driver" number='5'/>
+                        <Widget type="Available Drivers" path="/driver" number={this.state.availableDrivers}/>
+                        <Widget type="Occupied Drivers" path="/driver" number={this.state.occupiedDrivers}/>
 
                         <Widget type="Need To Maintenance" path="../vehiclemanage" number={this.state.needToMaintenance}/>
                         <Widget type="Under Maintenance" path="../vehiclemanage" number={this.state.underMaintenance}/>

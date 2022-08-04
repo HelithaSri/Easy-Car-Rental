@@ -82,4 +82,9 @@ public class DriverServiceImpl implements DriverService {
         }
         return id;
     }
+
+    @Override
+    public long countByStatus(String status) {
+        return repo.countDriverByStatus(status);
+    }
 }

@@ -50,4 +50,9 @@ public class DriverController {
     public ResponseUtil getGenerateID() {
         return new ResponseUtil(200, "Ok", service.generateDriverId());
     }
+
+    @GetMapping(path = "/count/status",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil countAllByStatus(@RequestParam String status) {
+        return new ResponseUtil(200, "Ok", service.countByStatus(status));
+    }
 }
