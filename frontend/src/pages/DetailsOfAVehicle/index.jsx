@@ -41,7 +41,8 @@ class DetailsOfAVehicle extends Component {
                     "freeKmForaMonth": '',
                     "freeKmForaDay": '',
                     "pricePerExtraKm": '',
-                }
+                },
+                "imgs":[]
             },
         }
     }
@@ -49,21 +50,28 @@ class DetailsOfAVehicle extends Component {
     async loadVehicle(id){
         let res = await vehicleService.fetchVehicle(id)
         if (res.status === 200){
+            console.log("res",res.data.data)
             this.setState({
                 vehicleObj:res.data.data
             })
+            this.setState(Object.assign(this.state.vehicleObj, {imgs:{path: 'http://localhost:8080/backend/'+res.data.data.imgs[0].path,imgId:res.data.data.imgs[0].imgId}}));
         }else {
             console.log(res.status)
         }
+
+
     }
 
     async componentDidMount() {
         const {regNumber} = this.props.params
         await this.loadVehicle(regNumber)
-
+        // console.log('http://localhost:8080/backend/'+this.state.vehicleObj.imgs[0].path))
+        console.log("details",this.state.vehicleObj)
     }
 
     render() {
+
+
         return (
             <Grid container>
                 <Grid container item xs={12}>
@@ -75,7 +83,7 @@ class DetailsOfAVehicle extends Component {
 
                             <Grid item xs={12} sm={12} md={12} lg={4} height={"max-content"} className={'mt-4'}>
                                 <Grid height={'500px'}
-                                      style={{backgroundImage: `url(${this.state.img})`}}
+                                      style={{backgroundImage: `url(${this.state.vehicleObj.imgs.length!==0?'http://localhost:8080/backend/'+this.state.vehicleObj.imgs[0].path:this.state.img})`}}
                                       className={' border-amber-50 border-2 bg-center bg-cover mr-2 rounded-2xl'}>
                                 </Grid>
                             </Grid>

@@ -114,10 +114,10 @@ class Dashboard extends Component {
                     <Navbar/>
                     <Grid container item xs={'auto'} className='flex p-5 gap-5'>
                         <Widget type="users" path="../customermanage" number={this.state.users}/>
-                        <Widget type="bookings" path="/driver" number='10'/>
+                        <Widget type="bookings" path="/driver" number='0'/>
                         <Widget type="Available cars" path="../vehiclemanage" number={this.state.availableCars}/>
                         <Widget type="Reserved cars" path="../vehiclemanage" number={this.state.reservedCars}/>
-                        <Widget type="Active Bookings" path="/driver" number='5'/>
+                        <Widget type="Active Bookings" path="/driver" number='0'/>
 
                         <Widget type="Available Drivers" path="/driver" number={this.state.availableDrivers}/>
                         <Widget type="Occupied Drivers" path="/driver" number={this.state.occupiedDrivers}/>

@@ -1,5 +1,6 @@
 package com.esaycarrental.spring.config;
 
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,7 @@ public class JPAConfig {
         return bean;
     }
 
-    @Bean
+    /*@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(env.getRequiredProperty("my.app.url"));
@@ -50,6 +51,21 @@ public class JPAConfig {
         dataSource.setPassword(env.getRequiredProperty("my.app.password"));
         dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverClassname"));
         return dataSource;
+    }*/
+
+    @Bean
+    public BasicDataSource dataSource(){
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(env.getRequiredProperty("my.app.driverClassname"));
+        dataSource.setUrl(env.getRequiredProperty("my.app.url"));
+        dataSource.setUsername(env.getRequiredProperty("my.app.username"));
+        dataSource.setPassword(env.getRequiredProperty("my.app.password"));
+        dataSource.setMaxTotal(Integer.parseInt(env.getRequiredProperty("my.app.maxTotal")));
+        dataSource.setInitialSize(Integer.parseInt(env.getRequiredProperty("my.app.initialSize")));
+        /*dataSource.setTestOnBorrow(true);
+        dataSource.setValidationQuery("select 1");*/
+        return dataSource;
+
     }
 
     @Bean

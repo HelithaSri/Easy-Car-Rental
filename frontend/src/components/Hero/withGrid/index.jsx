@@ -7,6 +7,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {Link} from "react-router-dom";
 
 
 const CssTextField = styled(TextField)({
@@ -118,18 +119,20 @@ class HeroWithGrid extends Component {
                   label="Return Date"
                   inputFormat="MM/D/yyyy"
                   value={this.state.selectedReturnDate}
-                  onChange={this.handleChangeDate}
+                  onChange={this.handleChangeDateReturn}
                   renderInput={(params) => <CssTextField {...params} />}
 
               />
             </LocalizationProvider>
-
+            <Link to={'/vehicles'} >
             <CommonButton
               size="large"
               variant="contained"
               label="Find"
               className="text-white bg-yellow-500 font-bold tracking-wide"
+              style={{width:'100%'}}
             />
+          </Link>
           </div>
         </Grid>
       </Grid>
@@ -139,6 +142,12 @@ class HeroWithGrid extends Component {
   handleChangeDate = (newValue) => {
     this.setState({
       selectedDate:newValue
+    })
+  }
+
+  handleChangeDateReturn = (newValue) => {
+    this.setState({
+      selectedReturnDate:newValue
     })
   }
 }
